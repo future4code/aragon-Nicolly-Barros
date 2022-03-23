@@ -69,12 +69,24 @@ listaDeTarefas = [tarefa1,tarefa2,tarefa3]
 
 console.log(`Suas tarefas de hoje são:`, listaDeTarefas)
 
-const tarefaFeita =Number(prompt(`Indique o número de qual tarefa você já realizou: 0- ${tarefa1}, 1- ${tarefa2}, 2- ${tarefa3} ?`))
+const tarefaFeita = Number(prompt(`Indique o número de qual tarefa você já realizou: 0- ${tarefa1}, 1- ${tarefa2}, 2- ${tarefa3} ?`))
 
 listaDeTarefas.splice(tarefaFeita, 1)
 
 console.log(`Restam essas tarefas a serem feitas: ${listaDeTarefas}`)
 
 
+//-----------DESAFIO - 1
 
+const fraseUsuario = prompt("Escreva uma frase:")
 
+array1 = fraseUsuario.split(" ")
+console.log(array1)
+
+//-----------DESAFIO - 2
+
+array2 = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"]
+
+const abacaxi = array2.indexOf('Abacaxi')
+
+console.log(`Indice da fruta Abacaxi em nossa array: ${abacaxi} , e o tamanho da array: ${array2.length}`)
