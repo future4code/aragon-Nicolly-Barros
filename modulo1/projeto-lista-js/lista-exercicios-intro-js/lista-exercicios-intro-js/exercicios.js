@@ -101,34 +101,29 @@ imprimeTresCoresFavoritas*/
 }*/
 
 // EXERCÍCIO 09
-/*function retornaPrimeiroElemento(array) {
+function retornaPrimeiroElemento(array) {
 
   return array.shift()
 
-}*/
+}
 
 
 // EXERCÍCIO 10
-/*function retornaUltimoElemento(array) {
+function retornaUltimoElemento(array) {
 
   return array.pop()
   
-}*/
+}
 
 
 // EXERCÍCIO 11
 function trocaPrimeiroEUltimo(array) {
 
-  let primeiroNumero = array.shift()
+  let primeiroNumero = array[0]
   let ultimoNumero = array.pop()
-  array[0]= ultimoNumero
   array.push(primeiroNumero)
+  array[0]= ultimoNumero
   return array
-
-  //array[0] = retornaPrimeiroElemento(array)
-  //const ultimoElemento = retornaUltimoElemento(array)
-  //array.push(ultimoElemento)
-  //return array
 }
 
 
@@ -136,9 +131,9 @@ function trocaPrimeiroEUltimo(array) {
 /*function checaIgualdadeDesconsiderandoCase(string1, string2) {
   const minusculaString1 = string1.toLowerCase()
   const minusculaString2 = string2.toLowerCase()
-  const igualadeDeStrings = minusculaString1 === minusculaString2
-  return igualadeDeStrings*/
-}
+  const igualdadeDeStrings = minusculaString1 === minusculaString2
+  return igualdadeDeStrings
+}*/
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
