@@ -128,27 +128,55 @@ function trocaPrimeiroEUltimo(array) {
 
 
 // EXERCÍCIO 12
-/*function checaIgualdadeDesconsiderandoCase(string1, string2) {
+function checaIgualdadeDesconsiderandoCase(string1, string2) {
   const minusculaString1 = string1.toLowerCase()
   const minusculaString2 = string2.toLowerCase()
   const igualdadeDeStrings = minusculaString1 === minusculaString2
   return igualdadeDeStrings
-}*/
+}
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
-  // implemente sua lógica aqui
+  const anoAtual = Number(prompt("Digite o ano atual:"))
+  const anoDeNascimento = Number(prompt("Digite o ano de nascimento:"))
+  const anoDeEmissaoRG = Number(prompt("Digite o ano de emissão do seu RG:"))
+
+  let idade = anoAtual - anoDeNascimento
+  let renovacao = anoAtual - anoDeEmissaoRG
+
+  let verificandoIdade20 = idade <= 20 
+  let pessoasDeVinteAnos = renovacao === 5
+  const renovarRG1 = verificandoIdade20 && pessoasDeVinteAnos 
+
+  let verificandoIdade50 = idade > 20
+  let pessoasDeCinquentaAnos = renovacao === 10
+  const renovarRG2 = verificandoIdade50 && pessoasDeCinquentaAnos
+
+  let maiorDeCinquentaAnos = idade > 50
+  let pessoasMaioresDe50anos = renovacao === 15
+  const renovarRG3 = maiorDeCinquentaAnos && pessoasMaioresDe50anos
+  
+  console.log(renovarRG1||renovarRG2||renovarRG3)
 
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
-  // implemente sua lógica aqui
+  
 
 }
 
 // EXERCÍCIO 15
 function checaValidadeInscricaoLabenu() {
-  // implemente sua lógica aqui
+  const maiorDeIdade = prompt("Você tem mais de 18 anos? (responda sim ou não)")
+  const ensinoMedioCompleto = prompt("Você possui ensino médio completo? (responda sim ou não)")
+  const disponibilidade = prompt("Você possui disponibilidade exclusiva durante os horários do curso? (reponda sim ou não)")
+
+  let confirmandoIdade = maiorDeIdade === "sim"
+  let confirmandoEnsinoMedio = ensinoMedioCompleto === "sim"
+  let confirmandoDisponibilidade = disponibilidade === "sim"
+
+
+  console.log(confirmandoIdade && confirmandoEnsinoMedio && confirmandoDisponibilidade)
 
 }
