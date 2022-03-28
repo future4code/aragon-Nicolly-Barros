@@ -144,26 +144,25 @@ function checaRenovacaoRG() {
   let idade = anoAtual - anoDeNascimento
   let renovacao = anoAtual - anoDeEmissaoRG
 
-  let verificandoIdade20 = idade <= 20 
-  let pessoasDeVinteAnos = renovacao === 5
-  const renovarRG1 = verificandoIdade20 && pessoasDeVinteAnos 
+  let verificandoIdade20 = idade <= 20 && renovacao === 5 
 
-  let verificandoIdade50 = idade > 20
-  let pessoasDeCinquentaAnos = renovacao === 10
-  const renovarRG2 = verificandoIdade50 && pessoasDeCinquentaAnos
+  let verificandoIdade50 = idade > 20 && renovacao === 10
 
-  let maiorDeCinquentaAnos = idade > 50
-  let pessoasMaioresDe50anos = renovacao === 15
-  const renovarRG3 = maiorDeCinquentaAnos && pessoasMaioresDe50anos
+  let maiorDeCinquentaAnos = idade > 50 && renovacao === 15
+
   
-  console.log(renovarRG1||renovarRG2||renovarRG3)
+  console.log(verificandoIdade20 || verificandoIdade50 || maiorDeCinquentaAnos)
 
 }
 
 // EXERCÍCIO 14
 function checaAnoBissexto(ano) {
-  
+  let multiplos400 = ano % 400 === 0
+  let multiplos4 = ano % 4 === 0
+  let multiplos100 = ano % 100 !== 0
 
+  const resultadoAnoBissexto = multiplos4 && multiplos100 || multiplos400
+  return resultadoAnoBissexto
 }
 
 // EXERCÍCIO 15
