@@ -144,11 +144,11 @@ function checaRenovacaoRG() {
   let idade = anoAtual - anoDeNascimento
   let renovacao = anoAtual - anoDeEmissaoRG
 
-  let verificandoIdade20 = idade <= 20 && renovacao === 5 
+  let verificandoIdade20 = idade <= 20 && renovacao >= 5 
 
-  let verificandoIdade50 = idade > 20 && renovacao === 10
+  let verificandoIdade50 = idade <= 50 && renovacao >= 10
 
-  let maiorDeCinquentaAnos = idade > 50 && renovacao === 15
+  let maiorDeCinquentaAnos = idade > 50 && renovacao >= 15
 
   
   console.log(verificandoIdade20 || verificandoIdade50 || maiorDeCinquentaAnos)
