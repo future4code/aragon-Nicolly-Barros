@@ -1,22 +1,22 @@
 //--------------EXERCÍCIO DE INTERPRETAÇÃO - 1
 let array
-console.log('a. ', array)
+//console.log('a. ', array)
 //irá retornar no terminal a palavra  undefined, pois não tem atribuição)
 
 array = null
-console.log('b. ', array)
+//console.log('b. ', array)
 // irá retornar no terminal a palavra "null", pois foi atribuido valor à variavél array
 
 array = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-console.log('c. ', array.length)
+//console.log('c. ', array.length)
 //irá retonrar no terminal o numero de elementos da minha variável array, nesse caso 11 elementos na lista
 
 let i = 0
-console.log('d. ', array[i])
+//console.log('d. ', array[i])
 //irá retornar o valor do elemento que ocupa o indíce 0, nesse caso, o número 3
 
 array[i+1] = 19
-console.log('e. ', array)
+//console.log('e. ', array)
 //irá retornar no terminal a array com o numero 19 após o numero 3, pois esse foi substituído na atribuição acima
 
 const valor = array[i+6]
@@ -26,24 +26,24 @@ console.log('f. ', valor)
 
 //--------------EXERCÍCIO DE INTERPRETAÇÃO - 2
 
-const frase = prompt("Digite uma frase")
+//const frase = prompt("Digite uma frase")
 
-console.log(frase.toUpperCase().replaceAll("A", "I"), frase.length)
+//console.log(frase.toUpperCase().replaceAll("A", "I"), frase.length)
 //A frase "Subi num ônibus em Marrocos" ficará: SUBI NUM ONIBUS EM MIRROCOS 27
 
 //-------------------------------------------------------------------------------------
 
 //--------------EXERCÍCIO DE ESCRITA - 1
 
-const nome = prompt("Qual o seu nome?")
+/*const nome = prompt("Qual o seu nome?")
 const email = prompt("Qual o seu e-mail?")
 
-console.log(`O e-mail ${email} foi cadastrado com sucesso. Bem vindo(a) ${nome}!`)
+console.log(`O e-mail ${email} foi cadastrado com sucesso. Bem vindo(a) ${nome}!`)*/
 
 
 //--------------EXERCÍCIO DE ESCRITA - 2
 
-const comidasPreferidas = ["strogonof", "macarrão", "purê", "lasanha", "pizza"]
+/*const comidasPreferidas = ["strogonof", "macarrão", "purê", "lasanha", "pizza"]
 console.log(comidasPreferidas)
 
 console.log("Essas são minhas comidas preferidas:")
@@ -56,7 +56,7 @@ console.log(comidasPreferidas[4])
 const comidaUsuario = prompt("Qual a sua comida preferida?")
 comidasPreferidas[0+1]= comidaUsuario
 
-console.log(`Nova array:`, comidasPreferidas)
+console.log(`Nova array:`, comidasPreferidas)*/
 
 //--------------EXERCÍCIO DE ESCRITA - 3
 
@@ -85,7 +85,7 @@ console.log(array1)
 
 //-----------DESAFIO - 2
 
-array2 = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"]
+array2 = ["Banana", "Morango","Abacaxi", "Laranja", "Ameixa"]
 
 const abacaxi = array2.indexOf('Abacaxi')
 
