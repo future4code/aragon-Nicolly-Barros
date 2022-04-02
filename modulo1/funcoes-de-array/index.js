@@ -134,10 +134,11 @@ const produtos = [
 /*b) Crie um novo array que contenha um objeto com o nome e o preço
 de cada item, aplicando 5% de desconto em todos eles*/
 
-/* const descontosAplicados = produtos.filter((item,) => {
-    item.preco = (item.preco - (item.preco * 0.05))
-    console.log(item)
-}) */
+const descontosAplicados = produtos.map((item,) => {
+    return { nome: item.nome, preco: (item.preco * 0.95).toFixed(2) };
+
+}) 
+console.log(descontosAplicados)
 
 
 //c) Crie um novo array que contenha apenas os objetos da categoria Bebidas
@@ -151,19 +152,24 @@ console.log(produtosBebidas) */
 
 //d) Crie um novo array que contenha apenas os objetos cujo nome contenha a palavra "Ypê"
 
-/* const listaYpê = produtos.filter((item)=> {
+const listaYpê = produtos.filter((item)=> {
      return item.nome.includes("Ypê")
 })
 
-console.log(listaYpê) */
+console.log(listaYpê) 
 
 
 /*e) Crie um novo array onde cada item é uma frase "Compre [NOME] por [PREÇO]". Esse array 
 deve conter frases apenas dos itens cujo nome contenha a palavra "Ypê"*/
 
-/* const compreYpe = listaYpê.map((item) => {
-    console.log(`Compre ${item.nome} por ${item.preco}`)
-})*/
+ const compreYpe = listaYpê.map((item) => {
+    return `Compre ${item.nome} por ${item.preco}`
+})
+
+console.log(compreYpe)
+
+console.log(typeof compreYpe)
+
 
 
 
