@@ -55,9 +55,11 @@ console.log(retornaNumerosParesElevadosADois)
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
-  
+    let maiorNumero = Math.max(...array)
+    return maiorNumero
 }
 
+console.log(retornaMaiorNumero)
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
