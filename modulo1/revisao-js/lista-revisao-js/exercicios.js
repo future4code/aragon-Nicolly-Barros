@@ -40,9 +40,18 @@ console.log(retornaNumerosPares)
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-    
+    let numerosParesAoQuadrado = []
+    for (let i = 0; i < array.length; i++){
+        if(array[i] % 2 === 0 ){
+            let numeroAoQuadrado = array[i] ** 2
+            numerosParesAoQuadrado.push(numeroAoQuadrado)
+
+        }
+    }
+    return numerosParesAoQuadrado
 }
 
+console.log(retornaNumerosParesElevadosADois)
 
 // EXERCÍCIO 06
 function retornaMaiorNumero(array) {
