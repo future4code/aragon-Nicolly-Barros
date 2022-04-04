@@ -84,7 +84,6 @@ function retornaNPrimeirosPares(n) {
     return numerosPares;
 }
 
-console.log(retornaNPrimeirosPares(n))
 
 // EXERCÍCIO 09
 function classificaTriangulo(ladoA, ladoB, ladoC) {
@@ -120,12 +119,32 @@ function retornaPessoaAnonimizada(pessoa) {
 
 // EXERCÍCIO 13A
 function retornaPessoasAutorizadas(pessoas) {
-   
+    let pessoasAutorizadas = []
+    for(let pessoa of pessoas){
+        if(
+        pessoa.idade > 14 && pessoa.altura >= 1.5 && pessoa.idade < 60
+         ){
+             pessoasAutorizadas.push(pessoa)
+            
+         }
+    }
+    return pessoasAutorizadas
 }
+
+
 
 // EXERCÍCIO 13B
 function retornaPessoasNaoAutorizadas(pessoas) {
-  
+    let pessoasNaoAutorizadas = []
+    for(let pessoa of pessoas){
+        if(
+        pessoa.idade <= 14 || pessoa.altura < 1.5 || pessoa.idade > 60
+         ){
+             pessoasNaoAutorizadas.push(pessoa)
+            
+         }
+    }
+    return pessoasNaoAutorizadas
 }
 
 // EXERCÍCIO 14
@@ -135,8 +154,9 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-  
+
 }
+
 
 // EXERCÍCIO 15B
 function retornaArrayOrdenadoPorData(consultas) {
