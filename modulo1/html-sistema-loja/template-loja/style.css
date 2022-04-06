@@ -1,5 +1,5 @@
 html{
-    background-color: rgb(250, 190, 222);
+    background-color: rgb(140, 177, 207);
 }
 
 body{
@@ -37,10 +37,11 @@ footer{
   
 .item-menu{
     margin: 40px;
-    background-color: rgb(250, 190, 222);
+    background-color: rgb(249, 250, 190);
     padding: 10px;
     border-radius: 10px;
-    font-size: 20px
+    font-size: 20px;
+    border: 1px solid rgb(35, 38, 189);
 }
 
 p{
@@ -53,8 +54,28 @@ img{
 }
 
 
-td ,th, li, label,button{
+td ,th, li,button{
     font-size: 20px;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.add{
+    border: 1px dashed rgb(68, 226, 5);
+    background-color: rgb(158, 235, 171);
+    margin-left: 20px;
+    width: 800px;
+}
+
+label{
+    font-size: 20px;
+}
+
+button{
+    padding: 10px 30px;
+    border: 1px solid rgb(0, 238, 52);
+    background-color: rgb(26, 107, 26);
+    border-radius: 10px;
 }
 
 
