@@ -33,9 +33,9 @@ div>p:first-child {
     display: inline;
 }
 
-div img {
-    background: black;
-}
+/* div img {
+    background: black; Esse codigo esta tampando a lupa e colocando fundo preto na calça
+} */
 
 .botao-amarelo {
     display: block;
@@ -130,6 +130,7 @@ td button {
     border-radius: 5px;
     font-size: 10px;
     color: black;
+    
 }
 
 #back-button:hover {
@@ -138,4 +139,8 @@ td button {
 
 img{
     width: 50px;
+}
+
+.icone{
+    width: auto;
 }
