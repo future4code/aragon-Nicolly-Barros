@@ -19,6 +19,8 @@ h2 {
 input {
     height: 20px;
     width: 500px;
+    border-width: 0 0 1px 0;
+
 }
 
 button:focus {
@@ -116,6 +118,10 @@ td button {
     color: black;
 }
 
+.botao-comprar:hover{
+    background-color: #d1b744;
+}
+
 .container-do-search {
     margin-top: 20px;
     height: 100px;
@@ -144,3 +150,4 @@ img{
 .icone{
     width: auto;
 }
+
