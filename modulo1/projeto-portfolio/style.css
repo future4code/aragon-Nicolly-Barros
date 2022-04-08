@@ -166,9 +166,9 @@ button{
     margin: 40px;
     background-color: black;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 30px;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 20px;
     border: 1px solid blueviolet;
 }
 
@@ -188,7 +188,7 @@ button:hover{
     margin: 0%;
 }
 
-.icones-rodape{
+.icones-rodape-contato{
     align-items: center;
     margin: 40px;
     width:5%;
@@ -197,4 +197,25 @@ button:hover{
 #rodape-contato{
     display: block;
     text-align: center;
+}
+
+
+/*PAGINA SKILLS*/
+#fundo-skills{
+    background-color: black;
+}
+
+.titulo-skills{
+    color: white;
+    text-shadow: blueviolet 4px 4px 4px;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 5%;
+    padding-top: 2%;
+}
+
+.skills{
+    font-size: 150%;
+    margin: 2%;
+    color: white;
 }
