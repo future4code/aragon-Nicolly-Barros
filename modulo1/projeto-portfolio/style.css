@@ -219,3 +219,32 @@ button:hover{
     margin: 2%;
     color: white;
 }
+
+h6{
+    font-size: 100%;
+    color:blueviolet;
+}
+
+/*PAGINA PROJETOS*/
+
+.pagina-projeto{
+    margin-top: 5%;
+    background-color: black;
+    text-align: center;
+}
+.titulo-dos-projetos{
+    font-size: 200%;
+    color:blueviolet;
+    text-shadow: white 2px 2px 2px;
+    padding-bottom: 2%;
+}
+
+.texto-do-projeto{
+    color: white;
+    font-size: 120%;
+    
+}
+
+.botao-projeto{
+    background-color: white;
+}
