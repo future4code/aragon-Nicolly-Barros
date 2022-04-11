@@ -3,8 +3,7 @@
   for(let i = 0; i < arrayDeNumeros.length; i++){
     if (arrayDeNumeros[i] === numeroEscolhido){
       novaArray.push(arrayDeNumeros[i])
-    } 
-   
+    }  
   }
   
   if (novaArray.length !== 0){

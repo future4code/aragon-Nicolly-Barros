@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    background-color: mediumvioletred;
+    padding: 15px;
+    flex-grow: 1;
+}
+
+
+#logo-bolo{
+    height: 20px;
+    width: 20px;
+    margin-right: 15px;
+}
+
+#botao-login{
+    margin-left: 1240px;
+}
+
+.conteudo-pagina{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+nav{
+    background-color: #f2d0e0;
+    padding: 10px;
+    padding-right: 200px;
+}
+.icones-navegador, .icones-navegador-setinha{
+    height: 20px;
+    width: 20px;
+    margin-right: 15px;
+}
+.container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 13px;
+    margin-top: 13px;
+   
+}
+
+.icones-navegador-setinha{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+.catalogo-produtos{
+    width: 100%;
+    padding: 10px;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    row-gap: 20px;
+    column-gap: 20px;
+}
+
+.imagem-produto{
+    height: 250px;
+}
+
+.texto-produto{
+    padding: 3px;
+    margin-top: 10px;
+}
+
+.card-bolo{
+    text-align: center;
+    box-shadow: darkgray 2px 2px 2px 1px ;
+}
+
+
+
+footer{
+    background-color: mediumvioletred;
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+}
