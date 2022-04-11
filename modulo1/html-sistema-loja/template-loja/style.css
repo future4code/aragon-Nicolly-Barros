@@ -1,0 +1,83 @@
+html{
+    background-color: rgb(140, 177, 207);
+}
+
+body{
+    margin: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+h1{
+    text-align: center;
+    color:black;
+    background-color:rgb(250, 190, 222) ;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2{
+    text-align: center;
+    border-radius: 10px;
+   
+}
+
+
+footer{
+    background-color:rgb(250, 190, 222) ;
+    bottom: 0;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.menu{
+    text-align: center;
+}
+  
+.item-menu{
+    margin: 40px;
+    background-color: rgb(249, 250, 190);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    border: 1px solid rgb(35, 38, 189);
+}
+
+p{
+    text-align:justify; 
+    font-size: 20px;
+}
+
+img{
+    border-radius: 10px;
+}
+
+
+td ,th, li,button{
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.add{
+    border: 1px dashed rgb(68, 226, 5);
+    background-color: rgb(158, 235, 171);
+    margin-left: 20px;
+    width: 800px;
+}
+
+label{
+    font-size: 20px;
+}
+
+button{
+    padding: 10px 30px;
+    border: 1px solid rgb(0, 238, 52);
+    background-color: rgb(26, 107, 26);
+    border-radius: 10px;
+}
+
+
+
+
