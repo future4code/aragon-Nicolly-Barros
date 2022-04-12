@@ -9,18 +9,21 @@ header{
     flex-direction: row;
     background-color: mediumvioletred;
     padding: 15px;
-    flex-grow: 1;
 }
 
+#botao-login{
+    position: absolute;
+   right: 20px;
+}
+
+button{
+    width: 50px;
+}
 
 #logo-bolo{
     height: 20px;
     width: 20px;
     margin-right: 15px;
-}
-
-#botao-login{
-    margin-left: 1240px;
 }
 
 .conteudo-pagina{
@@ -32,7 +35,7 @@ header{
 nav{
     background-color: #f2d0e0;
     padding: 10px;
-    padding-right: 200px;
+    /* padding-right: 200px; */
 }
 .icones-navegador, .icones-navegador-setinha{
     height: 20px;
@@ -42,15 +45,18 @@ nav{
 .container{
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     margin-bottom: 13px;
     margin-top: 13px;
    
 }
 
 .icones-navegador-setinha{
-    display: flex;
+    display:flex;
     flex-direction: row;
-    
+    justify-content: flex-end;
+    align-self:end;
+    margin-left: 50px;
 }
 
 
