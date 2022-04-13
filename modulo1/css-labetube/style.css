@@ -1,13 +1,14 @@
 *{
     margin: 0;
     padding: 0;
-    box-sizing: b;
+    box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
 }
 
 body{
     display: grid;
     grid-template-rows: 10vh 80vh 10vh;
+    background-color: rgb(236, 201, 136);
 }
 
 header{
@@ -41,12 +42,10 @@ a {
 }
 
 
-#buscar{
-    margin-right: 2%;
-}
-
 input{
-    padding: 10px;
+    padding: 2%;
+    width: 80%;
+    margin-left: 15%;
     font-size: 100%;
     border-color: blue;
 }
@@ -55,11 +54,17 @@ input{
 .container{
     display: grid;
     grid-template-columns: 20% 20% 20% 20%;
-    grid-template-rows: 50% 50%;
     justify-content: center;
     margin: 2% 0;
     row-gap: 2%;
     column-gap: 2%;
+}
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    .container{
+        grid-template-columns: 1fr;
+        margin: 5%;
+    }
 }
 
 
@@ -70,12 +75,14 @@ ul{
     border-radius: 5px;
     list-style:none;
     box-shadow: rgb(18, 78, 189) 2px 2px 1px;
+    background-color: white;
 }
+
 
 .imagem-video{
     max-width: 100%;
-    width: 300px;
-    height: 200px;
+    width: 90%;
+    height: 50%;
 }
 
 .container-video{
@@ -93,17 +100,21 @@ video{
     width: 60%;
 }
 
-
-
 h2{
     margin: 10px;
     color:rgb(255, 153, 0);
+    border: 2px black solid;
+    border-radius: 2px;
+    background-color: rgb(173, 190, 236);
 }
 
 footer{
     background-color: rgb(89, 68, 209);
     text-align: center;
-    padding-top: 30px;
-    color:rgb(255, 153, 0);
+    padding: 30px;
+    color:rgb(255, 153, 0);  
+    bottom: 0;
+    position:fixed;
+    width: 100%;
 }
 
