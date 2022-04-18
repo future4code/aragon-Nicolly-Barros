@@ -1,0 +1,250 @@
+*{
+    margin: 0;
+}
+
+
+/*CABEÇALHO*/
+header{
+    background-color: black;
+}
+h1{
+    color: white;
+    font-size: 300%;
+    text-align: center;
+    padding-top: 3%;
+    text-shadow: blueviolet 3px 3px 3px;
+}
+#p-cabecalho{
+    color: white;
+    font-size: 200%;
+    margin-left: 20%;
+    padding-bottom: 9%;
+    padding-top: 5%;
+}
+
+#imagem-cabeçalho{
+    height: auto;
+    width: 20%;
+    display: block;
+    position: absolute; right: 0;
+    margin-right: 5%;
+
+}
+
+.menu{
+    margin-top: 60px;
+    text-align: center;
+    
+}
+
+.item-menu{
+    margin: 40px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 30px;
+    border: 1px solid blueviolet;
+    box-shadow: blueviolet 3px 3px 3px;
+}
+
+.item-menu:hover{
+    color: blueviolet;
+}
+
+
+/*body*/
+
+.sobre-mim{
+    margin: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 150%;
+    text-align: justify;
+}
+
+.formacao-experiencia{
+    margin-left:9% ;
+    margin-bottom: 5%;
+    margin-top: 10px;
+    font-size: 150%;
+    text-align: justify;
+    border-style: solid;
+    border-radius: 4px;
+    display: inline-block;
+    box-shadow: blueviolet 1px 1px 1px ;
+}
+li{
+    padding: 2%;
+    
+}
+
+h2{
+    text-shadow: blueviolet 2px 2px 2px;
+}
+
+.box{
+    text-align: center;
+}
+
+
+h3{
+    font-size: 250%;
+    text-align: center;
+    text-shadow: blueviolet 4px 4px 4px;
+    background-color: black;
+    color: white;
+    padding-top:15px ;
+}
+
+.projetos{
+    text-align: center;
+    background-color: black;
+}
+
+.projetos-feitos{
+    display: inline-block ;
+    border: solid;
+    margin: 5%;
+    padding: 2%;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: gray 3px 3px 3px;
+}
+
+#loja-virtual{
+    width: 200px;
+}
+
+h4{
+    font-size: 250%;
+}
+
+.texto-projeto{
+    font-size: 120%;
+    margin-bottom: 20px;
+}
+
+.item-projeto{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    box-shadow: blueviolet 3px 3px 3px;
+}
+
+
+/*RODAPE*/
+.icones-rodape{
+    width: 3%;
+}
+
+h5{
+    margin-left: 4px;
+    margin-top: 4px;
+}
+
+/*PAGINA CONTATO*/
+
+#titulo-contato{
+    margin-top: 4%;
+    text-align: center;
+    font-size: 200%;
+}
+
+.formulario{
+    font-size: 200%;
+    text-align: center;
+}
+
+input{
+    width: 300px;
+}
+
+button{
+    margin: 40px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 20px;
+    border: 1px solid blueviolet;
+}
+
+button:hover{
+    background-color: blueviolet;
+    color: black;
+}
+
+#redes-sociais{
+    margin-top: 20%;
+    font-size: 250%;
+    text-align: center;
+    text-shadow: blueviolet 4px 4px 4px;
+    background-color: black;
+    color: white;
+    padding-top:15px ;
+    margin: 0%;
+}
+
+.icones-rodape-contato{
+    align-items: center;
+    margin: 40px;
+    width:5%;
+}
+
+#rodape-contato{
+    display: block;
+    text-align: center;
+}
+
+
+/*PAGINA SKILLS*/
+#fundo-skills{
+    background-color: black;
+}
+
+.titulo-skills{
+    color: white;
+    text-shadow: blueviolet 4px 4px 4px;
+    font-size: 200%;
+    text-align: center;
+    margin-top: 5%;
+    padding-top: 2%;
+}
+
+.skills{
+    font-size: 150%;
+    margin: 2%;
+    color: white;
+}
+
+h6{
+    font-size: 100%;
+    color:blueviolet;
+}
+
+/*PAGINA PROJETOS*/
+
+.pagina-projeto{
+    margin-top: 5%;
+    background-color: black;
+    text-align: center;
+}
+.titulo-dos-projetos{
+    font-size: 200%;
+    color:blueviolet;
+    text-shadow: white 2px 2px 2px;
+    padding-bottom: 2%;
+}
+
+.texto-do-projeto{
+    color: white;
+    font-size: 120%;
+    
+}
+
+.botao-projeto{
+    background-color: white;
+}
