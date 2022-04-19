@@ -1,13 +1,13 @@
 import React from 'react';
 import style from 'styled-components'
 
-const BigCard =style.div`
+const ContainerGeral = style.div`
     display: flex;
     align-items: center;
     border: 1px solid black;
     padding: 20px 10px;
     margin-bottom: 10px;
-    height: 200px;
+    height: 100px;
 `
 
 const Imagem = style.img`
@@ -15,27 +15,25 @@ const Imagem = style.img`
     margin-right: 10px;
     border-radius: 50%;
 `
-
-const Titulo = style.h4`
-    margin-bottom: 15px;
-`
-
-const ContainerInfos = style.div`
+const ContainerMenor = style.div`
     display: flex;
-    flex-direction: column;
-    justify-items: flex-start;
+    flex-direction: row;
+    justify-items: flex-start; 
+`
+const Titulo = style.h4`
+    margin-right: 5px;
 `
 
-function CardGrande(props) {
+function CardPequeno(props) {
     return (
-        <BigCard>
+        <ContainerGeral>
             <Imagem src={ props.imagem } />
-            <ContainerInfos>
-                <Titulo>{ props.nome }</Titulo>
+            <ContainerMenor>
+                <Titulo>{props.titulo}</Titulo>
                 <p>{ props.descricao }</p>
-            </ContainerInfos>
-        </BigCard>
+            </ContainerMenor>
+        </ContainerGeral>
     )
 }
 
-export default CardGrande;
+export default CardPequeno;
