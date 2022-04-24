@@ -10,12 +10,7 @@ const Main = styled.div`
   height: 100vh;
   border: 1px solid black;
   flex: 1;
-  /* max-width: 600px;
-  height: 100vh;
-  border: 1px solid black;
-  flex: 1;
-  display: flex;
-  flex-direction: column; */
+ 
 `
 
 const ContainerMensagens = styled.div`
