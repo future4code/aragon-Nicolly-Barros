@@ -133,6 +133,7 @@ class Post extends React.Component {
           icone={iconeSalvado}
           onClickIcone={this.onClickSalvar}
         />
+
       </PostFooter>
       {componenteComentario}
     </PostContainer>
