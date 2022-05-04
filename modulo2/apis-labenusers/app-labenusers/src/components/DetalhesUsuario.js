@@ -1,6 +1,35 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components'
 
+const DetalhesTitulo = styled.h3`
+    color:orange;
+`
+
+const BotaoEditar = styled.button`
+    color: white;
+    background-color: orange;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-top:10px;
+    
+    &:hover {
+        background-color: black;
+        color:orange;
+    };
+`
+
+const BotaoVoltar = styled.button`
+    color: white;
+    background-color: orange;
+    border-radius: 3px;
+    font-size: 14px;
+    
+    &:hover {
+        background-color: black;
+        color:orange;
+    };
+`
 
 class DetalhesUsuario extends React.Component {
     state = {
@@ -78,7 +107,7 @@ class DetalhesUsuario extends React.Component {
     render() {
         const editarUsuario =
             this.state.editarUsuario === "editarBotao" ? (
-                <button onClick={this.botaoEditarUsuario}>Editar usuário</button>
+                <BotaoEditar onClick={this.botaoEditarUsuario}>Editar usuário</BotaoEditar>
             ) : (
                 <div>
                     <input
@@ -98,16 +127,19 @@ class DetalhesUsuario extends React.Component {
             );
         return (
             <div>
-                <h3>Detalhes do usuário:</h3>
+
+                <BotaoVoltar onClick={this.props.mudandoPagina}>
+                    Voltar para lista de usuários
+                </BotaoVoltar>
+
+                <DetalhesTitulo>Detalhes do usuário:</DetalhesTitulo>
+
                 <div>
-                    <p>{this.state.detalhesUsuario.name}</p>
-                    <p>{this.state.detalhesUsuario.email}</p>
+                    <p>Nome: {this.state.detalhesUsuario.name}</p>
+                    <p>Email: {this.state.detalhesUsuario.email}</p>
                 </div>
                 <div>{editarUsuario}</div>
-                <hr />
-                <button onClick={this.props.mudandoPagina}>
-                    Voltar para lista de usuários
-                </button>
+
             </div>
         );
     };
