@@ -1,7 +1,8 @@
-import React from 'react'
-/* import axios from 'axios'; */
+import React from 'react';
+import axios from 'axios';
 
 class VerPlaylists extends React.Component {
+
     /* state = {
         playlists: [],
     }
@@ -13,7 +14,7 @@ class VerPlaylists extends React.Component {
             }
         }).then((response) => {
             console.log(response.data)
-            this.setState({ listaUsuarios: response.data })
+            this.setState({ playlists: response.data })
         }).catch((error) => {
             alert("Erro ao carregar playlists!");
             console.log(error.response.data)
@@ -21,13 +22,13 @@ class VerPlaylists extends React.Component {
     } */
 
     render() {
+       /*  const renderizaPlaylists = this.state.playlists.map((playlist)=>{
+            return <p key={playlist.id}>{playlist.name}</p>
+        }) */
         return (
             <div>
-                <h3>Playlists</h3>
-
-                {/* {this.state.playlists.map((playlist)=>{
-                    return <p>{playlist.nome}</p>
-                })} */}
+                {/* <h3>Playlists</h3>
+                {renderizaPlaylists} */} 
             </div>
         );
     }
