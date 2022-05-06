@@ -5,14 +5,16 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 `
-
+const Titulo = styled.h1`
+  font-size: 40px;
+`
 class App extends React.Component {
   render() {
     return (
       <Container>
-        <h1>Labefy</h1>
-        <CriarPlaylist />
+        <Titulo>♪ Labefy ♪</Titulo>
         <VerPlaylists />
       </Container>
     );
