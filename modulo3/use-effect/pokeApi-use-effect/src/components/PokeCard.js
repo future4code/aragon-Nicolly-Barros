@@ -46,7 +46,7 @@ function PokeCard(props) {
     <Card>
         <strong > {pokemon.name && pokemon.name.toUpperCase()}</strong>
 
-        <p>Peso: {pokemon.weight} Kg</p>
+        <p>Peso: {pokemon.weight * 0.1} Kg</p>
 
         <p>Tipo: {pokemon.types && pokemon.types[0].type.name} </p>
 
