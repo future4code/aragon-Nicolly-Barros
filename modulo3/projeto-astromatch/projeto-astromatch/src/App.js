@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import PaginaAtual from './pages/PaginaAtual';
 
 const ContainerGeral = styled.div`
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',monospace;
-  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  text-align: center; 
 `
 
 function App() {

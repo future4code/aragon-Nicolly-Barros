@@ -15,33 +15,35 @@ const BotaoMatch1 = styled.img`
     }
 `
 const ButtaoResetar = styled.button`
+    border: 0 solid;
     border-radius: 3px;
-    border-color: red;
     background: white;
     color: red;
     font-weight: bold;
     height: 30px;
     margin-right:20px;
+    transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
 
     &:hover{
-        color:black;
+        background:red;
+        color:white;
     };
 `
 
 const ImagemPerson = styled.img`
-    border-radius: 100px;
-    max-width: 300px;
-    max-height:300px;
-    box-shadow: 2px 2px 2px 2px red;
+    border-radius: 50%;
+    width: 200px;
+    height:200px;
+    border: 2px solid red;
+    box-shadow: 2px 2px 2px black;
 `
 
 const BotaoMatch2 = styled.img`
   width: 30px;
   margin:30px;
-
     &:hover{
-        -webkit-transform: scale(1.1);
-      transform: scale(1.1);
+     -webkit-transform: scale(1.1);
+     transform: scale(1.1);
     }
 `
 
@@ -102,16 +104,14 @@ function Perfis() {
 
     const cardPerfil = perfil ? (
         <ContainerPerfis>
+            <h2>♥︎ {perfil.name}, {perfil.age} anos</h2>
+
             <ImagemPerson
                 src={perfil.photo}
                 alt="foto do perfil"
-                height={"150px"}
             ></ImagemPerson>
 
-            <section>
-                <h2>♥︎ {perfil.name}, {perfil.age} anos</h2>
-                <p>♥︎ {perfil.bio}</p>
-            </section>
+            <p>♥︎ {perfil.bio}</p>
 
             <BotaoMatch1 src={Dislike} onClick={() => { escolherPerfil(perfil.id, false) }}></BotaoMatch1>
             <BotaoMatch2 src={Like} onClick={() => { escolherPerfil(perfil.id, true) }}></BotaoMatch2>

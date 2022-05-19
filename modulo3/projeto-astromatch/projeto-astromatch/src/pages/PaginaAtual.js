@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Matches from "./Matches";
 import Perfis from "./Perfil";
-import styled from 'styled-components'
-
-const ContainerApp = styled.div`
-  display:grid;
-  grid-template-rows: 20vh 70vh 10vh;
-  align-items:center;
-`
 
 
 function PaginaAtual() {
@@ -27,26 +19,21 @@ function PaginaAtual() {
     }
   }
 
-  const irParaMatches = () => {
-    setPaginaAtual("matches")
+  const mudarDePagina = (paginaRecebida) =>{
+    setPaginaAtual(paginaRecebida)
   }
 
-  const irParaPerfis = () => {
-    setPaginaAtual("perfis")
-  }
 
   return (
-    <ContainerApp>
+    <div>
       <Header 
         pagina={paginaAtual}
-        irParaPerfis={irParaPerfis}
-        irParaMatches={irParaMatches}
+        mudarDePagina={mudarDePagina}
       />
-
+      <hr/>
       {renderizaPagina()}
 
-      <Footer />
-    </ContainerApp>
+    </div>
   );
 }
 

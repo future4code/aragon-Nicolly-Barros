@@ -1,11 +1,38 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { URL, PATH } from '../constants/urls';
+import styled from 'styled-components'
 
+const Imagem = styled.img`
+    height:60px;
+    width:60px;
+    border-radius: 50%;
+`
+
+const ListaMatches = styled.div`
+    display:flex;
+    justify-content:center:
+    align-items:center;
+    width: 30%;
+    margin:10px;
+    
+`
+
+const ContainerMatches = styled.div`
+    display:grid;
+    grid-template-columns: 1fr;
+    justify-items:center;
+    
+`
+
+const NomeCandidato = styled.p`
+    margin-left:10px;
+    margin-top: 30px;
+`
 
 function Matches() {
 
-    const [listaMatches, setListaMatches] = useState([])
+    const [listaMatches, setListaMatches] = useState(undefined)
 
     useEffect(() => {
         pegarMatches()
@@ -14,8 +41,8 @@ function Matches() {
     const pegarMatches = () => {
         axios.get(`${URL}/${PATH}/matches`)
             .then((res) => {
-                console.log(res.data);
                 setListaMatches(res.data.matches);
+                console.log(listaMatches);
             })
             .catch((err) => {
                 console.log(err.message);
@@ -23,23 +50,26 @@ function Matches() {
     }
 
     const mostrarMatches = listaMatches && listaMatches.map((match) => {
-        return <div key={match.id}>
-            <img
+        return <ListaMatches key={match.id}>
+            <Imagem
                 src={match.photo}
                 alt={`foto de ${match.name}`}
-                height={"32px"}
-            ></img>
 
-            <span>{match.name}</span>
-            <hr />
-        </div>
+            ></Imagem>
+
+            <NomeCandidato>{match.name}</NomeCandidato>
+
+        </ListaMatches>
     })
-
+    
     return (
-        <div>
+
+        <ContainerMatches>
             <h1>Seus Matches</h1>
             {mostrarMatches}
-        </div>
+
+        </ContainerMatches>
+
     );
 }
 
