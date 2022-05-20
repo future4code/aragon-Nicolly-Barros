@@ -43,6 +43,7 @@ const ContainerHeader = styled.div`
 const TituloHeader = styled.h1`
     margin-left:20px;
     color: #FC4F4F;
+    
 `
 
 function Header(props) {

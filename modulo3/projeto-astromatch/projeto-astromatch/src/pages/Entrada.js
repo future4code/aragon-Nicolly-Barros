@@ -20,6 +20,10 @@ const BotaoEntrada = styled.button`
 const TituloEntrada = styled.section`
     font-size: 70px;
     color:white;
+
+    @media(max-width: 700px) {
+        font-size: 50px
+  }
 `
 
 const Animacao = keyframes`
@@ -56,6 +60,7 @@ const ContainerEntrada = styled.div`
 
 const TextoEntrada = styled.div`
     color:white;
+    
 `
 
 function Entrada(props) {

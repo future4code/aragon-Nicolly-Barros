@@ -65,8 +65,9 @@ const ButtaoResetar = styled.button`
 
 const ImagemPerson = styled.img`
     width: 100%;
+    height:50%;
     border-radius:6px;
-    height:250px;
+    
 `
 
 
@@ -74,11 +75,14 @@ const ContainerPerfis = styled.div`
     background: #FFFAFA;
     border-radius:6px;
     width:40%;
+    height:75%;
     transition-timing-function: all ease;
     transition-duration: 2s;
 
     @media(max-width: 700px) {
         width:70%;
+        height:90%;
+        
   }
 `
 
@@ -87,7 +91,7 @@ const DivCard = styled.div`
     justify-content:center;
     align-items:center;
     background: linear-gradient(45deg, #F76E11, #FF9F45, #FFBC80, #FC4F4F);
-    height:90vh;
+    height:100vh;
 `
 
 const TituloResetar = styled.div`
