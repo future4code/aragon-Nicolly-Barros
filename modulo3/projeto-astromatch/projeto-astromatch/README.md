@@ -1,6 +1,6 @@
 # Projeto AstroMatch (Trabalho Individual)
 
-link surge: 
+link surge: https://orangematch-app.surge.sh/
 
 ## Funcionalidades Básicas do Projeto (alcançadas)
 
