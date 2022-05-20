@@ -1,55 +1,101 @@
 import React, { useEffect, useState } from "react";
 import { URL, PATH } from '../constants/urls';
 import axios from 'axios';
-import Like from '../icones/like.png';
-import Dislike from '../icones/dislike.png';
 import styled from 'styled-components'
 
 const BotaoMatch1 = styled.img`
-  width: 30px;
-  margin:30px;
+  width: 40px;
+  margin:40px;
 
     &:hover{
         -webkit-transform: scale(1.1);
       transform: scale(1.1);
     }
+
+    @media(max-width: 700px) {
+        width:30px;
+        margin:20px;
+  }
 `
+
+const BotaoMatch2 = styled.img`
+  width: 40px;
+  margin:40px;
+    &:hover{
+     -webkit-transform: scale(1.1);
+     transform: scale(1.1);
+    }
+
+    @media(max-width: 700px) {
+        width:30px;
+        margin:20px;
+  }
+
+`
+
+const BotaoLike = styled.img`
+    width: 40px;
+    margin:40px;
+    &:hover{
+     -webkit-transform: scale(1.1);
+     transform: scale(1.1);
+    }
+
+    @media(max-width: 700px) {
+        width:30px;
+        margin:20px;
+  }
+`
+
 const ButtaoResetar = styled.button`
     border: 0 solid;
     border-radius: 3px;
     background: white;
-    color: red;
+    color: #FC4F4F;
     font-weight: bold;
     height: 30px;
     margin-right:20px;
     transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
 
     &:hover{
-        background:red;
+        background:#FC4F4F;
         color:white;
     };
 `
 
 const ImagemPerson = styled.img`
-    border-radius: 50%;
-    width: 200px;
-    height:200px;
-    border: 2px solid red;
-    box-shadow: 2px 2px 2px black;
+    width: 100%;
+    border-radius:6px;
+    height:250px;
 `
 
-const BotaoMatch2 = styled.img`
-  width: 30px;
-  margin:30px;
-    &:hover{
-     -webkit-transform: scale(1.1);
-     transform: scale(1.1);
-    }
-`
 
 const ContainerPerfis = styled.div`
-    margin-left:30px;
-    margin-right:30px;
+    background: #FFFAFA;
+    border-radius:6px;
+    width:40%;
+    transition-timing-function: all ease;
+    transition-duration: 2s;
+
+    @media(max-width: 700px) {
+        width:70%;
+  }
+`
+
+const DivCard = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(45deg, #F76E11, #FF9F45, #FFBC80, #FC4F4F);
+    height:90vh;
+`
+
+const TituloResetar = styled.div`
+    color:white;
+`
+
+const Dados = styled.div`
+    margin:3px;
 `
 
 function Perfis() {
@@ -103,31 +149,34 @@ function Perfis() {
 
 
     const cardPerfil = perfil ? (
-        <ContainerPerfis>
-            <h2>♥︎ {perfil.name}, {perfil.age} anos</h2>
+        <ContainerPerfis >
 
             <ImagemPerson
                 src={perfil.photo}
                 alt="foto do perfil"
             ></ImagemPerson>
 
-            <p>♥︎ {perfil.bio}</p>
+            <Dados>
+                <h2>♥︎ {perfil.name}, {perfil.age} anos</h2>
+                <p>♥︎ {perfil.bio}</p>
+            </Dados>
 
-            <BotaoMatch1 src={Dislike} onClick={() => { escolherPerfil(perfil.id, false) }}></BotaoMatch1>
-            <BotaoMatch2 src={Like} onClick={() => { escolherPerfil(perfil.id, true) }}></BotaoMatch2>
+            <BotaoMatch1 src="https://icones.pro/wp-content/uploads/2021/08/icone-x-avec-cercle-rouge.png" onClick={() => { escolherPerfil(perfil.id, false) }}></BotaoMatch1>
+            <BotaoLike src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkz35M3WOKqIQXN2tsXN0eMFO27xLDdz0wkviYa3zSdDethATrZ0FZ5Jg5ZGmXe001Il0&usqp=CAU" onClick={() => { alert("Você deu super like ★") }}></BotaoLike>
+            <BotaoMatch2 src="https://images.vexels.com/media/users/3/151002/isolated/preview/ec024d6291ed42d75b4511d60a527121-elemento-hippie-de-coracao-verde.png" onClick={() => { escolherPerfil(perfil.id, true) }}></BotaoMatch2>
 
         </ContainerPerfis>
     ) : (
-        <div>
+        <TituloResetar>
             <h1>Acabou os perfis</h1>
             <ButtaoResetar onClick={() => resetarPerfis()}>Resetar perfis</ButtaoResetar>
-        </div>
+        </TituloResetar>
     )
 
     return (
-        <div>
+        <DivCard>
             {cardPerfil}
-        </div>
+        </DivCard>
     );
 }
 

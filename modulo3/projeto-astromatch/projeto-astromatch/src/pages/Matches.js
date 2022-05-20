@@ -11,24 +11,34 @@ const Imagem = styled.img`
 
 const ListaMatches = styled.div`
     display:flex;
-    justify-content:center:
+    flex-direction:row;
     align-items:center;
     width: 30%;
     margin:10px;
-    
+    background: white;
+    padding: 20px;
+    border-radius:4px;
+    background: linear-gradient(45deg, #F76E11, #FF9F45, #FFBC80);
+
 `
 
 const ContainerMatches = styled.div`
     display:grid;
     grid-template-columns: 1fr;
     justify-items:center;
-    
+    color:#FC4F4F;
+    background:white;
+ 
 `
+
 
 const NomeCandidato = styled.p`
     margin-left:10px;
     margin-top: 30px;
+    margin-right:10px;
+    color:white;
 `
+
 
 function Matches() {
 
@@ -51,6 +61,7 @@ function Matches() {
 
     const mostrarMatches = listaMatches && listaMatches.map((match) => {
         return <ListaMatches key={match.id}>
+            
             <Imagem
                 src={match.photo}
                 alt={`foto de ${match.name}`}
@@ -58,7 +69,6 @@ function Matches() {
             ></Imagem>
 
             <NomeCandidato>{match.name}</NomeCandidato>
-
         </ListaMatches>
     })
     
