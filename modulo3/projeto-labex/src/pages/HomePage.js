@@ -1,12 +1,17 @@
 import Header from "../components/Header";
+import ViagemCard from "../components/ViagemCard";
 
 export default function HomePage() {
+
     return (
         <div>
-            <Header 
+            <Header
                 paginaAtual={"home"}
             />
-            <h1>Bem-vindos(as) ao LabeX</h1>
+            <h3>Increva-se em uma nova viagem</h3>
+            <hr />
+            <ViagemCard />
+
         </div>
     );
 }
