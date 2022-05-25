@@ -1,9 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import ErrorPage from "../pages/ErrorPage";
-import { paginaHome, paginaAdmin } from "../routes/coordinator";
-import { URL, AUTH } from "../constants/urls";
+import { paginaHome } from "../routes/coordinator";
 import { loginAdm } from "../services/requests";
 
 
@@ -20,25 +18,8 @@ export default function Header(props) {
         setInputSenha(e.target.value)
     }
 
-    /* Requisição de fazer login */
+    /* Requisição de fazer login, vem da pasta services a logica da requisoção, aqui eu so passo os argumentos*/
 
-    /* const login = () => {
-        const body = {
-            email: inputEmail,
-            password: inputSenha
-        }
-
-        axios.post(`${URL}/${AUTH}/login`, body)
-            .then((res) => {
-                localStorage.setItem("token", res.data.token)
-                alert("Login efetuado com sucesso, aguarde!")
-                paginaAdmin(navigate)
-            })
-            .catch((err) => {
-                console.log(err.message)
-                alert("Email e/ou senha inválido, tente novamente.")
-            })
-    } */
 
     const login = (e)=>{
         e.preventDefault()
@@ -55,7 +36,7 @@ export default function Header(props) {
         switch (props.paginaAtual) {
             case "home":
                 return (
-                    <main>
+                    <form onSubmit={login}>
                         <label htmlFor="email">E-mail:</label>
                         <input
                             id="email"
@@ -74,8 +55,8 @@ export default function Header(props) {
                             onChange={handleSenha}
                         />
 
-                        <button onClick={login}>Entrar</button>
-                    </main>
+                        <button type="submit">Entrar</button>
+                    </form>
                 );
             case "admin":
                 return (

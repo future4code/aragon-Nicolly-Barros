@@ -5,6 +5,8 @@ import Header from "../components/Header";
 import ViagemCard from "../components/ViagemCard";
 import { paginaHome } from "../routes/coordinator";
 import { URL, AUTH } from "../constants/urls";
+import { useRequestData } from "../hooks/useRequestData";
+import { deletarViagem } from "../services/requests";
 
 export default function AdminPage() {
     const [nomeViagem, setNomeViagem] = useState("")
@@ -13,6 +15,7 @@ export default function AdminPage() {
     const [descricao, setDescricao] = useState("")
     const [duracao, setDuracao] = useState("")
 
+    const [viagens, getData] = useRequestData("trips", {})
     const token = localStorage.getItem("token")
     const navigate = useNavigate()
 
@@ -43,6 +46,22 @@ export default function AdminPage() {
         }
     }, [])
 
+    const removerViagem = (id)=>{
+        deletarViagem(id, getData)
+    }
+
+    const listaViagens = viagens.trips ? viagens.trips.map((viagem)=>{
+        return(
+            <ViagemCard 
+                id={viagem.id}
+                viagem={viagem}
+                removerViagem={removerViagem}
+                
+            />
+        )
+    }) : (
+        <p>carregando...</p>
+    )
 
 
     /* Requisição de criar viagem */
@@ -63,11 +82,12 @@ export default function AdminPage() {
         })
         .then((res)=>{
             alert("Viagem criada com sucesso!")
+            getData()
             setDescricao("")
             setDuracao("")
             setLancamento("")
             setNomeViagem("")
-            setPlaneta([])
+            setPlaneta([""])
         })
         .catch((err)=>{
             console.log(err.message)
@@ -142,7 +162,7 @@ export default function AdminPage() {
 
             <hr />
             <h3>Lista de viagens</h3>
-            <ViagemCard />
+            {listaViagens}
         </div>
     );
 }
