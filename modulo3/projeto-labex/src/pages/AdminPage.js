@@ -1,62 +1,38 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import ViagemCard from "../components/ViagemCard";
-import { paginaHome } from "../routes/coordinator";
-import { URL, AUTH } from "../constants/urls";
 import { useRequestData } from "../hooks/useRequestData";
-import { deletarViagem } from "../services/requests";
+import { criarViagem, deletarViagem } from "../services/requests";
+import { useForm } from "../hooks/useForm";
+import { planets } from "../constants/planets";
+import { useProtectedPage } from "../hooks/useProtectedPage";
 
 export default function AdminPage() {
-    const [nomeViagem, setNomeViagem] = useState("")
-    const [planeta, setPlaneta] = useState([])
-    const [lancamento, setLancamento] = useState("")
-    const [descricao, setDescricao] = useState("")
-    const [duracao, setDuracao] = useState("")
 
-    const [viagens, getData] = useRequestData("trips", {})
-    const token = localStorage.getItem("token")
-    const navigate = useNavigate()
+    const { form, onChange, clear } = useForm({
+        name: "",
+        planet: "",
+        date: "",
+        description: "",
+        durationInDays: ""
+    })
 
-    const handleNomeViagem = (e) => {
-        setNomeViagem(e.target.value)
-    }
+    const [viagens, getData] = useRequestData("trips", {}) //aqui utilizamos o custom hook criado na pasta hooks, passando os 2 argumentos necessaŕios.
 
-    const handlePlaneta = (e) => {
-        setPlaneta(e.target.value)
-    }
+    useProtectedPage()
 
-    const handleLancamento = (e) => {
-        setLancamento(e.target.value)
-    }
+    /* Requisição de deletar viagem, Requisição de criar viagem, vem de um arquivo externo (services) e só passamos os argumentos*/
 
-    const handleDescricao = (e) => {
-        setDescricao(e.target.value)
-    }
-
-    const handleDuracao = (e) => {
-        setDuracao(Number(e.target.value))
-    }
-
-
-    useEffect(() => {
-        if (!token) {
-            paginaHome(navigate)
-        }
-    }, [])
-
-    const removerViagem = (id)=>{
+    const removerViagem = (id) => {
         deletarViagem(id, getData)
     }
 
-    const listaViagens = viagens.trips ? viagens.trips.map((viagem)=>{
-        return(
-            <ViagemCard 
+    const listaViagens = viagens.trips ? viagens.trips.map((viagem) => {
+        return (
+            <ViagemCard
                 id={viagem.id}
                 viagem={viagem}
                 removerViagem={removerViagem}
-                
+
             />
         )
     }) : (
@@ -64,101 +40,74 @@ export default function AdminPage() {
     )
 
 
-    /* Requisição de criar viagem */
+    /* Requisição de criar viagem, vem de um arquivo externo (services) e só passamos os argumentos*/
 
-    const criarViagem = () => {
-        const body = {
-            name: nomeViagem,
-            planet: planeta,
-            date: lancamento,
-            description: descricao,
-            durationInDays: duracao,
-        };
-
-        axios.post(`${URL}/${AUTH}/trips`, body, {
-            headers:{
-                auth: localStorage.getItem("token")
-            }
-        })
-        .then((res)=>{
-            alert("Viagem criada com sucesso!")
-            getData()
-            setDescricao("")
-            setDuracao("")
-            setLancamento("")
-            setNomeViagem("")
-            setPlaneta([""])
-        })
-        .catch((err)=>{
-            console.log(err.message)
-        })
+    const onClickCriarViagem = (e)=>{
+        e.preventDefault();
+        console.log(form)
+        criarViagem(form, clear, getData);
     }
 
-
+    
     return (
         <div>
             <Header
                 paginaAtual={"admin"}
             />
 
-            <section>
+            <form onSubmit={onClickCriarViagem}>
                 <h3>Criar nova viagem</h3>
-    
-                    <label htmlFor="nome">Nome: </label>
-                    <input
-                        id="nome"
-                        name="Nome"
-                        value={nomeViagem}
-                        onChange={handleNomeViagem}
-                    />
 
-                    <label htmlFor="planeta">Planeta: </label>
-                    <select
-                        id="planeta"
-                        name="Planeta"
-                        defaultValue={""}
-                        onChange={handlePlaneta}
-                    >
-                        <option value={""}>Escolha um planeta</option>
-                        <option value={"Mércurio"}>Mércurio</option>
-                        <option value={"Marte"}>Marte</option>
-                        <option value={"Vênus"}>Vênus</option>
-                        <option value={"Terra"}>Terra</option>
-                        <option value={"Jupiter"}>Jupiter</option>
-                        <option value={"Saturno"}>Saturno</option>
-                        <option value={"Urano"}>Urano</option>
-                        <option value={"Netuno"}>Netuno</option>
-                    </select>
+                <label htmlFor={"name"}>Nome: </label>
+                <input
+                    id={"name"}
+                    name={"name"}
+                    value={form.name}
+                    onChange={onChange}
+                />
 
-                    <label htmlFor="lancamento">Data de lançamento: </label>
-                    <input
-                        id="lancamento"
-                        name="Lancamento"
-                        type={"date"}
-                        value={lancamento}
-                        onChange={handleLancamento}
-                    />
+                <label htmlFor="planet">Planeta: </label>
+                <select
+                    id="planet"
+                    name="planet"
+                    defaultValue={""}
+                    onChange={onChange}
+                >
+                    <option value={""} disabled>Escolha um planeta</option>
+                    {planets.map((planet)=>{
+                        return <option value={planet} key={planet}>{planet}</option>
+                    })}
 
-                    <label htmlFor="descricao">Descrição: </label>
-                    <input
-                        id="descricao"
-                        name="Descricao"
-                        value={descricao}
-                        onChange={handleDescricao}
-                    />
+                </select>
 
-                    <label htmlFor="duracao">Duração: </label>
-                    <input
-                        id="duracao"
-                        name="Duracao"
-                        value={duracao}
-                        onChange={handleDuracao}
-                    />
+                <label htmlFor="data">Data de lançamento: </label>
+                <input
+                    id="data"
+                    name="date"
+                    type={"date"}
+                    value={form.date}
+                    onChange={onChange}
+                />
 
-                    <button onClick={criarViagem}>Criar</button>
+                <label htmlFor="descricao">Descrição: </label>
+                <input
+                    id="descricao"
+                    name="description"
+                    value={form.description}
+                    onChange={onChange}
+                />
 
-                
-            </section>
+                <label htmlFor="duracao">Duração: </label>
+                <input
+                    id="duracao"
+                    name="durationInDays"
+                    value={form.durationInDays}
+                    onChange={onChange}
+                />
+
+                <button type={"submit"}>Criar</button>
+
+            </form>
 
             <hr />
             <h3>Lista de viagens</h3>

@@ -18,7 +18,7 @@ export default function ViagemCard(props) {
                 <>
                     <br />
                     <button onClick={() =>  props.removerViagem(id)}>Excluir viagem</button>
-                    <button onClick={() => { paginaDetalhes(navigate) }} >Ver detalhes</button>
+                    <button onClick={() => { paginaDetalhes(navigate,id) }} >Ver detalhes</button>
                 </>
             }
             <hr />
