@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import ViagemCard from "../components/ViagemCard";
+import Header from "../components/header/Header";
+import ViagemCard from "../components/card/ViagemCard";
 import { useRequestData } from "../hooks/useRequestData";
 import { criarViagem, deletarViagem } from "../services/requests";
 import { useForm } from "../hooks/useForm";
@@ -106,6 +106,7 @@ export default function AdminPage() {
                 />
 
                 <button type={"submit"}>Criar</button>
+
 
             </form>
 

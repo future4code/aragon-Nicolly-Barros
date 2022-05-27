@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom"
-import ErrorPage from "../pages/ErrorPage";
-import { paginaHome, paginaLogin } from "../routes/coordinator";
+import ErrorPage from "../../pages/ErrorPage";
+import { paginaHome, paginaLogin } from "../../routes/coordinator";
+import { ContainerHeader, TituloHeader } from "./styledHeader";
+import Button from '@mui/material/Button';
 
 
 
@@ -19,9 +21,12 @@ export default function Header(props) {
             case "home":
                 return (
                     <div>
-                        <p onClick={()=> paginaLogin(navigate)}>Administrador? Faça seu login aqui</p>
+                        <Button color="secondary"
+                            onClick={() => paginaLogin(navigate)}
+                        >Administrador
+                        </Button>
                     </div>
-                    
+
                 )
             case "admin":
                 return (
@@ -34,10 +39,11 @@ export default function Header(props) {
 
 
     return (
-        <header>
-            <h1>LabeX</h1>
+        <ContainerHeader>
+            <div>
+                <TituloHeader>SpaceTour</TituloHeader>
+            </div>
             {rederizaPagina()}
-            <hr />
-        </header>
+        </ContainerHeader>
     );
 }

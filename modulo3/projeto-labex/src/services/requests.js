@@ -2,6 +2,7 @@ import axios from "axios";
 import { paginaAdmin } from "../routes/coordinator";
 import { URL, AUTH } from "../constants/urls";
 
+
 export const loginAdm = (email, senha, navigate) => {
     const body = {
         email: email,

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { paginaDetalhes } from "../routes/coordinator";
+import { paginaDetalhes } from "../../routes/coordinator";
+import { Card , NomeViagem} from "./styledCard";
 
 export default function ViagemCard(props) {
     const token = localStorage.getItem("token")
@@ -7,8 +8,8 @@ export default function ViagemCard(props) {
     const {id, name, description, planet, durationInDays, date} = props.viagem;
 
     return (
-        <div >
-            <p>Nome: {name}</p>
+        <Card >
+            <NomeViagem>{name}</NomeViagem>
             <p>Descrição: {description}</p>
             <p>Planeta: {planet}</p>
             <p>Duração: {durationInDays}</p>
@@ -21,8 +22,8 @@ export default function ViagemCard(props) {
                     <button onClick={() => { paginaDetalhes(navigate,id) }} >Ver detalhes</button>
                 </>
             }
-            <hr />
-        </div>
+            
+        </Card>
     );
 
 }
