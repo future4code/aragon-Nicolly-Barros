@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import ErrorPage from "../../pages/ErrorPage";
+import ErrorPage from "../../pages/error/ErrorPage";
 import { paginaHome, paginaLogin } from "../../routes/coordinator";
 import { ContainerHeader, TituloHeader } from "./styledHeader";
 import Button from '@mui/material/Button';
@@ -30,7 +30,7 @@ export default function Header(props) {
                 )
             case "admin":
                 return (
-                    <button onClick={sair}>Sair</button>
+                    <Button color="secondary" onClick={sair}>Sair</Button>
                 );
             default:
                 return <ErrorPage />

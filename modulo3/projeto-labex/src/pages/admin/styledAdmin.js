@@ -1,4 +1,9 @@
-import styled from "styled-components";
+import styled from "styled-components"
+
+export const ContainerViagens = styled.div`
+    height: 100%;
+    background: linear-gradient(50deg, #FCF69C, #55D8C1, #FF6FB5, #AB46D2);
+`
 
 export const CardsLista = styled.section`
     display:grid;
@@ -9,20 +14,13 @@ export const CardsLista = styled.section`
         grid-template-columns: 1fr;
   }
 `
-
-export const TituloInscreva = styled.div`
-    display:flex;
-    align-items:center;
+export const TituloCriar = styled.h3`
     margin-left: 20px;
-    color: #590696;
+    color: white;
     cursor: pointer;
 `
-export const ContainerHome = styled.div`
-    height: 100%;
-    background: linear-gradient(50deg, #FCF69C, #55D8C1, #FF6FB5, #AB46D2);
-`
 
-export const DivInputs = styled.div`
+export const ContainerCriar = styled.div`
     background-color: white;
     margin: 20px;
     padding:30px;
@@ -35,4 +33,3 @@ export const Carregando = styled.p`
     font-size: 40px;
     margin-left: 5%;
 `
-

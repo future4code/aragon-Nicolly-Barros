@@ -1,9 +1,9 @@
 import {BrowserRouter, Routes , Route} from "react-router-dom";
-import AdminPage from "../pages/AdminPage";
-import ErrorPage from "../pages/ErrorPage";
+import AdminPage from "../pages/admin/AdminPage";
+import ErrorPage from "../pages/error/ErrorPage";
 import HomePage from "../pages/home/HomePage";
 import LoginPage from "../pages/login/LoginPage";
-import TripDetailsPage from "../pages/TripDetailsPage";
+import TripDetailsPage from "../pages/tripDetails/TripDetailsPage";
 
 export default function Router() {
     return (

@@ -46,7 +46,7 @@ export const envioCandidatura = (body, idTrip, clear) => {
 
     axios.post(`${URL}/${AUTH}/trips/${idTrip}/apply`, body)
         .then((res) => {
-            alert("Incrição feita com sucesso, aguarde nosso contato.")
+            alert("Inscrição feita com sucesso, aguarde nosso contato.")
             clear()
         })
         .catch((err) => {

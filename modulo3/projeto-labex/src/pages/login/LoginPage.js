@@ -2,9 +2,9 @@ import { paginaAdmin } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom"
 import { loginAdm } from "../../services/requests";
 import { useState } from "react";
-import { ContainerLogin, Formulario, DadosContainer } from "./styledLogin";
+import { ContainerLogin, Formulario, DadosContainer, TituloLogin } from "./styledLogin";
 import Button from '@mui/material/Button';
-
+import TextField from '@mui/material/TextField';
 
 export default function LoginPage() {
     const [inputEmail, setInputEmail] = useState("")
@@ -28,27 +28,33 @@ export default function LoginPage() {
     return (
         <ContainerLogin>
             <DadosContainer>
-                <h1>Faça seu login aqui</h1>
+                <TituloLogin>Faça seu login aqui</TituloLogin>
                 <Formulario onSubmit={login}>
-                    <label htmlFor="email">E-mail:</label>
-                    <input
+
+                    <TextField
                         id="email"
-                        name="E-mail"
-                        type="text"
+                        label="E-mail"
+                        variant="outlined"
                         value={inputEmail}
                         onChange={handleEmail}
+                        type="text"
+                        color="secondary"
                     />
 
-                    <label htmlFor="senha">Senha:</label>
-                    <input
+                    <TextField
                         id="senha"
-                        name="Senha"
-                        type="password"
+                        label="Senha"
+                        variant="outlined"
                         value={inputSenha}
                         onChange={handleSenha}
+                        type="password"
+                        color="secondary"
                     />
 
+                    <br />
+
                     <Button color="secondary" type="submit">Entrar</Button>
+
                 </Formulario>
             </DadosContainer>
         </ContainerLogin>
