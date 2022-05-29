@@ -3,7 +3,7 @@ import { useProtectedPage } from "../../hooks/useProtectedPage";
 import { useRequestData } from "../../hooks/useRequestData";
 import { paginaAdmin } from "../../routes/coordinator";
 import { aprovarCandidato } from "../../services/requests";
-import { ContainerGeral, HeaderDetail, CardCandidato, ListaCandidatos, TituloHeader, TituloBody, ListaAprovados } from "./styledDetails";
+import { ContainerGeral, HeaderDetail, CardCandidato, ListaCandidatos, TituloHeader, TituloBody, ListaAprovados , TextoCandidatos} from "./styledDetails";
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -45,6 +45,7 @@ export default function TripDetailsPage() {
         </ListaAprovados>
     })
 
+
     return (
         <ContainerGeral>
             <HeaderDetail>
@@ -56,12 +57,20 @@ export default function TripDetailsPage() {
 
 
             <TituloBody>Candidatos</TituloBody>
+
             <ListaCandidatos>
+          
                 {candidatosLista}
+
+                
             </ListaCandidatos>
 
             <TituloBody>Aprovados</TituloBody>
-            {aprovadosLista}
+
+                {aprovadosLista}
+
+
+          
 
         </ContainerGeral>
     );

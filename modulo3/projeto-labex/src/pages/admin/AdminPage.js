@@ -5,8 +5,15 @@ import { criarViagem, deletarViagem } from "../../services/requests";
 import { useForm } from "../../hooks/useForm";
 import { planets } from "../../constants/planets";
 import { useProtectedPage } from "../../hooks/useProtectedPage";
-import { ContainerViagens, CardsLista, TituloCriar , ContainerCriar, Carregando} from "./styledAdmin";
+import { ContainerViagens, CardsLista, TituloCriar, ContainerCriar, Carregando } from "./styledAdmin";
 import { useState } from "react";
+import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 
 export default function AdminPage() {
 
@@ -19,13 +26,13 @@ export default function AdminPage() {
     })
 
     const [viagens, getData] = useRequestData("trips", {}) //aqui utilizamos o custom hook criado na pasta hooks, passando os 2 argumentos necessaŕios.
-    const [criarViagem, setCriarViagem] = useState(false)
+    const [criacaoViagem, setCriacaoViagem] = useState(false)
 
     useProtectedPage()
 
 
     const botaoCriar = () => {
-        setCriarViagem(!criarViagem)
+        setCriacaoViagem(!criacaoViagem)
     }
 
 
@@ -67,57 +74,92 @@ export default function AdminPage() {
 
             <TituloCriar onClick={botaoCriar}>Clique aqui para criar nova viagem</TituloCriar>
 
-            {criarViagem ? (
+            {criacaoViagem ? (
                 <ContainerCriar>
 
-                    <label htmlFor={"name"}>Nome: </label>
-                    <input
-                        id={"name"}
-                        name={"name"}
-                        value={form.name}
-                        onChange={onChange}
-                    />
-
-                    <label htmlFor="planet">Planeta: </label>
-                    <select
-                        id="planet"
-                        name="planet"
-                        defaultValue={""}
-                        onChange={onChange}
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 2.3, width: '25ch' },
+                        }}
+                        noValidate
+                        autoComplete="off"
                     >
-                        <option value={""} disabled>Escolha um planeta</option>
-                        {planets.map((planet) => {
-                            return <option value={planet} key={planet}>{planet}</option>
-                        })}
+                        <TextField
+                            id="name"
+                            label="Nome"
+                            variant="outlined"
+                            onChange={onChange}
+                            value={form.name}
+                            name="name"
+                            size="small"
+                            color="secondary"
+                        />
 
-                    </select>
+                        <TextField
+                            id="date"
+                            variant="outlined"
+                            onChange={onChange}
+                            value={form.date}
+                            name="date"
+                            size="small"
+                            type={"date"}
+                            color="secondary"
+                        />
 
-                    <label htmlFor="data">Data de lançamento: </label>
-                    <input
-                        id="data"
-                        name="date"
-                        type={"date"}
-                        value={form.date}
-                        onChange={onChange}
-                    />
+                        <TextField
+                            id="description"
+                            label="Descrição"
+                            variant="outlined"
+                            onChange={onChange}
+                            value={form.description}
+                            name="description"
+                            size="small"
+                            color="secondary"
+                        />
 
-                    <label htmlFor="descricao">Descrição: </label>
-                    <input
-                        id="descricao"
-                        name="description"
-                        value={form.description}
-                        onChange={onChange}
-                    />
+                        <TextField
+                            id="durationInDays"
+                            label="Duração(em dias)"
+                            variant="outlined"
+                            onChange={onChange}
+                            value={form.durationInDays}
+                            name="durationInDays"
+                            size="small"
+                            color="secondary"
+                        />
 
-                    <label htmlFor="duracao">Duração: </label>
-                    <input
-                        id="duracao"
-                        name="durationInDays"
-                        value={form.durationInDays}
-                        onChange={onChange}
-                    />
+                    </Box>
 
-                    <button onClick={onClickCriarViagem}>Criar</button>
+
+
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Planeta </InputLabel>
+                        <Select
+                            id="demo-simple-select-label"
+                            name="planet"
+                            defaultValue={""}
+                            size="small"
+                            label="Planeta"
+                            onChange={onChange}
+                        >
+                            <MenuItem value={""} disabled>Escolha uma planeta</MenuItem>
+                            {planets.map((planet) => {
+                                return <MenuItem
+                                    key={planet}
+                                    value={planet}
+                                >
+                                    {planet}
+                                </MenuItem>
+                            })}
+
+                        </Select>
+                    </FormControl>
+
+                    <br/>
+                    <br/>
+
+                    <Button color="secondary" onClick={onClickCriarViagem}>Criar</Button>
 
 
                 </ContainerCriar>

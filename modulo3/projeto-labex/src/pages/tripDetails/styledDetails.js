@@ -45,5 +45,10 @@ export const ListaAprovados = styled.div`
 
 export const TituloBody = styled.h2`
     margin-left: 2%;
-    color: #AB46D2;
+    color: white;
+`
+
+export const TextoCandidatos = styled.p`
+    margin-left: 2%;
+    color: white;
 `

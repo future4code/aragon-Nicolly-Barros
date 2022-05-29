@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const ContainerViagens = styled.div`
-    height: 100%;
     background: linear-gradient(50deg, #FCF69C, #55D8C1, #FF6FB5, #AB46D2);
 `
 

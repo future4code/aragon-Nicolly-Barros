@@ -1,70 +1,30 @@
-# Getting Started with Create React App
+# Projeto LabeX - Space Tour
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ - link surge: https://spacetour.surge.sh/
 
-## Available Scripts
+## Objetivo do projeto:
 
-In the project directory, you can run:
+- Neste projeto, trabalhamos com os novos conteúdos apresentados ao longo da semana. Os conteúdos fornecidos envolveram os conceitos de rotas (React-Router-Dom), autenticação/autorização (Authentications) e também Custom Hooks, onde através da utilização da API chamada LabeX, fomos capazes de gerenciar um sistema de viagens espaciais. Esta permitirá que vocês utilizem recursos como exibição de viagens, candidatura, criação e remoção de novas viagens, além de separação de área de acesso como administrador.
 
-### `npm start`
+## Funcionalidades básicas proposta: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- O projeto deve ser dividido em duas áreas de acesso: uma área pública e uma área administrativa (apenas usuários autorizados tem acesso).
+- Área pública: Esta parte do projeto é composta por uma página inicial, onde é exibido uma lista de todas as viagens cadastradas no sistema, além de um formulário de candidatura para uma viagem e seção de login (para acesso à área administrativa).
+- Área administrativa: Esta parte do projeto é composta por duas páginas: uma página inicial de admin e uma página de detalhes de viagem.
+- Página inicial de admin: Contém uma lista de todas as viagens, um formulário de criação de novas viagens e também botão de logout do sistema (voltar para área pública);
+- Página de detalhes: Contém os detalhes de uma viagem selecionada, exibindo uma lista de candidatos a serem avaliados (aprovados ou reprovados) e também uma lista de candidatos aprovados.
+- Na área inicial de admin, cada viagem da lista exibida deve possuir 2 botões: um para acesso à página de detalhes e outro para remoção desta viagem.
+- Por fim, uma página de erro deve ser implementada para caso o usuário tente navegar para uma rota de endereço inexistente.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Funcinalidades extras
 
-### `npm test`
+- Criação da tela de login.
+- Possível ocultar secção de cadastro de viagem e de inscrição.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Ferramentas utilizadas:
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React hooks
+- Custom hooks
+- Styled components
+- React Router
+- systems designs (MUI)
