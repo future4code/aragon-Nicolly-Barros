@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { toGoLogin } from "../routes/coordinator";
+import { comeBack, toGoLogin } from "../routes/coordinator";
 
 
 export default function Header(props) {
@@ -32,7 +32,8 @@ export default function Header(props) {
                 </section>
             case "detalhesPost":
                 return <section>
-                    <button>Voltar</button>
+                    <h1>LabEddit</h1>
+                    <button onClick={ () => comeBack(navigate) } >Voltar</button>
                 </section>
         }
     }

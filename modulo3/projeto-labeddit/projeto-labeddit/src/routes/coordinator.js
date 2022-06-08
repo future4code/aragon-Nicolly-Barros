@@ -13,3 +13,7 @@ export const toGoRegister = (navigate) => {
 export const toGoPostDetails = (navigate, id) => {
     navigate(`/post/${id}`)
 }
+
+export const comeBack = (navigate) => {
+    navigate(-1)
+}

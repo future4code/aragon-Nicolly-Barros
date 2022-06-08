@@ -37,6 +37,7 @@ export default function Feed() {
             <PostCard
                 key={post.id}
                 post={post}
+                paginaFeed={true}
             />
         )
     })

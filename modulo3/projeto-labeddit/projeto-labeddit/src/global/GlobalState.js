@@ -8,6 +8,8 @@ export const GlobalContext = createContext()
 
 export default function GlobalState(props) {
     const [posts, setPosts] = useState([]);
+    const [postDetails, setPostDetails] = useState({});
+    const [comentarios, setComentarios] = useState([])
 
     const getPosts = () => {
         axios.get(`${URL}/posts?page=1&size=10`, {
@@ -19,21 +21,41 @@ export default function GlobalState(props) {
                 setPosts(res.data)
             })
             .catch((err) => {
-                alert("Erro ao carregar posts.")
                 console.log(err)
             })
     }
 
+
+    const getComentarios = (idPost) => {
+        axios.get(`${URL}/posts/${idPost}/comments`, {
+            headers: {
+                authorization: localStorage.getItem("token-labeddit")
+            }
+        })
+            .then((res) => {
+                setComentarios(res.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
+
     const states = {
-        posts
+        posts,
+        postDetails,
+        comentarios,
     }
 
     const setters = {
-        setPosts
+        setPosts,
+        setPostDetails,
+        setComentarios,
     }
 
     const getters = {
-        getPosts
+        getPosts,
+        getComentarios,
     }
 
     return (
