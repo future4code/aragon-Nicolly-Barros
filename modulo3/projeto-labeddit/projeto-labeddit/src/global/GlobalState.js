@@ -9,10 +9,11 @@ export const GlobalContext = createContext()
 export default function GlobalState(props) {
     const [posts, setPosts] = useState([]);
     const [postDetails, setPostDetails] = useState({});
-    const [comentarios, setComentarios] = useState([])
+    const [comentarios, setComentarios] = useState([]);
+    const [pagina, setPagina] = useState(1)
 
-    const getPosts = () => {
-        axios.get(`${URL}/posts?page=1&size=10`, {
+    const getPosts = (paginaAtual) => {
+        axios.get(`${URL}/posts?page=${paginaAtual}&size=10`, {
             headers: {
                 authorization: localStorage.getItem("token-labeddit")
             }
@@ -45,12 +46,14 @@ export default function GlobalState(props) {
         posts,
         postDetails,
         comentarios,
+        pagina,
     }
 
     const setters = {
         setPosts,
         setPostDetails,
         setComentarios,
+        setPagina,
     }
 
     const getters = {

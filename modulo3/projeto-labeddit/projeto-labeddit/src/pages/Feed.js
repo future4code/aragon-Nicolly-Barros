@@ -13,7 +13,8 @@ export default function Feed() {
     const { form, onChange, clear } = useForm({ title: "", body: "" });
 
     const context = useContext(GlobalContext);
-    const { posts } = context.states;
+    const { posts, pagina } = context.states;
+    const { setPagina } = context.setters;
     const { getPosts } = context.getters;
 
     useEffect(() => {
@@ -22,9 +23,16 @@ export default function Feed() {
             toGoLogin(navigate)
         }
 
-        getPosts()
+        getPosts(pagina)
         console.log(posts)
     }, [])
+
+    const trocarPagina = (sum) => {
+        const proxPagina = pagina + sum;
+
+        setPagina(proxPagina);
+        getPosts(proxPagina);
+    };
 
     const criarPost = (e) => {
         e.preventDefault()
@@ -32,7 +40,9 @@ export default function Feed() {
         createNewPost(form, clear, getPosts)
     }
 
-    const listaPosts = posts.length && posts.map((post) => {
+    const listaPosts = posts.length === 0 ? (
+        <p>Carregando...</p>
+    ) : posts.map((post) => {
         return (
             <PostCard
                 key={post.id}
@@ -80,8 +90,19 @@ export default function Feed() {
 
             <hr />
 
+            {pagina !== 1 &&
+                <button onClick={() => trocarPagina(-1)}>Voltar página</button>
+            }
+            <span> Página {pagina} </span>
+            {posts.length &&
+                <button onClick={() => trocarPagina(1)}>Próxima página</button>
+            }
+
+            <hr />
+
             <h2>Lista de posts</h2>
             {listaPosts}
+
         </>
     )
 }
