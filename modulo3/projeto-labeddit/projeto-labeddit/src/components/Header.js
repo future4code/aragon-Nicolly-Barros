@@ -1,6 +1,21 @@
 import { useNavigate } from "react-router-dom";
 import { comeBack, toGoLogin } from "../routes/coordinator";
+import styled from "styled-components";
+import Logo from "../images/logo.png"
 
+const MainHeader = styled.header`
+    background-color: #EC994B;
+    padding: 10px;
+    border-radius: 2px;
+    color: white;
+    font-size: 30px;
+`
+
+const HeaderSection = styled.section`
+    display:flex;
+    align-items:center;
+
+`
 
 export default function Header(props) {
     const navigate = useNavigate()
@@ -18,13 +33,15 @@ export default function Header(props) {
     const renderizaHeader = () => {
         switch (props.page) {
             case "login":
-                return <section>
-                    <h1>LabEddit</h1>
-                </section>
+                return <HeaderSection>
+                    <h1>Iddeia</h1>
+                    <img src={Logo} height="40px" />
+                </HeaderSection>
             case "signup":
-                return <section>
-                    <h1>LabEddit</h1>
-                </section>
+                return <HeaderSection>
+                    <h1>Iddeia</h1>
+                    <img src={Logo} height="40px"/>
+                </HeaderSection>
             case "feed":
                 return <section>
                     <h1>Bem-vindo(a), {localStorage.getItem("userEmail")}!</h1>
@@ -32,15 +49,14 @@ export default function Header(props) {
                 </section>
             case "detalhesPost":
                 return <section>
-                    <h1>LabEddit</h1>
+                    <h1>Iddeia</h1>
                     <button onClick={ () => comeBack(navigate) } >Voltar</button>
                 </section>
         }
     }
     return (
-        <header>
-
+        <MainHeader>
             {renderizaHeader()}
-        </header>
+        </MainHeader>
     )
 }
