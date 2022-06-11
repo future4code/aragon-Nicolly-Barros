@@ -6,6 +6,46 @@ import { GlobalContext } from "../global/GlobalState";
 import useForm from "../hooks/useForm";
 import { toGoLogin } from "../routes/coordinator";
 import { createNewPost } from "../services/requests";
+import Arrow1 from "../images/arrow>.png";
+import Arrow2 from "../images/arrow<.png";
+import styled from "styled-components"
+
+
+const TituloCriar = styled.h3` 
+    color: #EC994B;
+    cursor: pointer;
+`
+
+const ContainerCriar = styled.form` 
+    display: flex;
+    padding:20px;
+`
+
+const Input = styled.input`
+    border-radius: 3px;
+    padding: 3px;
+    border: 1px solid #EC994B;
+
+`
+
+const Label = styled.label` 
+    color: #EC994B;
+    margin-left: 20px;
+    font-size: 20px;
+`
+
+const SectionPosts = styled.section`
+    background-color:#EC994B;
+`
+
+const Paginacao = styled.section`
+    display:flex;
+    align-items: center;
+    color: white;
+    justify-content:center;
+`
+
+
 
 export default function Feed() {
     const navigate = useNavigate()
@@ -13,8 +53,8 @@ export default function Feed() {
     const { form, onChange, clear } = useForm({ title: "", body: "" });
 
     const context = useContext(GlobalContext);
-    const { posts, pagina } = context.states;
-    const { setPagina } = context.setters;
+    const { posts, pagina, novoPost } = context.states;
+    const { setPagina, setNovoPost } = context.setters;
     const { getPosts } = context.getters;
 
     useEffect(() => {
@@ -52,56 +92,81 @@ export default function Feed() {
         )
     })
 
+    const botaoNovoPost = () => {
+        setNovoPost(!novoPost)
+    }
+
+    const Botao = styled.button` 
+    color: #15133C;
+    margin-left: 20px;
+    font-size: 17px;
+    background-color: #EC994B;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #15133C;
+        color: #EC994B;
+    }
+
+`
+
     return (
         <>
             <Header
                 page={"feed"}
             />
 
-            <hr />
+            <TituloCriar onClick={botaoNovoPost}>Criar novo post</TituloCriar>
 
-            <h2>Criar novo post</h2>
-            <form onSubmit={criarPost}>
-                <label htmlFor={"title"}> Título: </label>
-                <input
-                    id={"title"}
-                    name={"title"}
-                    value={form.title}
-                    onChange={onChange}
-                    pattern={"^.{5,}$"}
-                    title={"O nome deve ter no mínimo 5 caracteres"}
-                    required
-                />
-                <br />
-                <label htmlFor={"body"}> Texto do post: </label>
-                <input
-                    id={"body"}
-                    type={"text"}
-                    name={"body"}
-                    value={form.body}
-                    onChange={onChange}
-                    pattern={"^.{5,}$"}
-                    title={"O nome deve ter no mínimo 5 caracteres"}
-                    required
-                />
-                <br />
-                <button type={"submit"}>Criar Post</button>
-            </form>
+            {novoPost ? (
 
-            <hr />
+                <ContainerCriar onSubmit={criarPost}>
+                    <Label htmlFor={"title"}> Título:  </Label>
+                    <Input
+                        id={"title"}
+                        name={"title"}
+                        value={ContainerCriar.title}
+                        onChange={onChange}
+                        pattern={"^.{5,}$"}
+                        title={"O nome deve ter no mínimo 5 caracteres"}
+                        required
+                    />
+                    <br />
+                    <Label htmlFor={"body"}> Texto do post:  </Label>
+                    <Input
+                        id={"body"}
+                        type={"text"}
+                        name={"body"}
+                        value={form.body}
+                        onChange={onChange}
+                        pattern={"^.{5,}$"}
+                        title={"O nome deve ter no mínimo 5 caracteres"}
+                        required
+                    />
+                    <br />
+                    <Botao type={"submit"}>Criar Post</Botao>
+                </ContainerCriar>
 
-            {pagina !== 1 &&
-                <button onClick={() => trocarPagina(-1)}>Voltar página</button>
-            }
-            <span> Página {pagina} </span>
-            {posts.length &&
-                <button onClick={() => trocarPagina(1)}>Próxima página</button>
-            }
+            ) : (
+                <></>
+            )}
 
-            <hr />
 
-            <h2>Lista de posts</h2>
-            {listaPosts}
+
+            <SectionPosts>
+                <Paginacao>
+                    {pagina !== 1 &&
+                        <img src={Arrow2} onClick={() => trocarPagina(-1)} />
+                    }
+                    <span> Página {pagina} </span>
+                    {posts.length &&
+                        <img src={Arrow1} onClick={() => trocarPagina(1)} />
+                    }
+                </Paginacao>
+
+                {listaPosts}
+            </SectionPosts>
 
         </>
     )

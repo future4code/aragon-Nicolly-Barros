@@ -10,7 +10,8 @@ export default function GlobalState(props) {
     const [posts, setPosts] = useState([]);
     const [postDetails, setPostDetails] = useState({});
     const [comentarios, setComentarios] = useState([]);
-    const [pagina, setPagina] = useState(1)
+    const [pagina, setPagina] = useState(1);
+    const [novoPost, setNovoPost] = useState(false)
 
     const getPosts = (paginaAtual) => {
         axios.get(`${URL}/posts?page=${paginaAtual}&size=10`, {
@@ -47,6 +48,7 @@ export default function GlobalState(props) {
         postDetails,
         comentarios,
         pagina,
+        novoPost,
     }
 
     const setters = {
@@ -54,6 +56,7 @@ export default function GlobalState(props) {
         setPostDetails,
         setComentarios,
         setPagina,
+        setNovoPost,
     }
 
     const getters = {

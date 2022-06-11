@@ -52,10 +52,7 @@ export default function PostDetails() {
                 page={"detalhesPost"}
             />
 
-            <hr />
-
             <section>
-                <h2>Informações do post</h2>
                 <PostCard
                     key={postDetails.id}
                     post={postDetails}
@@ -82,7 +79,7 @@ export default function PostDetails() {
             <hr />
 
             <section>
-                <h2>Lista de Comentários</h2>
+                <h2>Comentários</h2>
                 {listaComentarios}
             </section>
         </>

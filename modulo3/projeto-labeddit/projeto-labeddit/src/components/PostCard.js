@@ -3,7 +3,51 @@ import { useNavigate } from "react-router-dom"
 import { GlobalContext } from "../global/GlobalState";
 import { toGoPostDetails } from "../routes/coordinator";
 import { changePostVote, createPostVote, deletePostVote } from "../services/requests";
+import styled from "styled-components";
 
+const Card = styled.main`
+    display:flex;
+    border: 2px solid white;
+    width: 50%;
+    background-color:white;
+    border-radius: 5px;
+    margin-bottom: 20px;
+
+`
+
+const Container = styled.div`
+    display:grid;
+    justify-items:center;
+`
+
+const ContainerDados = styled.section`
+    margin-left: 5px;
+
+`
+
+const Imagem = styled.img` 
+    border-radius:5px;
+    height:100%;
+`
+const TituloPost = styled.h1` 
+    font-size: 40px;
+    text-align: center;
+    color: #EC994B;
+`
+
+const Botao = styled.button` 
+    color: white;
+    margin-bottom: 2px;
+    background-color: #EC994B;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #15133C;
+        color: #EC994B;
+    }
+
+`
 
 export default function PostCard(props) {
 
@@ -71,34 +115,40 @@ export default function PostCard(props) {
     const renderizaBotoes = props.paginaFeed && (
         <>
             {props.post.userVote && naoGostei
-                ? <button onClick={()=> removerVoto("nao")}>Remover voto "Não Gostei"</button>
-                : <button onClick={()=> escolherVoto("nao")}>{gostei ? `Mudar voto para "Não Gostei"` : `Votar em "Não Gostei"`}</button>
+                ? <Botao onClick={() => removerVoto("nao")}>Remover voto "Não Gostei"</Botao>
+                : <Botao onClick={() => escolherVoto("nao")}>{gostei ? `Mudar voto para "Não Gostei"` : `Votar em "Não Gostei"`}</Botao>
             }
 
-            <br/>
+            <br />
 
             {props.post.userVote && gostei
-                ? <button onClick={()=> removerVoto("sim")}>Remover voto "Gostei"</button>
-                : <button onClick={()=> escolherVoto("sim")}>{naoGostei ? `Mudar voto para "Gostei"` : `Votar em "Gostei"`}</button>
+                ? <Botao onClick={() => removerVoto("sim")}>Remover voto "Gostei"</Botao>
+                : <Botao onClick={() => escolherVoto("sim")}>{naoGostei ? `Mudar voto para "Gostei"` : `Votar em "Gostei"`}</Botao>
             }
 
         </>
     )
 
     return (
-        <article>
+        <Container>
 
-            <h3>{props.post.title}</h3>
-            <h4>Autor: {props.post.userId}</h4>
-            <p>Postado em: {converterData(props.post.createdAt)}</p>
-            <img src={"https://picsum.photos/200/300?random=" + props.post.id} />
-            <p>Descrição: {props.post.body}</p>
-            <p>Votos: {props.post.voteSum ? props.post.voteSum : 0}</p>
-            {renderizaBotoes}
-            <p>Comentários: {props.post.commentCount ? props.post.commentCount : 0}</p>
-            {props.paginaFeed && <button onClick={verComentarios}>Ver comentários</button>}
-            <hr />
+            <Card>
+                <section>
+                    <Imagem src={"https://picsum.photos/300/400?random=" + props.post.id} />
+                </section>
 
-        </article >
+                <ContainerDados>
+                    <p>Autor: {props.post.userId} - {converterData(props.post.createdAt)}</p>
+                    <TituloPost>{props.post.title}</TituloPost>
+                    <h1>Descrição: {props.post.body}</h1>
+                    <p>Votos: {props.post.voteSum ? props.post.voteSum : 0}</p>
+                    {renderizaBotoes}
+                    <p>Comentários: {props.post.commentCount ? props.post.commentCount : 0}</p>
+                    {props.paginaFeed && <Botao  onClick={verComentarios}>Ver comentários</Botao >}
+                </ContainerDados>
+
+            </Card>
+
+        </Container>
     )
 }

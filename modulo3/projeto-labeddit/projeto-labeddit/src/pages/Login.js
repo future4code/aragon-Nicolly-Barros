@@ -28,13 +28,46 @@ const Container = styled.div`
 
 const Titulo = styled.h2` 
     color: #EC994B;
+    font-size: 40px;
 `
 
-const Texto = styled.p`
-    color: #FFBC80;
+const Texto1 = styled.h6`
+    color: #15133C;
+    font-size: 20px;
+    margin-top:0;
 `
 const Label = styled.label` 
     color: #EC994B;
+`
+
+const Texto2 = styled.h6`
+    color: #15133C;
+    cursor: pointer;
+`
+
+const Input = styled.input`
+    border-radius: 3px;
+    padding: 3px;
+    margin-top: 10px;
+    border: 1px solid #EC994B;
+
+`
+
+const Botao = styled.button` 
+    margin-top: 20px;
+    width: 140px;
+    height: 40px;
+    color: #15133C;
+    font-size: 17px;
+    background-color: #EC994B;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #15133C;
+        color: #EC994B;
+    }
+
 `
 
 export default function Login() {
@@ -64,32 +97,32 @@ export default function Login() {
             <Main>
                 <SectionLogin>
                     <Titulo>Bem vindo(a)</Titulo>
-                    <Texto>Faça seu login para entrar</Texto>
+                    <Texto1>Faça seu login para entrar</Texto1>
                     <form onSubmit={login}>
                         <Label htmlFor={"email"}>Email: </Label>
-                        <input
+                        <Input
                             id={"email"}
                             type={"email"}
                             name={"email"}
                             value={form.email}
                             onChange={onChange}
                             required
-                        ></input>
+                        ></Input>
                         <br />
                         <Label htmlFor={"password"}>Senha: </Label>
-                        <input
+                        <Input
                             id={"password"}
                             type={"password"}
                             name={"password"}
                             value={form.password}
                             onChange={onChange}
                             required
-                        ></input>
+                        ></Input>
                         <br />
-                        <button type={"submit"}>Entrar</button>
+                        <Botao type={"submit"}>Entrar</Botao>
                     </form>
 
-                    <h4 onClick={() => toGoRegister(navigate)}>Não possui cadastro? Inscreva-se</h4>
+                    <Texto2 onClick={() => toGoRegister(navigate)}>Não possui cadastro? Inscreva-se</Texto2>
                 </SectionLogin>
             </Main>
         </Container>
