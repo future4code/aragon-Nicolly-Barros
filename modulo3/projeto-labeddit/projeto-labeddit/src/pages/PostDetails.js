@@ -7,6 +7,20 @@ import { GlobalContext } from "../global/GlobalState";
 import useForm from "../hooks/useForm";
 import { toGoLogin } from "../routes/coordinator";
 import { createNewComment } from "../services/requests";
+import styled from "styled-components";
+
+const ContainerGeral = styled.div` 
+    display: grid;
+    justify-items:center;
+`
+
+const CardDetails = styled.section`
+    margin-top: 20px;
+    border: 2px solid black;
+    width: 50%;
+    background-color:white;
+    border-radius: 5px;
+`
 
 export default function PostDetails() {
     const navigate = useNavigate()
@@ -25,18 +39,18 @@ export default function PostDetails() {
             toGoLogin(navigate);
         }
 
-       getComentarios(postDetails.id)
+        getComentarios(postDetails.id)
     }, [])
 
     const criarComentario = (e) => {
         e.preventDefault()
 
-        createNewComment(form, clear, getComentarios, postDetails.id )
+        createNewComment(form, clear, getComentarios, postDetails.id)
     }
 
-    const listaComentarios = comentarios.length ? comentarios.map((comentario)=>{
-        return(
-            <ComentarioCard 
+    const listaComentarios = comentarios.length ? comentarios.map((comentario) => {
+        return (
+            <ComentarioCard
                 key={comentario.id}
                 comentario={comentario}
             />
@@ -52,36 +66,38 @@ export default function PostDetails() {
                 page={"detalhesPost"}
             />
 
-            <section>
-                <PostCard
-                    key={postDetails.id}
-                    post={postDetails}
-                    paginaFeed={false}
-                />
-            </section>
-
-            <section>
-                <h2>Escreva seu comentário</h2>
-                <form onSubmit={criarComentario}>
-                    <label htmlFor={"body"}> Comentário: </label>
-                    <input
-                        id={"body"}
-                        type={"text"}
-                        name={"body"}
-                        value={form.body}
-                        onChange={onChange}
-                        required
+            <ContainerGeral>
+                <CardDetails>
+                    <PostCard
+                        key={postDetails.id}
+                        post={postDetails}
+                        paginaFeed={false}
                     />
-                    <br />
-                    <button type={"submit"}>Comentar</button>
-                </form>
-            </section>
-            <hr />
+                </CardDetails>
 
-            <section>
-                <h2>Comentários</h2>
-                {listaComentarios}
-            </section>
+                <section>
+                    <h2>Escreva seu comentário</h2>
+                    <form onSubmit={criarComentario}>
+                        <label htmlFor={"body"}> Comentário: </label>
+                        <input
+                            id={"body"}
+                            type={"text"}
+                            name={"body"}
+                            value={form.body}
+                            onChange={onChange}
+                            required
+                        />
+                        <br />
+                        <button type={"submit"}>Comentar</button>
+                    </form>
+                </section>
+                <hr />
+
+                <section>
+                    <h2>Comentários</h2>
+                    {listaComentarios}
+                </section>
+            </ContainerGeral>
         </>
     )
 }

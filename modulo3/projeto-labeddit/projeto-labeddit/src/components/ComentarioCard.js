@@ -76,8 +76,7 @@ export default function ComentarioCard(props) {
     return (
         <>
             <h3>{props.comentario.body}</h3>
-            <span><b>Autor: </b>{props.comentario.userId}</span>
-            <p>Criado em {converterData(props.comentario.createdAt)}</p>
+            <span><b>Autor: </b>{props.comentario.userId} - {converterData(props.comentario.createdAt)}</span>
 
             <p>Votos: {props.comentario.voteSum ? props.comentario.voteSum : 0}</p>
             {renderizaBotoes}
