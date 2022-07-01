@@ -1,20 +1,32 @@
-function checaRenovacaoRG(dataNascimento:string, dataEmissao:string):boolean {
+let dataAtual = new Date()
+
+function dataAtualFormatada(dataAtual: any): string {
+
+    let dia = dataAtual.getDate().toString()
+    let diaF = (dataAtual.length == 1) ? '0' + dia : dia
+    let mes = (dataAtual.getMonth() + 1).toString()
+    let mesF = (mes.length == 1) ? '0' + mes : mes
+    let anoF = dataAtual.getFullYear();
     
-    let nascimento = dataNascimento.split("/")
-    let emissao = dataEmissao.split("/")
-    let dataAtual = new Date()
+    return `${diaF}/${mesF}/${anoF}`;
+}
 
-    let dataNascFormatada =new Date(nascimento[1] + '-' + nascimento[0] + '-' + nascimento[2]);
-    let dataEmissaoFormatada = new Date(emissao[1] + '-' + emissao[0] + '-' + emissao[2]);  
-  
-    const idade:number = dataAtual.getTime() - dataNascFormatada.getTime()
-    const tempoCarteira:number = dataAtual.getTime() - dataEmissaoFormatada.getTime()
+let hoje = dataAtualFormatada(dataAtual)
 
-    const cond1:boolean = idade <= 20 && tempoCarteira >= 5
-    const cond2:boolean = idade > 20 && idade <= 50 && tempoCarteira >= 10
-    const cond3:boolean = idade > 50 && tempoCarteira >= 15
-    console.log(idade)
+function checaRenovacaoRG(dataNascimento: string, dataEmissao: string, dataHoje: string): boolean {
+
+    const nascimento = dataNascimento.split("/")
+    const emissao = dataEmissao.split("/")
+    const hoje = dataHoje.split("/")
+
+    const idade: number = Number(hoje[2]) - Number(nascimento[2])
+    const tempoCarteira: number = Number(hoje[2]) - Number(emissao[2])
+
+    const cond1: boolean = idade <= 20 && tempoCarteira >= 5
+    const cond2: boolean = idade > 20 && idade <= 50 && tempoCarteira >= 10
+    const cond3: boolean = idade > 50 && tempoCarteira >= 15
+
     return (cond1 || cond2 || cond3)
 }
 
-console.log(checaRenovacaoRG(process.argv[2],process.argv[3]))
+console.log(checaRenovacaoRG(process.argv[2], process.argv[3], hoje))
