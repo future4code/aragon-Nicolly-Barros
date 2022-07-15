@@ -29,7 +29,7 @@ export const editNickname = async (req: Request, res: Response) => {
         const idUserFound = verificationUser[0]
 
         if (!idUserFound) {
-            errorCode = 422
+            errorCode = 404
             throw new Error("Erro: usuário(a) não encontrado(a).");
         }
 

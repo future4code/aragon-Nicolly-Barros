@@ -24,7 +24,7 @@ export const editToDo = async (req: Request, res: Response) => {
         const idTaskFound = verificationTask[0]
 
         if (!idTaskFound) {
-            errorCode = 422
+            errorCode = 404
             throw new Error("Erro: tarefa não encontrada.");
         }
 

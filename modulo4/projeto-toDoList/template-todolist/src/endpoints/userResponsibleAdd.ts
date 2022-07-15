@@ -14,7 +14,7 @@ export const userResponsibleAdd = async (req: Request, res: Response) => {
         const idTaskFound = verificationTask[0]
 
         if (!idTaskFound) {
-            errorCode = 422
+            errorCode = 404
             throw new Error("Erro: tarefa não encontrada.");
         }
 
@@ -25,19 +25,26 @@ export const userResponsibleAdd = async (req: Request, res: Response) => {
         const idUserFound = verificationUser[0]
 
         if (!idUserFound) {
-            errorCode = 422
+            errorCode = 404
             throw new Error("Erro: usuário(a) não encontrado(a).");
         }
 
         const [verificationToDo] = await connection.raw(`
         SELECT * FROM Responsibles
-        WHERE userId = ${userId} AND taskId = ${taskId};
-        `)
+        WHERE taskId = ${taskId}; 
+        `) 
+
+         /* Aqui posso deixar para verificar tbm usuário, 
+        para que o nem a tarefa e nem o usuário possa ser 
+        adicionado mais de uma vez na tabela Responsibles, 
+        porem enunciado diz que um usuario pode ter mais de uma 
+        tarefa, apesar da regra de negocio dizer o contrário */
+
         const toDoFound = verificationToDo[0]
 
         if (toDoFound) {
             errorCode = 409
-            throw new Error("Erro: usuário(a) já atribuido(a) à essa tarefa.");
+            throw new Error("Erro: tarefa já atribuída.");
 
         } else {
             const newToDo = {

@@ -14,7 +14,7 @@ export const userResponsible = async (req: Request, res: Response) => {
         const idFound = idTask[0]
 
         if (!idFound) {
-            errorCode = 422
+            errorCode = 404
             throw new Error("Erro: tarefa não encontrada.");
         }
 
