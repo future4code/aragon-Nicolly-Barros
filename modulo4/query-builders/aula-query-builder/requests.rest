@@ -1,0 +1,32 @@
+### Ping
+GET http://localhost:3003/ping
+
+### GET perfumes
+GET http://localhost:3003/perfumes
+
+### GET perfumes com filtragem
+GET http://localhost:3003/perfumes?search=test
+
+
+### POST perfurme
+POST http://localhost:3003/perfumes
+Content-Type: application/json
+
+{
+	"name": "Perfume test",
+	"brand": "Labenu",
+	"price": 125.99,
+	"ml": 100
+}
+
+### PUT perfume
+PUT http://localhost:3003/perfumes/01
+Content-Type: application/json
+
+{
+    "price": 147.90
+}
+
+
+### DELETE perfume
+DELETE http://localhost:3003/perfumes/02
