@@ -1,0 +1,53 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+
+### Endpoint que registra usuário
+POST http://localhost:3003/users
+Content-Type: application/json
+
+{
+    "email": "nicoly@labenu.com",
+	"password": "nick123"
+}
+
+
+### Endpoint que busca todos os usuários
+GET http://localhost:3003/users
+
+
+### Endpoint que busca usuário com filtragem
+GET http://localhost:3003/users?search=astro
+
+
+### Endpoint que registra um produto
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Cadeira Gamer",
+	"price": 890.99
+}
+
+
+### Endpoint que busca todos os produtos
+GET http://localhost:3003/products
+
+
+### Endpoint que busca produto com filtragem
+GET http://localhost:3003/products?search=tecl
+
+
+### Endpoint que registar uma compra
+POST http://localhost:3003/purchases
+Content-Type: application/json
+
+{
+    "user_id": "103",
+	"product_id": "205",
+    "quantity": 3
+}
+
+
+### Endpoint que busca compras de usuário
+GET http://localhost:3003/users/103/purchases
