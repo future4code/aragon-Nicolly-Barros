@@ -30,7 +30,22 @@ export const searchPurchase = async (req: Request, res: Response) => {
       throw new Error("Usuário(a) não possui compras.");
     }
 
-    res.status(200).send({ compras: purchasesExists })
+    const [result] = await connection.raw(`
+        SELECT 
+        Labe_Users.email,
+        Labe_Products.name,
+        Labe_Products.price,
+        Labe_Purchases.quantity,
+        Labe_Purchases.total_price
+        FROM Labe_Purchases
+        INNER JOIN Labe_Products
+        ON Labe_Products.id = Labe_Purchases.product_id
+        INNER JOIN Labe_Users
+        ON Labe_Users.id = Labe_Purchases.user_id
+        WHERE user_id = "${user_id}";
+        `)
+
+    res.status(200).send({ compras: result })
 
   } catch (error) {
     res.status(errorCode).send({ message: error.message })
