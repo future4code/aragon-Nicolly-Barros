@@ -1,5 +1,23 @@
-import { IClassroomDB, MODULE } from "../models/Classroom";
-import { IHobbieDB, IStudentDB, IStudentHobbiesDB } from "../models/Student";
+import { IClassroomDB, MODULE } from "../../models/Classroom";
+import { IHobbieDB, IStudentDB, IStudentHobbiesDB } from "../../models/Student";
+
+export const classrooms: IClassroomDB[] = [
+    {
+        id: "101",
+        name: "Aragon",
+        module: MODULE.MODULO_5
+    },
+    {
+        id: "102",
+        name: "Barros",
+        module: MODULE.NOT_INIT
+    },
+    {
+        id: "103",
+        name: "Einstein",
+        module: MODULE.MODULO_2
+    }
+]
 
 export const students: IStudentDB[] = [
     {
@@ -25,23 +43,6 @@ export const students: IStudentDB[] = [
     },
 ]
 
-export const classrooms: IClassroomDB[] = [
-    {
-        id: "101",
-        name: "Aragon",
-        module: MODULE.MODULO_5
-    },
-    {
-        id: "102",
-        name: "Barros",
-        module: MODULE.NOT_INIT
-    },
-    {
-        id: "103",
-        name: "Einstein",
-        module: MODULE.MODULO_2
-    }
-]
 
 export const hobbies: IHobbieDB[] = [
     {
@@ -51,12 +52,28 @@ export const hobbies: IHobbieDB[] = [
     {
         id: "02",
         title: "Andar de patins"
+    },
+    {
+        id: "03",
+        title: "Academia"
+    },
+    {
+        id: "04",
+        title: "Andar de skate"
     }
 ]
 
 export const studentsHobbies: IStudentHobbiesDB[] = [
     {
         student_id: "1",
-        hobbie_id: "02"
+        hobby_id: "02"
+    },
+    {
+        student_id: "1",
+        hobby_id: "03"
+    },
+    {
+        student_id: "3",
+        hobby_id: "01"
     }
 ]

@@ -1,7 +1,7 @@
-import { BaseDatabase } from "./BaseDatabase"
-import { ClassroomDatabase } from "./ClassroomDatabase"
+import { BaseDatabase } from "../BaseDatabase"
+import { ClassroomDatabase } from "../ClassroomDatabase"
 import { classrooms, hobbies, students, studentsHobbies } from "./data"
-import { StudentDataBase } from "./StudentDatabase"
+import { StudentDataBase } from "../StudentDatabase"
 
 class Migrations extends BaseDatabase {
     public async execute() {
@@ -22,36 +22,36 @@ class Migrations extends BaseDatabase {
     private async createTables() {
         await BaseDatabase.connection.raw(`
         DROP TABLE IF EXISTS 
-            ${ClassroomDatabase.TABLE_CLASSROOMS},
+            ${StudentDataBase.TABLE_STUDENTS_HOBBIES},
             ${StudentDataBase.TABLE_STUDENTS},
             ${StudentDataBase.TABLE_HOBBIES},
-            ${StudentDataBase.STUDENTS_HOBBIES};
+            ${ClassroomDatabase.TABLE_CLASSROOMS};
         
         CREATE TABLE IF NOT EXISTS ${ClassroomDatabase.TABLE_CLASSROOMS}(
             id VARCHAR(255) PRIMARY KEY,
-            name VARCHAR(255) NOT NULL UNIQUE,
-            module ENUM("0","1", "2", "3", "4", "5", "6") DEFAULT "0"
+            name VARCHAR(255) NOT NULL,
+            module ENUM("0","1", "2", "3", "4", "5", "6") DEFAULT "0" NOT NULL
         );
         
         CREATE TABLE IF NOT EXISTS ${StudentDataBase.TABLE_STUDENTS}(
             id VARCHAR(255) PRIMARY KEY,
             name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
+            email VARCHAR(255) UNIQUE NOT NULL,
             birthdate DATE NOT NULL,
-            classroom_id VARCHAR(255),
+            classroom_id VARCHAR(255) DEFAULT NULL,
             FOREIGN KEY (classroom_id) REFERENCES ${ClassroomDatabase.TABLE_CLASSROOMS}(id)
         );
 
         CREATE TABLE IF NOT EXISTS ${StudentDataBase.TABLE_HOBBIES}(
             id VARCHAR(255) PRIMARY KEY,
-            title VARCHAR(255) NOT NULL UNIQUE
+            title VARCHAR(255) UNIQUE NOT NULL 
         );
         
-        CREATE TABLE IF NOT EXISTS ${StudentDataBase.STUDENTS_HOBBIES}(
+        CREATE TABLE IF NOT EXISTS ${StudentDataBase.TABLE_STUDENTS_HOBBIES}(
             student_id VARCHAR(255) NOT NULL,
-            hobbie_id VARCHAR(255) NOT NULL,
+            hobby_id VARCHAR(255) NOT NULL,
             FOREIGN KEY (student_id) REFERENCES ${StudentDataBase.TABLE_STUDENTS}(id),
-            FOREIGN KEY (hobbie_id) REFERENCES ${StudentDataBase.TABLE_HOBBIES}(id)
+            FOREIGN KEY (hobby_id) REFERENCES ${StudentDataBase.TABLE_HOBBIES}(id)
         );
         `)
     }
@@ -70,7 +70,7 @@ class Migrations extends BaseDatabase {
             .insert(hobbies)
 
         await BaseDatabase
-            .connection(StudentDataBase.STUDENTS_HOBBIES)
+            .connection(StudentDataBase.TABLE_STUDENTS_HOBBIES)
             .insert(studentsHobbies)
     }
 }

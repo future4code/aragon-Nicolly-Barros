@@ -13,7 +13,7 @@ export interface IHobbieDB {
 
 export interface IStudentHobbiesDB {
     student_id: string,
-    hobbie_id: string
+    hobby_id: string
 }
 
 export class Students {
@@ -22,8 +22,7 @@ export class Students {
         private name: string,
         private email: string,
         private birthdate: Date,
-        private classroom_id: string,
-        private hobbies: string
+        private classroom_id: string | null,
     ){}
 
     public getId(){
@@ -46,7 +45,24 @@ export class Students {
         return this.classroom_id
     }
 
-    public getHobbies(){
-        return this.hobbies
+    public setId(newId: string){
+        this.id = newId
     }
+
+    public setName(newName: string){
+        this.name = newName
+    }
+
+    public setEmail(newEmail: string){
+        this.email = newEmail
+    }
+
+    public setBirthdate(newBirthdate: Date){
+        this.birthdate = newBirthdate
+    }
+
+    public setClassroom(newClassroom: string | null){
+        this.classroom_id = newClassroom
+    }
+
 }
