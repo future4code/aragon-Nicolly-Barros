@@ -16,6 +16,16 @@ export class ClassroomDatabase extends BaseDatabase {
         return result
     }
 
+    public async getClassroomName(search: string) {
+
+        const result = await BaseDatabase
+            .connection(ClassroomDatabase.TABLE_CLASSROOMS)
+            .select()
+            .where("name", "LIKE", `%${search}%`)
+
+        return result
+    }
+
     public async createClassroom(classroom: Classroom) {
         await BaseDatabase
             .connection(ClassroomDatabase.TABLE_CLASSROOMS)

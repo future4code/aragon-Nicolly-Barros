@@ -23,6 +23,7 @@ export class Students {
         private email: string,
         private birthdate: Date,
         private classroom_id: string | null,
+        private hobby: string
     ){}
 
     public getId(){
@@ -43,6 +44,10 @@ export class Students {
 
     public getClassroomId(){
         return this.classroom_id
+    }
+
+    public getHobby(){
+        return this.hobby
     }
 
     public setId(newId: string){

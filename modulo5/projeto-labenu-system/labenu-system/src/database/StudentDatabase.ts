@@ -1,4 +1,4 @@
-import { Students } from "../models/Student";
+import { IHobbieDB, IStudentDB, IStudentHobbiesDB, Students } from "../models/Student";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class StudentDataBase extends BaseDatabase {
@@ -48,14 +48,43 @@ export class StudentDataBase extends BaseDatabase {
     }
 
     public async verificationStudent(id: string) {
-        const findClass = await BaseDatabase
+        const findStudent = await BaseDatabase
             .connection(StudentDataBase.TABLE_STUDENTS)
             .select()
             .where({ id: id })
 
-        return findClass
+        return findStudent
     }
 
+    public async verificationStudentEmail(email: string) {
+        const findStudent = await BaseDatabase
+            .connection(StudentDataBase.TABLE_STUDENTS)
+            .select()
+            .where({ email: email })
+
+        return findStudent
+    }
+
+    public async verificationHobby(hobby: string) {
+        const findHobby = await BaseDatabase
+            .connection(StudentDataBase.TABLE_HOBBIES)
+            .select()
+            .where({ title: hobby })
+
+        return findHobby
+    }
+
+
+    public async createHobby(hobby: IHobbieDB) {
+        await BaseDatabase
+            .connection(StudentDataBase.TABLE_HOBBIES)
+            .insert({
+                id: hobby.id,
+                title: hobby.title
+            })
+    }
+
+    
     public async getStudentsClassroom(id: string) {
         const [result] = await BaseDatabase
             .connection.raw(`
@@ -67,7 +96,7 @@ export class StudentDataBase extends BaseDatabase {
             JOIN ${StudentDataBase.TABLE_STUDENTS}
             ON ${StudentDataBase.TABLE_STUDENTS}.classroom_id = ${StudentDataBase.TABLE_CLASSROOMS}.id
             WHERE ${StudentDataBase.TABLE_CLASSROOMS}.id = ${id};`)
-    
+
         return result
     }
 

@@ -61,4 +61,4 @@ Content-Type: application/json
 }
 
 ### fimmm
-GET http://localhost:3003/students/103
+GET http://localhost:3003/classrooms/103

@@ -8,11 +8,29 @@ export class ClassroomController {
   public async getAllClassrooms(req: Request, res: Response) {
     let errorCode = 400
     try {
-
+      const search = req.query.search as string
       const classroomDatabase = new ClassroomDatabase()
-      const result = await classroomDatabase.getAllClassrooms()
 
-      res.status(200).send({ classrooms: result })
+      if (search) {
+
+        const result = await classroomDatabase.getClassroomName(search)
+
+        if (result.length === 0) {
+          errorCode = 404
+          throw new Error("Nenhuma turma encontrado com essa busca.");
+        }
+
+        res.status(200).send({
+          classrooms: result
+        })
+
+      } else {
+        const result = await classroomDatabase.getAllClassrooms()
+
+        res.status(200).send({
+          classrooms: result
+        })
+      }
 
     } catch (error) {
       res.status(errorCode).send({ message: error.message })
@@ -25,6 +43,16 @@ export class ClassroomController {
     let errorCode = 400
     try {
       const { name, module } = req.body
+
+      if(!name || !module){
+        errorCode = 422
+        throw new Error("Erro: Parâmetros ausentes.");
+      }
+
+      if(typeof name !== "string" ){
+        errorCode = 422
+        throw new Error("Erro: Parâmetros com tipo inválidos, devem ser string.")
+      }
 
       const classroom = new Classroom(
         Date.now().toString(),
@@ -46,7 +74,6 @@ export class ClassroomController {
   }
 
 
-
   public async getAtiveClasses(req: Request, res: Response) {
     let errorCode = 400
     try {
@@ -56,6 +83,11 @@ export class ClassroomController {
       const result = list.filter((item) => {
         return item.module !== "0"
       })
+
+      if(result.length === 0){
+        errorCode = 404
+        throw new Error("Nenhuma turma ativa.");
+      }
 
       res.status(200).send({ classroomsActives: result })
 
@@ -71,8 +103,17 @@ export class ClassroomController {
       const id = req.params.id as string
       const module = req.body.module as string
 
+      if(!id || !module){
+        errorCode = 422
+        throw new Error("Erro: Parâmetros ausentes.");
+      }
+
+      if(typeof id !== "string" || typeof module !== "string"){
+        errorCode = 422
+        throw new Error("Erro: Parâmetros com tipo inválidos, devem ser string.")
+      }
+
       const classroomDataBase = new ClassroomDatabase()
-      
       const findClass = await classroomDataBase.verificationClass(id)
 
       if(!findClass[0]){

@@ -35,4 +35,4 @@ app.post("/students", studentController.createStudent)
 
 app.put("/students/:id", studentController.changeStudentClass)
 
-app.get("/students/:id", studentController.getStudentsClass)
+app.get("/classrooms/:id", studentController.getStudentsClass)
