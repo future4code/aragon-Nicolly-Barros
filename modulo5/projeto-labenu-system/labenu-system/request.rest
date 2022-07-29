@@ -3,12 +3,12 @@ GET http://localhost:3003/ping
 
 
 
-### Endpoint get all classrooms
-GET http://localhost:3003/classrooms
+### Endpoint: get all classrooms or classroom by name
+GET http://localhost:3003/classrooms?search=
 
 
 
-### Exercício 3 - Create classroom
+### Enspoint: create classroom
 POST http://localhost:3003/classrooms
 Content-Type: application/json
 
@@ -19,12 +19,12 @@ Content-Type: application/json
 
 
 
-### Endpoint get all classrooms actives
+### Endpoint: get all classrooms actives
 GET http://localhost:3003/classrooms/actives
 
 
 
-### Endpoint update module class
+### Endpoint: update module classroom
 PUT http://localhost:3003/classrooms/101
 Content-Type: application/json
 
@@ -34,12 +34,12 @@ Content-Type: application/json
 
 
 
-### Endpoint get all students
+### Endpoint: get all students or student by name
 GET http://localhost:3003/students?search=
 
 
 
-### Endpoint create student
+### Endpoint: create student
 POST http://localhost:3003/students
 Content-Type: application/json
 
@@ -51,7 +51,7 @@ Content-Type: application/json
 }
 
 
-### Endpoint update classroom_id student
+### Endpoint: update classroom_id student
 
 PUT http://localhost:3003/students/1
 Content-Type: application/json

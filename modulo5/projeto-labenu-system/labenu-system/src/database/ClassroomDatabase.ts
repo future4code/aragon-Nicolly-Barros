@@ -53,4 +53,13 @@ export class ClassroomDatabase extends BaseDatabase {
 
         return findClass
     }
+
+    public async verificationClassName(name: string) {
+        const findClass = await BaseDatabase
+            .connection(ClassroomDatabase.TABLE_CLASSROOMS)
+            .select()
+            .where({ name: name })
+
+        return findClass
+    }
 }

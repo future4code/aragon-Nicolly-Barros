@@ -42,7 +42,8 @@ export class ClassroomController {
   public async createClassroom(req: Request, res: Response) {
     let errorCode = 400
     try {
-      const { name, module } = req.body
+      const { name, module } = req.body 
+      const classroomDatabase = new ClassroomDatabase()
 
       if(!name || !module){
         errorCode = 422
@@ -54,13 +55,24 @@ export class ClassroomController {
         throw new Error("Erro: Parâmetros com tipo inválidos, devem ser string.")
       }
 
+      if(typeof module === "number" ){
+        errorCode = 422
+        throw new Error("Erro: Parâmetros com tipo inválidos, devem ser string.")
+      }
+
+      const findClassName = await classroomDatabase.verificationClassName(name)
+
+      if(findClassName[0]){
+        errorCode = 409
+        throw new Error("Erro: Já existe turma cadastrada com esse nome.")
+      }
+
       const classroom = new Classroom(
         Date.now().toString(),
         name,
         module
       )
 
-      const classroomDatabase = new ClassroomDatabase()
       await classroomDatabase.createClassroom(classroom)
 
       res.status(201).send({
