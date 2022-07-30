@@ -47,7 +47,7 @@ export class StudentController {
 
       const studentDatabase = new StudentDataBase()
 
-      if (!name || !email || !birthdate ) {
+      if (!name || !email || !birthdate || !hobby) {
         errorCode = 422
         throw new Error("Erro: Parâmetros ausentes.");
       }

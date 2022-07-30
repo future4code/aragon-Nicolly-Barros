@@ -17,7 +17,7 @@ export class ClassroomController {
 
         if (result.length === 0) {
           errorCode = 404
-          throw new Error("Nenhuma turma encontrado com essa busca.");
+          throw new Error("Nenhuma turma encontrada com essa busca.");
         }
 
         res.status(200).send({
@@ -130,7 +130,7 @@ export class ClassroomController {
 
       if(!findClass[0]){
         errorCode = 404
-        throw new Error("Turma não encontrada.");
+        throw new Error("Erro: Turma não encontrada.");
       }
       
       await classroomDataBase.updateClassroomModule(id, module)
