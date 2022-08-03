@@ -1,0 +1,53 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Signup
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "nickname": "Nick",
+    "email": "nicoly@email.com",
+    "password": "abc123"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "nicoly@email.com",
+    "password": "abc123"
+}
+
+### Get all recipes
+GET http://localhost:3003/recipes?search=
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3ZTg5ZDQ0LWUxZTUtNDM3Ny1iNjVhLWZiY2FkMTVlMjE1NSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1NTU0NTMsImV4cCI6MTY1OTY0MTg1M30.SIol-kxhW7acShGQbfvS7ADAmxf5bk-_FmQL94xAFMo
+
+
+### Create recipe
+POST http://localhost:3003/recipes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3ZTg5ZDQ0LWUxZTUtNDM3Ny1iNjVhLWZiY2FkMTVlMjE1NSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1NTU0NTMsImV4cCI6MTY1OTY0MTg1M30.SIol-kxhW7acShGQbfvS7ADAmxf5bk-_FmQL94xAFMo
+Content-Type: application/json
+
+{
+    "title": "Lasanha",
+    "description": "Testando de novo esse endpoint"
+}
+
+### Edit recipe
+PUT http://localhost:3003/recipes/98ba811a-2ca5-4899-ad4f-8ed94bf72aac
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3ZTg5ZDQ0LWUxZTUtNDM3Ny1iNjVhLWZiY2FkMTVlMjE1NSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1NTU0NTMsImV4cCI6MTY1OTY0MTg1M30.SIol-kxhW7acShGQbfvS7ADAmxf5bk-_FmQL94xAFMo
+Content-Type: application/json
+
+{
+    "title": "morango"
+}
+
+### Delete recipe
+DELETE http://localhost:3003/recipes/8e0d7c6d-e732-4165-9796-ec4225d74f94
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA3ZTg5ZDQ0LWUxZTUtNDM3Ny1iNjVhLWZiY2FkMTVlMjE1NSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NTk1NTU0NTMsImV4cCI6MTY1OTY0MTg1M30.SIol-kxhW7acShGQbfvS7ADAmxf5bk-_FmQL94xAFMo
+
+### Delete user
+DELETE http://localhost:3003/users/:id
+Authorization: 
