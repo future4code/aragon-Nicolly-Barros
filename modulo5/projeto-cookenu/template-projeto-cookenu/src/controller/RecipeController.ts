@@ -16,7 +16,7 @@ export class RecipeController {
 
             if (!token) {
                 errorCode = 401
-                throw new Error("Token faltando")
+                throw new Error("Token ausente.")
             }
 
             const authenticator = new Authenticator()
@@ -24,25 +24,29 @@ export class RecipeController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido")
+                throw new Error("Token inválido.")
             }
 
             if (search) {
                 const recipeDatabase = new RecipeDatabase()
                 const recipesDB = await recipeDatabase.getRecipesQuery(search, limit, page)
 
-                const recipes = recipesDB.map((recipeDB) => {
-                    return new Recipe(
-                        recipeDB.id,
-                        recipeDB.title,
-                        recipeDB.description,
-                        recipeDB.created_at,
-                        recipeDB.updated_at,
-                        recipeDB.creator_id
-                    )
-                })
+                if (recipesDB.length === 0) {
+                    res.status(200).send({ message: "Nenhuma receita encontrada com essa busca." })
+                } else {
+                    const recipes = recipesDB.map((recipeDB) => {
+                        return new Recipe(
+                            recipeDB.id,
+                            recipeDB.title,
+                            recipeDB.description,
+                            recipeDB.created_at,
+                            recipeDB.updated_at,
+                            recipeDB.creator_id
+                        )
+                    })
 
-                res.status(200).send({ recipes })
+                    res.status(200).send({ recipes })
+                }
             }
 
             const recipeDatabase = new RecipeDatabase()
@@ -73,7 +77,7 @@ export class RecipeController {
 
             if (!token) {
                 errorCode = 401
-                throw new Error("Token ausente")
+                throw new Error("Token ausente.")
             }
 
             const authenticator = new Authenticator()
@@ -81,28 +85,28 @@ export class RecipeController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido")
+                throw new Error("Token inválido.")
             }
 
             if (!title || !description) {
                 errorCode = 422
-                throw new Error("Parâmetros ausentes");
+                throw new Error("Parâmetros ausentes.");
 
             }
 
             if (typeof title !== "string" || typeof description !== "string") {
                 errorCode = 422
-                throw new Error("Parâmetros devem ser do tipo string");
+                throw new Error("Parâmetros devem ser do tipo string.");
             }
 
             if (title.length < 3) {
                 errorCode = 422
-                throw new Error("Parâmetro 'title' deve possuir ao menos 3 caracteres");
+                throw new Error("Parâmetro 'title' deve possuir ao menos 3 caracteres.");
             }
 
             if (description.length < 10) {
                 errorCode = 422
-                throw new Error("Parâmetro 'description' deve possuir ao menos 10 caracteres");
+                throw new Error("Parâmetro 'description' deve possuir ao menos 10 caracteres.");
             }
 
 
@@ -140,8 +144,8 @@ export class RecipeController {
             const { title, description } = req.body
 
             if (!token) {
-                errorCode = 422
-                throw new Error("Token ausente")
+                errorCode = 401
+                throw new Error("Token ausente.")
             }
 
             const authenticator = new Authenticator()
@@ -149,31 +153,33 @@ export class RecipeController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido")
+                throw new Error("Token inválido.")
             }
 
             if (!title && !description) {
                 errorCode = 422
-                throw new Error("Parâmetros ausentes");
+                throw new Error("Parâmetros ausentes.");
             }
 
 
             if (title && typeof title !== "string") {
                 errorCode = 422
-                throw new Error("Parâmetro 'title' deve ser uma string")
+                throw new Error("Parâmetro 'title' deve ser uma string.")
             }
 
             if (description && typeof description !== "string") {
                 errorCode = 422
-                throw new Error("Parâmetro 'description' deve ser uma string")
+                throw new Error("Parâmetro 'description' deve ser uma string.")
             }
 
             if (title && title.length < 3) {
-                throw new Error("O parâmetro 'title' deve possuir ao menos 3 caracteres")
+                errorCode = 422
+                throw new Error("O parâmetro 'title' deve possuir ao menos 3 caracteres.")
             }
 
             if (description && description.length < 10) {
-                throw new Error("O parâmetro 'description' deve possuir ao menos 10 caracteres")
+                errorCode = 422
+                throw new Error("O parâmetro 'description' deve possuir ao menos 10 caracteres.")
             }
 
             const recipeDataBase = new RecipeDatabase()
@@ -181,13 +187,13 @@ export class RecipeController {
 
             if (!receitaDB) {
                 errorCode = 404
-                throw new Error("Id da receita a ser editada inválida")
+                throw new Error("Id da receita a ser editada inválida.")
             }
 
             if (payload.role === USER_ROLES.NORMAL) {
                 if (payload.id !== receitaDB.creator_id) {
                     errorCode = 403
-                    throw new Error("Somente admins podem alterar outras receitas além das prórias")
+                    throw new Error("Somente admins podem alterar outras receitas além das prórias.")
                 }
             }
 
@@ -206,7 +212,7 @@ export class RecipeController {
             await recipeDataBase.editRecipe(recipe)
 
             res.status(201).send({
-                message: "Edição realizada com sucesso",
+                message: "Edição realizada com sucesso!",
                 recipe
             })
         } catch (error) {
@@ -221,8 +227,8 @@ export class RecipeController {
             const id = req.params.id
 
             if (!token) {
-                errorCode = 422
-                throw new Error("Token ausente")
+                errorCode = 401
+                throw new Error("Token ausente.")
             }
 
             const authenticator = new Authenticator()
@@ -230,7 +236,7 @@ export class RecipeController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido")
+                throw new Error("Token inválido.")
             }
 
             const recipeDataBase = new RecipeDatabase()
@@ -238,13 +244,13 @@ export class RecipeController {
 
             if (!receitaDB) {
                 errorCode = 404
-                throw new Error("Id da receita a ser deletada inválida")
+                throw new Error("Id da receita a ser deletada inválida.")
             }
 
             if (payload.role === USER_ROLES.NORMAL) {
                 if (payload.id !== receitaDB.creator_id) {
                     errorCode = 403
-                    throw new Error("Somente admins podem deletar outras receitas além das prórias")
+                    throw new Error("Somente admins podem deletar outras receitas além das prórias.")
                 }
             }
 

@@ -14,31 +14,38 @@ export class UserController {
             const password = req.body.password
 
             if (!nickname || !email || !password) {
-                throw new Error("Parâmetros faltando")
+                errorCode = 422
+                throw new Error("Parâmetros ausentes.")
             }
 
             if (typeof nickname !== "string") {
-                throw new Error("Parâmetro 'nickname' deve ser uma string")
+                errorCode = 422
+                throw new Error("Parâmetro 'nickname' deve ser uma string.")
             }
 
             if (typeof email !== "string") {
-                throw new Error("Parâmetro 'email' deve ser uma string")
+                errorCode = 422
+                throw new Error("Parâmetro 'email' deve ser uma string.")
             }
 
             if (typeof password !== "string") {
-                throw new Error("Parâmetro 'password' deve ser uma string")
+                errorCode = 422
+                throw new Error("Parâmetro 'password' deve ser uma string.")
             }
 
             if (nickname.length < 3) {
-                throw new Error("O parâmetro 'nickname' deve possuir ao menos 3 caracteres")
+                errorCode = 422
+                throw new Error("O parâmetro 'nickname' deve possuir ao menos 3 caracteres.")
             }
 
             if (password.length < 6) {
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres")
+                errorCode = 422
+                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres.")
             }
 
             if (!email.includes("@") || !email.includes(".com")) {
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres")
+                errorCode = 422
+                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres.")
             }
 
             const idGenerator = new IdGenerator()
@@ -67,7 +74,7 @@ export class UserController {
             const token = authenticator.generateToken(payload)
 
             res.status(201).send({
-                message: "Cadastro realizado com sucesso",
+                message: "Cadastro realizado com sucesso!",
                 token
             })
         } catch (error) {
@@ -82,24 +89,28 @@ export class UserController {
             const password = req.body.password
 
             if (!email || !password) {
-                errorCode = 401
-                throw new Error("Email ou senha faltando")
+                errorCode = 422
+                throw new Error("Email ou senha ausentes.")
             }
 
             if (typeof email !== "string") {
-                throw new Error("Parâmetro 'email' deve ser uma string")
+                errorCode = 422
+                throw new Error("Parâmetro 'email' deve ser uma string.")
             }
 
             if (typeof password !== "string") {
-                throw new Error("Parâmetro 'password' deve ser uma string")
+                errorCode = 422
+                throw new Error("Parâmetro 'password' deve ser uma string.")
             }
 
             if (password.length < 6) {
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres")
+                errorCode = 422
+                throw new Error("Parâmetro 'password' deve possuir ao menos 6 caracteres.")
             }
 
             if (!email.includes("@") || !email.includes(".com")) {
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres")
+                errorCode = 422
+                throw new Error("Parâmetro 'email' inválido.")
             }
 
             const userDatabase = new UserDatabase()
@@ -107,7 +118,7 @@ export class UserController {
 
             if (!userDB) {
                 errorCode = 401
-                throw new Error("Email não cadastrado")
+                throw new Error("Email não cadastrado.")
             }
 
             const user = new User(
@@ -126,7 +137,7 @@ export class UserController {
 
             if (!isPasswordCorrect) {
                 errorCode = 401
-                throw new Error("Senha inválida")
+                throw new Error("Senha inválida.")
             }
 
             const payload: ITokenPayload = {
@@ -138,7 +149,7 @@ export class UserController {
             const token = authenticator.generateToken(payload)
 
             res.status(200).send({
-                message: "Login realizado com sucesso",
+                message: "Login realizado com sucesso!",
                 token
             })
         } catch (error) {
@@ -157,12 +168,12 @@ export class UserController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token faltando ou inválido")
+                throw new Error("Token ausente ou inválido.")
             }
 
             if (payload.role !== USER_ROLES.ADMIN) {
                 errorCode = 403
-                throw new Error("Somente admins podem acessar esse endpoint")
+                throw new Error("Somente admins podem acessar esse endpoint.")
             }
 
             const userDatabase = new UserDatabase()
@@ -170,18 +181,18 @@ export class UserController {
 
             if (!isUserExists) {
                 errorCode = 401
-                throw new Error("Token inválido")
+                throw new Error("Usuário(a) não encontrado(a).")
             }
 
             if (id === payload.id) {
-                throw new Error("Não é possível deletar a própria conta")
+                errorCode = 401
+                throw new Error("Não é possível deletar a própria conta.")
             }
 
-        
             await userDatabase.deleteUser(id)
 
             res.status(200).send({
-                message: "User deletado com sucesso"
+                message: "Usuário(a) deletado(a) com sucesso!"
             })
         } catch (error) {
             res.status(errorCode).send({ message: error.message })
