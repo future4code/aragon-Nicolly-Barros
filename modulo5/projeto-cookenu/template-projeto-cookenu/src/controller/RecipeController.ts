@@ -13,23 +13,19 @@ export class RecipeController {
             const search = req.query.search as string
             const limit = Number(req.query.limit) || 5
             const page = Number(req.query.page) || 1
-
-            if (!token) {
-                errorCode = 401
-                throw new Error("Token ausente.")
-            }
+            const order = req.query.order as string || "desc"
 
             const authenticator = new Authenticator()
             const payload = authenticator.getTokenPayload(token)
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido.")
+                throw new Error("Token inválido/ausente.")
             }
 
             if (search) {
                 const recipeDatabase = new RecipeDatabase()
-                const recipesDB = await recipeDatabase.getRecipesQuery(search, limit, page)
+                const recipesDB = await recipeDatabase.getRecipesQuery(search, limit, page, order)
 
                 if (recipesDB.length === 0) {
                     res.status(200).send({ message: "Nenhuma receita encontrada com essa busca." })
@@ -50,7 +46,7 @@ export class RecipeController {
             }
 
             const recipeDatabase = new RecipeDatabase()
-            const recipesDB = await recipeDatabase.getAllRecipes()
+            const recipesDB = await recipeDatabase.getAllRecipes(limit, page, order)
 
             const recipes = recipesDB.map((recipeDB) => {
                 return new Recipe(
@@ -75,17 +71,12 @@ export class RecipeController {
             const token = req.headers.authorization
             const { title, description } = req.body
 
-            if (!token) {
-                errorCode = 401
-                throw new Error("Token ausente.")
-            }
-
             const authenticator = new Authenticator()
             const payload = authenticator.getTokenPayload(token)
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido.")
+                throw new Error("Token inválido/ausente.")
             }
 
             if (!title || !description) {
@@ -143,17 +134,12 @@ export class RecipeController {
             const id = req.params.id
             const { title, description } = req.body
 
-            if (!token) {
-                errorCode = 401
-                throw new Error("Token ausente.")
-            }
-
             const authenticator = new Authenticator()
             const payload = authenticator.getTokenPayload(token)
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido.")
+                throw new Error("Token inválido/ausente.")
             }
 
             if (!title && !description) {
@@ -174,12 +160,12 @@ export class RecipeController {
 
             if (title && title.length < 3) {
                 errorCode = 422
-                throw new Error("O parâmetro 'title' deve possuir ao menos 3 caracteres.")
+                throw new Error("Parâmetro 'title' deve possuir ao menos 3 caracteres.")
             }
 
             if (description && description.length < 10) {
                 errorCode = 422
-                throw new Error("O parâmetro 'description' deve possuir ao menos 10 caracteres.")
+                throw new Error("Parâmetro 'description' deve possuir ao menos 10 caracteres.")
             }
 
             const recipeDataBase = new RecipeDatabase()
@@ -211,7 +197,7 @@ export class RecipeController {
 
             await recipeDataBase.editRecipe(recipe)
 
-            res.status(201).send({
+            res.status(200).send({
                 message: "Edição realizada com sucesso!",
                 recipe
             })
@@ -236,7 +222,7 @@ export class RecipeController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token inválido.")
+                throw new Error("Token inválido/ausente.")
             }
 
             const recipeDataBase = new RecipeDatabase()

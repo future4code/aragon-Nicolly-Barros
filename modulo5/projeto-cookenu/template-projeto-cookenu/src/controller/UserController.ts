@@ -35,17 +35,25 @@ export class UserController {
 
             if (nickname.length < 3) {
                 errorCode = 422
-                throw new Error("O parâmetro 'nickname' deve possuir ao menos 3 caracteres.")
+                throw new Error("Parâmetro 'nickname' deve possuir ao menos 3 caracteres.")
             }
 
             if (password.length < 6) {
                 errorCode = 422
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres.")
+                throw new Error("Parâmetro 'password' deve possuir ao menos 6 caracteres.")
             }
 
             if (!email.includes("@") || !email.includes(".com")) {
                 errorCode = 422
-                throw new Error("O parâmetro 'password' deve possuir ao menos 6 caracteres.")
+                throw new Error("Email inválido.")
+            }
+
+            const userDatabase = new UserDatabase()
+            const userFind = await userDatabase.findByEmail(email)
+
+            if(userFind){
+                errorCode = 409
+                throw new Error("Email já cadastrado.");
             }
 
             const idGenerator = new IdGenerator()
@@ -62,7 +70,6 @@ export class UserController {
                 USER_ROLES.NORMAL
             )
 
-            const userDatabase = new UserDatabase()
             await userDatabase.createUser(user)
 
             const payload: ITokenPayload = {
@@ -90,7 +97,7 @@ export class UserController {
 
             if (!email || !password) {
                 errorCode = 422
-                throw new Error("Email ou senha ausentes.")
+                throw new Error("Parâmetros ausentes.")
             }
 
             if (typeof email !== "string") {
@@ -110,7 +117,7 @@ export class UserController {
 
             if (!email.includes("@") || !email.includes(".com")) {
                 errorCode = 422
-                throw new Error("Parâmetro 'email' inválido.")
+                throw new Error("Email inválido.")
             }
 
             const userDatabase = new UserDatabase()
@@ -137,7 +144,7 @@ export class UserController {
 
             if (!isPasswordCorrect) {
                 errorCode = 401
-                throw new Error("Senha inválida.")
+                throw new Error("Email e/ou senha inválida.")
             }
 
             const payload: ITokenPayload = {
@@ -168,7 +175,7 @@ export class UserController {
 
             if (!payload) {
                 errorCode = 401
-                throw new Error("Token ausente ou inválido.")
+                throw new Error("Token inválido/ausente.")
             }
 
             if (payload.role !== USER_ROLES.ADMIN) {
@@ -180,7 +187,7 @@ export class UserController {
             const isUserExists = await userDatabase.checkIfExistsById(id)
 
             if (!isUserExists) {
-                errorCode = 401
+                errorCode = 404
                 throw new Error("Usuário(a) não encontrado(a).")
             }
 

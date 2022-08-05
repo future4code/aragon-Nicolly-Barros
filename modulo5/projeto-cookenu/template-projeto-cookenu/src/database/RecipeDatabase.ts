@@ -4,22 +4,25 @@ import { BaseDatabase } from "./BaseDatabase";
 export class RecipeDatabase extends BaseDatabase {
     public static TABLE_RECIPES = "Cookenu_Recipes"
 
-    public getAllRecipes = async () => {
+    public getAllRecipes = async (limit: number, page: number, order: string) => {
         const recipesDB: IRecipeDB[] = await BaseDatabase
             .connection(RecipeDatabase.TABLE_RECIPES)
             .select()
+            .orderBy("updated_at" ,`${order}`)
+            .limit(limit)
+            .offset(limit * (page - 1));
 
         return recipesDB
     }
 
-    public getRecipesQuery = async (search: string , limit: number, page: number) => {
+    public getRecipesQuery = async (search: string , limit: number, page: number, order: string) => {
         const recipesDB: IRecipeDB[] = await BaseDatabase
             .connection(RecipeDatabase.TABLE_RECIPES)
             .select()
             .where("title", "LIKE", `%${search}%`)
-            /* .orderBy("updated_at" ,"asc")
+            .orderBy("updated_at" ,`${order}`)
             .limit(limit)
-            .offset(limit * (page - 1)) */;
+            .offset(limit * (page - 1));
 
         return recipesDB
     }
