@@ -55,7 +55,6 @@ export interface IGetPostsInputDTO {
     token: string,
 }
 
-
 export interface IGetPosts {
     id: string,
     content: string,
@@ -80,4 +79,15 @@ export interface IDeletePostInputDTO {
 export interface ILikePostInputDTO {
     token: string,
     id: string,
+}
+
+export interface IDislikePostInputDTO {
+    token: string,
+    id: string,
+}
+
+export interface IEditPostInputDTO {
+    token: string,
+    id: string,
+    content: string,
 }

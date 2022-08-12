@@ -33,7 +33,7 @@ export class UserBusiness {
             throw new Error("Parâmetro 'email' inválido.")
         }
 
-        if (typeof password !== "string" || password.length < 3) {
+        if (typeof password !== "string" || password.length < 6) {
             throw new Error("Parâmetro 'password' inválido.")
         }
         const userDB = await this.userDatabase.findByEmail(email)

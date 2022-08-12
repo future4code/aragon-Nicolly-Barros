@@ -1,4 +1,4 @@
-import { ILikeDB, IPostDB, Post } from "../models/Post"
+import { IEditPostInputDTO, ILikeDB, IPostDB, Post } from "../models/Post"
 import { BaseDatabase } from "./BaseDatabase"
 
 export class PostDatabase extends BaseDatabase {
@@ -6,11 +6,22 @@ export class PostDatabase extends BaseDatabase {
     public static TABLE_LIKES = "Labook_Likes"
 
     public getPosts = async () => {
-        const result = await BaseDatabase
+        const result: IPostDB[] = await BaseDatabase
             .connection(PostDatabase.TABLE_POSTS)
-            .select()
+            .select() 
 
         return result
+    }
+
+    public getLikes = async (id:string) => {
+
+        const result = await BaseDatabase.connection(PostDatabase.TABLE_LIKES)
+        .select()
+        .count("id")
+        .where({post_id: id})
+
+
+        return result[0]["count(`id`)"]
     }
 
     public createPost = async (input: Post) => {
@@ -70,10 +81,25 @@ export class PostDatabase extends BaseDatabase {
         return postLikeDB[0]
     }
 
-    public dislikePost = async (id: string) => {
+    public deslikePost = async (id: string) => {
         await BaseDatabase
         .connection(PostDatabase.TABLE_LIKES)
         .delete()
         .where("post_id", "=", `${id}`)
     }
+
+    public editPost = async (post: IPostDB) => {
+
+        const postDB: IPostDB = {
+            id: post.id,
+            content: post.content,
+            user_id: post.user_id
+        }
+
+        await BaseDatabase
+            .connection(PostDatabase.TABLE_POSTS)
+            .update(postDB)
+            .where({ id: post.id})
+    }
+        
 }
