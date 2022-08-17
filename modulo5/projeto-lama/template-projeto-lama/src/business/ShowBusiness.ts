@@ -1,8 +1,10 @@
 import { tickets } from "../database/migrations/data"
 import { ShowDatabase } from "../database/ShowDatabase"
+import { ConflictError } from "../errors/ConflictError"
+import { NotFoundError } from "../errors/NotFoundError"
 import { RequestError } from "../errors/RequestError"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
-import { ICreateShowInputDTO, ICreateShowOutputDTO, Show } from "../models/Show"
+import { IBuyTicketInputDTO, ICreateShowInputDTO, ICreateShowOutputDTO, ITicketDB, Show } from "../models/Show"
 import { USER_ROLES } from "../models/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -93,6 +95,62 @@ export class ShowBusiness {
 
         const response = {
             shows
+        }
+
+        return response
+    }
+
+    public buyTicket = async (input: IBuyTicketInputDTO) => {
+        const {token, showId} = input
+
+        const payload = this.authenticator.getTokenPayload(token)
+
+        if(!payload){
+            throw new UnauthorizedError("Token ausente/inválido.")
+        }
+
+        if(!showId ){
+            throw new RequestError("Parâmetros ausentes.")
+        }
+
+        if(typeof showId !== "string"){
+            throw new RequestError("Parâmetro 'showId' inválido: deve ser uma string.")
+        }
+
+        const findShow = await this.showDatabase.verifyShow(showId)
+
+        if(!findShow){
+            throw new NotFoundError("Show não encontrado.")
+        }
+
+        const findTicket = await this.showDatabase.verifyTicketShow(showId, payload.id)
+
+        if(findTicket){
+            throw new ConflictError("Você já comprou ingresso para esse show.")
+        }
+
+        const shows = await this.getShows()
+
+        const [ticketsShow] = shows.shows.filter((show: any) => {
+            return show.id === showId
+        })
+
+        if(ticketsShow.getTickets() < 1){
+            throw new RequestError("Ingressos esgotados.")
+        }
+
+        const id = this.idGenerator.generate()
+        
+        const ticket: ITicketDB = {
+            id: id,
+            show_id: showId,
+            user_id: payload.id
+        }
+
+        await this.showDatabase.newTicket(ticket)
+
+        const response = {
+            message: "Ingresso comprado com sucesso!"
         }
 
         return response

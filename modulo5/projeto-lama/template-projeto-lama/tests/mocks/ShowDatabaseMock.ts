@@ -1,5 +1,5 @@
 import { BaseDatabase } from "../../src/database/BaseDatabase"
-import { IShowDB, Show} from "../../src/models/Show"
+import { IShowDB, ITicketDB, Show} from "../../src/models/Show"
 
 export class ShowDatabaseMock extends BaseDatabase {
     public static TABLE_POSTS = "Labook_Posts"
@@ -61,5 +61,34 @@ export class ShowDatabaseMock extends BaseDatabase {
             default:
                 return 0
         }
+    }
+
+    public verifyShow = async (id:string): Promise<IShowDB | undefined> => {
+        switch (id) {
+            case "201":
+                return {
+                    id: "201",
+                    band: "Foo Fighters",
+                    starts_at: new Date("2022/12/05")
+                } as IShowDB
+            default:
+                return undefined
+        }
+    }
+
+    public verifyTicketShow = async (id:string, idUser: string):Promise<ITicketDB | undefined> => {
+        if(id === "201" && idUser === "101"){
+            return {
+                id: "301",
+                show_id: "201",
+                user_id: "101"
+            } as ITicketDB
+        } else {
+            return undefined
+        }
+    }
+
+    public newTicket = async (ticket: ITicketDB) => {
+
     }
 }

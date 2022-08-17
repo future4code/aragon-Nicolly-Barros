@@ -1,6 +1,4 @@
 import { ShowBusiness } from "../../src/business/ShowBusiness"
-import { BaseError } from "../../src/errors/BaseError"
-import { ICreateShowInputDTO } from "../../src/models/Show"
 import { AuthenticatorMock } from "../mocks/services/AuthenticatorMock"
 import { HashManagerMock } from "../mocks/services/HashManagerMock"
 import { IdGeneratorMock } from "../mocks/services/IdGeneratorMock"
@@ -23,6 +21,5 @@ describe("Testing ShowBusiness", () => {
         expect(response.shows[0].getBand()).toEqual("Foo Fighters")
         expect(response.shows[0].getStartsAt()).toEqual(new Date("2022/12/05"))
     })
-
 
 })

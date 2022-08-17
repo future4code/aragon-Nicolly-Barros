@@ -1,5 +1,6 @@
-import { IShowDB, Show } from "../models/Show"
+import { IShowDB, ITicketDB, Show } from "../models/Show"
 import { BaseDatabase } from "./BaseDatabase"
+import { tickets } from "./migrations/data"
 
 export class ShowDatabase extends BaseDatabase {
     public static TABLE_SHOWS = "Lama_Shows"
@@ -22,7 +23,6 @@ export class ShowDatabase extends BaseDatabase {
             .select()
             .where({ starts_at: date })
 
-        console.log(result)
         return result[0]
     }
 
@@ -53,4 +53,29 @@ export class ShowDatabase extends BaseDatabase {
         return result[0]["count(`id`)"]
     }
 
+    public verifyShow = async (id:string) :Promise<IShowDB | undefined>=> {
+        const result: IShowDB[] = await BaseDatabase
+            .connection(ShowDatabase.TABLE_SHOWS)
+            .select()
+            .where({ id })
+
+        return result[0]
+    }
+
+    public verifyTicketShow = async (id:string, idUser: string): Promise<ITicketDB | undefined> => {
+        const result: ITicketDB[] = await BaseDatabase
+            .connection(ShowDatabase.TABLE_TICKETS)
+            .select()
+            .where( "show_id", "=",  `${id}`)
+            .andWhere("user_id", "=" , `${idUser}`)
+
+        return result[0]
+    }
+
+    public newTicket = async (ticket: ITicketDB) => {
+
+        await BaseDatabase
+            .connection(ShowDatabase.TABLE_TICKETS)
+            .insert(ticket)
+    }
 }

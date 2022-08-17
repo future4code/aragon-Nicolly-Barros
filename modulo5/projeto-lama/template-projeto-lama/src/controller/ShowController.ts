@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ShowBusiness } from "../business/ShowBusiness";
 import { BaseError } from "../errors/BaseError";
-import { ICreateShowInputDTO } from "../models/Show";
+import { IBuyTicketInputDTO, ICreateShowInputDTO } from "../models/Show";
 
 export class ShowController {
     constructor(
@@ -32,6 +32,25 @@ export class ShowController {
         try {
 
             const response = await this.showBusiness.getShows()
+            res.status(200).send(response)
+            
+        } catch (error) {
+            if (error instanceof BaseError) {
+                return res.status(error.statusCode).send({ message: error.message })
+            }
+
+            res.status(500).send({ message: "Erro inesperado ao buscar todos os show." })
+        }
+    }
+
+    public buyTicket = async (req: Request, res: Response) => {
+        try {
+            const input: IBuyTicketInputDTO= {
+                token: req.headers.authorization,
+                showId: req.body.showId
+            }
+
+            const response = await this.showBusiness.buyTicket(input)
             res.status(200).send(response)
             
         } catch (error) {

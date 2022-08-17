@@ -34,3 +34,14 @@ Content-Type: application/json
 
 ### Endpoint get shows
 GET http://localhost:3003/shows
+
+
+
+### Endpoint buy ticket
+POST http://localhost:3003/shows/ticket
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMTMwNjUyLTczNDQtNDUyYi05NmQ5LTI1NDAyMGY4MTAwOCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA3NzI2MzksImV4cCI6MTY2MDg1OTAzOX0.vmDJ5YSRGmgM338JbjtnxYAfMuPiD2qi5oLHFPQdRUc
+Content-Type: application/json
+
+{
+    "showId": 202
+}

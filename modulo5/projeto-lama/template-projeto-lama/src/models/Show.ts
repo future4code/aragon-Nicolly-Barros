@@ -61,3 +61,8 @@ export interface ICreateShowOutputDTO{
     message: string,
     show: Show
 }
+
+export interface IBuyTicketInputDTO{
+    token: string,
+    showId: string
+}
