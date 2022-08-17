@@ -91,4 +91,8 @@ export class ShowDatabaseMock extends BaseDatabase {
     public newTicket = async (ticket: ITicketDB) => {
 
     }
+
+    public deleteTicket = async (id: string) => {
+        
+    }
 }

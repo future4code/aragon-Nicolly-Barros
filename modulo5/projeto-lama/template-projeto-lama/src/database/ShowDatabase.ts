@@ -37,23 +37,23 @@ export class ShowDatabase extends BaseDatabase {
     public getShows = async (): Promise<IShowDB[] | undefined> => {
         const result: IShowDB[] = await BaseDatabase
             .connection(ShowDatabase.TABLE_SHOWS)
-            .select() 
+            .select()
 
         return result
     }
 
-    public getTickets = async (id:string) => {
+    public getTickets = async (id: string) => {
 
         const result = await BaseDatabase.connection(ShowDatabase.TABLE_TICKETS)
-        .select()
-        .count("id")
-        .where({show_id: id})
+            .select()
+            .count("id")
+            .where({ show_id: id })
 
 
         return result[0]["count(`id`)"]
     }
 
-    public verifyShow = async (id:string) :Promise<IShowDB | undefined>=> {
+    public verifyShow = async (id: string): Promise<IShowDB | undefined> => {
         const result: IShowDB[] = await BaseDatabase
             .connection(ShowDatabase.TABLE_SHOWS)
             .select()
@@ -62,12 +62,12 @@ export class ShowDatabase extends BaseDatabase {
         return result[0]
     }
 
-    public verifyTicketShow = async (id:string, idUser: string): Promise<ITicketDB | undefined> => {
+    public verifyTicketShow = async (id: string, idUser: string): Promise<ITicketDB | undefined> => {
         const result: ITicketDB[] = await BaseDatabase
             .connection(ShowDatabase.TABLE_TICKETS)
             .select()
-            .where( "show_id", "=",  `${id}`)
-            .andWhere("user_id", "=" , `${idUser}`)
+            .where("show_id", "=", `${id}`)
+            .andWhere("user_id", "=", `${idUser}`)
 
         return result[0]
     }
@@ -77,5 +77,12 @@ export class ShowDatabase extends BaseDatabase {
         await BaseDatabase
             .connection(ShowDatabase.TABLE_TICKETS)
             .insert(ticket)
+    }
+
+    public deleteTicket = async (id: string) => {
+        await BaseDatabase
+        .connection(ShowDatabase.TABLE_TICKETS)
+        .delete()
+        .where({id})
     }
 }

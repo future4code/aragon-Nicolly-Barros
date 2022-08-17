@@ -23,7 +23,7 @@ Content-Type: application/json
 
 ### Endpoint create show
 POST http://localhost:3003/shows
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDc1OTM4MSwiZXhwIjoxNjYwODQ1NzgxfQ.rs0kgzfbYvuaMrY-uKei0TuR4TR16qsimrjgRXXOHHo
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDc3OTg1NywiZXhwIjoxNjYwODY2MjU3fQ.iNsYIHbHMfYMdQUPDN3Fsvi0w-aFCkaCdLjISiI4VRo
 Content-Type: application/json
 
 {
@@ -38,10 +38,11 @@ GET http://localhost:3003/shows
 
 
 ### Endpoint buy ticket
-POST http://localhost:3003/shows/ticket
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhMTMwNjUyLTczNDQtNDUyYi05NmQ5LTI1NDAyMGY4MTAwOCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA3NzI2MzksImV4cCI6MTY2MDg1OTAzOX0.vmDJ5YSRGmgM338JbjtnxYAfMuPiD2qi5oLHFPQdRUc
-Content-Type: application/json
+POST http://localhost:3003/shows/ticket/204
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDc3OTg1NywiZXhwIjoxNjYwODY2MjU3fQ.iNsYIHbHMfYMdQUPDN3Fsvi0w-aFCkaCdLjISiI4VRo
 
-{
-    "showId": 202
-}
+
+
+### Endpoint delete ticket
+DELETE http://localhost:3003/shows/ticket/202
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MDc3OTg1NywiZXhwIjoxNjYwODY2MjU3fQ.iNsYIHbHMfYMdQUPDN3Fsvi0w-aFCkaCdLjISiI4VRo
