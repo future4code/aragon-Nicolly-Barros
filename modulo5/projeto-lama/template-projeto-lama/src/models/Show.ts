@@ -50,3 +50,14 @@ export class Show {
         this.tickets = newTickets
     }
 }
+
+export interface ICreateShowInputDTO{
+    token: string,
+    band: string,
+    startAt: string,
+}
+
+export interface ICreateShowOutputDTO{
+    message: string,
+    show: Show
+}

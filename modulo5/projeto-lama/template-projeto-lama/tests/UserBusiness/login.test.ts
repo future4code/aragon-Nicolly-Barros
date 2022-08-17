@@ -61,6 +61,7 @@ describe("Testing UserBusiness", () => {
             }
         }
     })
+    
     test("retorna erro se senha estiver incorreta", async () => {
         expect.assertions(2)
         try {
