@@ -77,7 +77,7 @@ export interface IBuyTicketOutputDTO {
 
 export interface IDeleteTicketInputDTO {
     token: string,
-    showId: string
+    ticketId: string
 }
 
 export interface IDeleteTickeOutputDTO{

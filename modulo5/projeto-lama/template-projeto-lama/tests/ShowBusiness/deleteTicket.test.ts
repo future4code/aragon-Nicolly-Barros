@@ -18,7 +18,7 @@ describe("Testing ShowBusiness", () => {
 
         const input: IDeleteTicketInputDTO= {
             token: "token-mock",
-            showId: "304"
+            ticketId: "304"
         }
 
         const response = await showBusiness.deleteTicket(input)
@@ -32,7 +32,7 @@ describe("Testing ShowBusiness", () => {
         try {
             const input: IDeleteTicketInputDTO= {
                 token: "token-mock",
-                showId: "306"
+                ticketId: "306"
             }
     
             await showBusiness.deleteTicket(input)
@@ -51,7 +51,7 @@ describe("Testing ShowBusiness", () => {
         try {
             const input: IDeleteTicketInputDTO= {
                 token: "",
-                showId: "306"
+                ticketId: "306"
             }
     
             await showBusiness.deleteTicket(input)
@@ -70,7 +70,7 @@ describe("Testing ShowBusiness", () => {
         try {
             const input: IDeleteTicketInputDTO= {
                 token: "token-mock",
-                showId: ""
+                ticketId: ""
             }
     
             await showBusiness.deleteTicket(input)

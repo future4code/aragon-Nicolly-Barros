@@ -1,7 +1,8 @@
 ### Endpoint de teste
 GET http://localhost:3003/ping
 
-### Endpoint de signup
+
+### Endpoint signup
 POST http://localhost:3003/users/signup
 Content-Type: application/json
 
@@ -11,7 +12,8 @@ Content-Type: application/json
     "password": "abc123"
 }
 
-### Endpoint de login
+
+### Endpoint login
 POST http://localhost:3003/users/login
 Content-Type: application/json
 
@@ -28,7 +30,7 @@ Content-Type: application/json
 
 {
     "band": "Nirvana",
-    "startAt": "2022/12/05"
+    "startAt": "2022/12/09"
 }
 
 
@@ -36,13 +38,11 @@ Content-Type: application/json
 GET http://localhost:3003/shows
 
 
-
 ### Endpoint buy ticket
-POST http://localhost:3003/shows/ticket/201
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU0MGJmM2VhLTJlZGEtNDZjZC1hOGQwLWIyNjI3OGRlODcyMSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA4MjQzNTEsImV4cCI6MTY2MDkxMDc1MX0.V_6lEva4ruJYWoumCUtQYOLR_7p0Zl5BV-d8aT6hfNM
-
+POST http://localhost:3003/shows/ticket/202
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ1ODdkZGU4LWJkYTMtNDRkNC05MDY2LWQ2YWM5ZTI5MzZiNSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA4NTAwODIsImV4cCI6MTY2MDkzNjQ4Mn0.u-qfA2XdoEZdJoIm2hgnQBcEilk0qQq2TJ7BODs49tw
 
 
 ### Endpoint delete ticket
-DELETE http://localhost:3003/shows/ticket/bf89167e-5452-483e-9c72-89c4488224e9
+DELETE http://localhost:3003/shows/ticket/301
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU0MGJmM2VhLTJlZGEtNDZjZC1hOGQwLWIyNjI3OGRlODcyMSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjA4MjQzNTEsImV4cCI6MTY2MDkxMDc1MX0.V_6lEva4ruJYWoumCUtQYOLR_7p0Zl5BV-d8aT6hfNM

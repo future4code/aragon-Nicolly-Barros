@@ -66,7 +66,7 @@ export class ShowController {
         try {
             const input: IDeleteTicketInputDTO= {
                 token: req.headers.authorization,
-                showId: req.params.id
+                ticketId: req.params.id
             }
 
             const response = await this.showBusiness.deleteTicket(input)

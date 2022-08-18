@@ -88,9 +88,9 @@ export class ShowBusiness {
         })
 
         for (let show of shows) {
-            const tickets: any = await this.showDatabase.getTickets(show.getId())
-
-            show.setTickets(show.getTickets() - tickets)
+            const tickets:string | number = await this.showDatabase.getTickets(show.getId())
+            
+            show.setTickets(show.getTickets() - Number(tickets))
         }
 
         const response: IGetShowsOutputDTO = {
@@ -131,8 +131,8 @@ export class ShowBusiness {
 
         const shows = await this.getShows()
 
-        const [ticketsShow] = shows.shows.filter((show: any) => {
-            return show.id === showId
+        const [ticketsShow] = shows.shows.filter((show: Show) => {
+            return show.getId() === showId
         })
 
         if (ticketsShow.getTickets() < 1) {
@@ -157,7 +157,7 @@ export class ShowBusiness {
     }
 
     public deleteTicket = async (input: IDeleteTicketInputDTO) => {
-        const { token, showId} = input
+        const { token, ticketId} = input
 
         const payload = this.authenticator.getTokenPayload(token)
 
@@ -165,11 +165,11 @@ export class ShowBusiness {
             throw new UnauthorizedError("Token ausente/inválido.")
         }
 
-        if (!showId) {
+        if (!ticketId) {
             throw new RequestError("Parâmetros ausentes.")
         }
 
-        const findTicket = await this.showDatabase.verifyTicketShow(showId, payload.id)
+        const findTicket = await this.showDatabase.verifyTicketShow(ticketId, payload.id)
 
         if (!findTicket) {
             throw new NotFoundError("Você não comprou ingresso para esse show.")
@@ -181,7 +181,7 @@ export class ShowBusiness {
             }
         }
 
-        await this.showDatabase.deleteTicket(showId)
+        await this.showDatabase.deleteTicket(ticketId)
 
         const response: IBuyTicketOutputDTO = {
             message: "Ingresso deletado com sucesso!"
