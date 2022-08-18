@@ -1,5 +1,5 @@
 import { BaseDatabase } from "../../src/database/BaseDatabase"
-import { IShowDB, ITicketDB, Show} from "../../src/models/Show"
+import { IShowDB, ITicketDB, Show } from "../../src/models/Show"
 
 export class ShowDatabaseMock extends BaseDatabase {
     public static TABLE_POSTS = "Labook_Posts"
@@ -29,11 +29,11 @@ export class ShowDatabaseMock extends BaseDatabase {
     }
 
     public createShow = async (show: Show) => {
-        
+
     }
 
     public getShows = async (): Promise<IShowDB[] | undefined> => {
-        const shows:IShowDB[] = [
+        const shows: IShowDB[] = [
             {
                 id: "201",
                 band: "Foo Fighters",
@@ -54,8 +54,8 @@ export class ShowDatabaseMock extends BaseDatabase {
         return shows
     }
 
-    public getTickets = async (id:string) => {
-        switch(id) {
+    public getTickets = async (id: string) => {
+        switch (id) {
             case "201":
                 return 2
             default:
@@ -63,7 +63,7 @@ export class ShowDatabaseMock extends BaseDatabase {
         }
     }
 
-    public verifyShow = async (id:string): Promise<IShowDB | undefined> => {
+    public verifyShow = async (id: string): Promise<IShowDB | undefined> => {
         switch (id) {
             case "201":
                 return {
@@ -76,8 +76,27 @@ export class ShowDatabaseMock extends BaseDatabase {
         }
     }
 
-    public verifyTicketShow = async (id:string, idUser: string):Promise<ITicketDB | undefined> => {
-        if(id === "201" && idUser === "101"){
+    public verifyTicketShow = async (id: string, idUser: string): Promise<ITicketDB | undefined> => {
+
+        if (id === "301" && idUser === "101") {
+            return {
+                id: "301",
+                show_id: "201",
+                user_id: "101"
+            } as ITicketDB
+        } else if (id === "304" && idUser === "id-mock") {
+            return {
+                id: "304",
+                show_id: "201",
+                user_id: "id-mock"
+            } as ITicketDB
+        } else {
+            return undefined
+        }
+    }
+
+    public verifyTicketShowBuy = async (id: string, idUser: string): Promise<ITicketDB | undefined> => {
+        if (id === "201" && idUser === "101") {
             return {
                 id: "301",
                 show_id: "201",
@@ -93,6 +112,6 @@ export class ShowDatabaseMock extends BaseDatabase {
     }
 
     public deleteTicket = async (id: string) => {
-        
+
     }
 }

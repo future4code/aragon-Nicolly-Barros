@@ -66,6 +66,16 @@ export class ShowDatabase extends BaseDatabase {
         const result: ITicketDB[] = await BaseDatabase
             .connection(ShowDatabase.TABLE_TICKETS)
             .select()
+            .where("id", "=", `${id}`)
+            .andWhere("user_id", "=", `${idUser}`)
+
+        return result[0]
+    }
+
+    public verifyTicketShowBuy = async (id: string, idUser: string): Promise<ITicketDB | undefined> => {
+        const result: ITicketDB[] = await BaseDatabase
+            .connection(ShowDatabase.TABLE_TICKETS)
+            .select()
             .where("show_id", "=", `${id}`)
             .andWhere("user_id", "=", `${idUser}`)
 

@@ -123,7 +123,7 @@ export class ShowBusiness {
             throw new NotFoundError("Show não encontrado.")
         }
 
-        const findTicket = await this.showDatabase.verifyTicketShow(showId, payload.id)
+        const findTicket = await this.showDatabase.verifyTicketShowBuy(showId, payload.id)
 
         if (findTicket) {
             throw new ConflictError("Você já comprou ingresso para esse show.")
@@ -167,16 +167,6 @@ export class ShowBusiness {
 
         if (!showId) {
             throw new RequestError("Parâmetros ausentes.")
-        }
-
-        if (typeof showId !== "string") {
-            throw new RequestError("Parâmetro 'showId' inválido: deve ser uma string.")
-        }
-
-        const findShow = await this.showDatabase.verifyShow(showId)
-
-        if (!findShow) {
-            throw new NotFoundError("Show não encontrado.")
         }
 
         const findTicket = await this.showDatabase.verifyTicketShow(showId, payload.id)
