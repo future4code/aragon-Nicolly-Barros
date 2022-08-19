@@ -2,10 +2,10 @@
 - Projeto proposto para praticar testes unitários. 
 
 ## API - Postman
-- link: 
+- link: https://documenter.getpostman.com/view/20786077/VUqoRygU
 
 ## Surge - Heroku
-- link: 
+- link: https://projeto-lama-nicoly.herokuapp.com/shows
 
 ## Autor
 - gitHub: https://github.com/NicolyBarros
@@ -33,6 +33,9 @@ BCRYPT_SALT_ROUNDS = 12 (padrão é 10/12)
 
 ## Executar o projeto
 - npm run dev: Estabelece a conexão com o banco de dados e reinicia automaticamente o servidor localhost toda a vez que o projeto for alterado e salvo.
+
+## Executar os testes
+-  npm run test : Executa todos os testes unitários criados para testar a pasta Business do projeto.
 
 ## Funcionalidades básicas
 

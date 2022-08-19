@@ -78,32 +78,35 @@ export class ShowDatabaseMock extends BaseDatabase {
 
     public verifyTicketShow = async (id: string, idUser: string): Promise<ITicketDB | undefined> => {
 
-        if (id === "301" && idUser === "101") {
-            return {
-                id: "301",
-                show_id: "201",
-                user_id: "101"
-            } as ITicketDB
-        } else if (id === "304" && idUser === "id-mock") {
-            return {
-                id: "304",
-                show_id: "201",
-                user_id: "id-mock"
-            } as ITicketDB
-        } else {
-            return undefined
+        switch (id + idUser) {
+            case "301" + "101":
+              return {
+                    id: "301",
+                    show_id: "201",
+                    user_id: "101"
+                } as ITicketDB
+            case "304" + "id-mock":
+                return {
+                    id: "304",
+                    show_id: "201",
+                    user_id: "id-mock"
+                } as ITicketDB
+            default:
+                return undefined
         }
     }
 
     public verifyTicketShowBuy = async (id: string, idUser: string): Promise<ITicketDB | undefined> => {
-        if (id === "201" && idUser === "101") {
-            return {
+
+        switch (id + idUser) {
+            case "201" + "101":
+              return {
                 id: "301",
                 show_id: "201",
                 user_id: "101"
             } as ITicketDB
-        } else {
-            return undefined
+            default:
+                return undefined
         }
     }
 
