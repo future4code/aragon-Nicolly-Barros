@@ -20,37 +20,37 @@ export class UserBusiness {
         const { name, email, password } = input
 
         if (!name || !email || !password) {
-            throw new RequestError("Parâmetros ausentes.")
+            throw new RequestError("Missing parameters.")
         }
 
         if (typeof name !== "string") {
-            throw new RequestError("Parâmetro 'name' inválido: deve ser uma string.")
+            throw new RequestError("Invalid 'name' parameter: must be a string.")
         }
 
         if (typeof email !== "string") {
-            throw new RequestError("Parâmetro 'email' inválido: deve ser uma string.")
+            throw new RequestError("Invalid 'email' parameter: must be a string.")
         }
 
         if (typeof password !== "string") {
-            throw new RequestError("Parâmetro 'password' inválido: deve ser uma string.")
+            throw new RequestError("Invalid 'password' parameter: must be a string.")
         }
 
         if (name.length < 3) {
-            throw new RequestError("Parâmetro 'name' inválido: mínimo de 3 caracteres.")
+            throw new RequestError("Invalid 'name' parameter: minimum 3 characters.")
         }
 
         if (password.length < 6) {
-            throw new RequestError("Parâmetro 'password' inválido: mínimo de 6 caracteres.")
+            throw new RequestError("Invalid 'password' parameter: minimum 6 characters.")
         }
 
         if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
-            throw new RequestError("Parâmetro 'email' inválido.")
+            throw new RequestError("Invalid 'email' parameter.")
         }
 
         const findUserByEmail = await this.userDatabase.findByEmail(email)
 
         if (findUserByEmail) {
-            throw new ConflictError("Email já cadastrado.")
+            throw new ConflictError("E-mail already registered.")
         }
 
         const id = this.idGenerator.generate()
@@ -74,7 +74,7 @@ export class UserBusiness {
         const token = this.authenticator.generateToken(payload)
 
         const response: ISignupOutputDTO = {
-            message: "Cadastro realizado com sucesso!",
+            message: "Successfully registered!",
             token
         }
 
@@ -86,29 +86,29 @@ export class UserBusiness {
         const { email, password } = input
 
         if(!email || !password){
-            throw new RequestError("Parâmetros ausentes.")
+            throw new RequestError("Missing parameters.")
         }
 
         if(typeof email !== "string"){
-            throw new RequestError("Parâmetro 'email' inválido: deve ser uma string.")
+            throw new RequestError("Invalid 'email' parameter: must be a string.")
         }
 
         if(typeof password !== "string"){
-            throw new RequestError("Parâmetro 'password' inválido: deve ser uma string.")
+            throw new RequestError("Invalid 'password' parameter: must be a string.")
         }
 
         if (password.length < 6) {
-            throw new RequestError("Parâmetro 'password' inválido: mínimo de 6 caracteres.")
+            throw new RequestError("Invalid 'password' parameter: minimum 6 characters.")
         }
 
         if (!email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)) {
-            throw new RequestError("Parâmetro 'email' inválido.")
+            throw new RequestError("Invalid 'email' parameter.")
         }
 
         const findUserByEmail = await this.userDatabase.findByEmail(email)
 
         if (!findUserByEmail) {
-            throw new NotFoundError("Email não cadastrado.")
+            throw new NotFoundError("Email not registered.")
         }
 
         const user = new User(
@@ -125,7 +125,7 @@ export class UserBusiness {
         )
 
         if (!isPasswordCorrect) {
-            throw new UnauthorizedError("Password incorreto.")
+            throw new UnauthorizedError("Incorrect password.")
         }
 
         const payload: ITokenPayload = {
@@ -136,7 +136,7 @@ export class UserBusiness {
         const token = this.authenticator.generateToken(payload)
 
         const response: ILoginOutputDTO = {
-            message: "Login realizado com sucesso!",
+            message: "Login successfully!",
             token
         }
 

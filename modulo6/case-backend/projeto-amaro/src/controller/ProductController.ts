@@ -17,13 +17,14 @@ export class ProductController {
 
             const response = await this.productBusiness.getProducts(input)
             res.status(201).send(response)
-
+            
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 return res.status(error.statusCode).send({ message: error.message })
             }
 
             res.status(500).send({ message: "Erro inesperado ao buscar produtos." })
+            
         }
     }
 
@@ -48,6 +49,7 @@ export class ProductController {
     public postProduct = async (req: Request, res: Response) => {
         try {
             const input: IPostProductInputDTO= {
+                token: req.headers.authorization,
                 name : req.body.name
             }
 

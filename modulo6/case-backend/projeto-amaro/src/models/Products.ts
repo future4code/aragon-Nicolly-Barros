@@ -55,6 +55,7 @@ export interface IGetProductsOutputDTO{
 }
 
 export interface IPostProductInputDTO{
+    token: string,
     name: string
 }
 

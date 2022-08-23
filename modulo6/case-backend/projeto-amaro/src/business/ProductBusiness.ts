@@ -1,6 +1,7 @@
 import { tags } from "../database/migrations/data"
 import { ProductDatabase } from "../database/ProductDatabase"
 import { RequestError } from "../errors/RequestError"
+import { UnauthorizedError } from "../errors/UnauthorizedError"
 import { IGetProductsInputDTO, IGetProductsOutputDTO, IPostProductInputDTO, IPostProductOutputDTO, IProductDB, Product } from "../models/Products"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -15,9 +16,9 @@ export class ProductBusiness {
     ) { }
 
     public getProducts = async (input: IGetProductsInputDTO) => {
-        const search = input.search 
+        const search = input.search
 
-        if(search){
+        if (search) {
             const productsDB = await this.productDataBase.getProductsBySearch(search)
 
             const products = productsDB.map(productDB => {
@@ -25,45 +26,41 @@ export class ProductBusiness {
                     productDB.id,
                     productDB.name
                 )
-             })
-     
-             for (let product of products) {
-                 const tags:string[] = []
-                 const tagsDB: any = await this.productDataBase.getTags(product.getId())
-     
-                 /* const tags = tagsDB.map((tag:any )=> tag.tag) */
-     
-                 for (let tag of tagsDB){
+            })
+
+            for (let product of products) {
+                const tags: string[] = []
+                const tagsDB: any = await this.productDataBase.getTags(product.getId())
+
+                for (let tag of tagsDB) {
                     tags.push(tag.tag)
-                 }
-     
-                 product.setTags(tags)
-             }
-     
-             const response: IGetProductsOutputDTO = {
-                 products
-             }
-     
-             return response
+                }
+
+                product.setTags(tags)
+            }
+
+            const response: IGetProductsOutputDTO = {
+                products
+            }
+
+            return response
         }
 
         const productsDB = await this.productDataBase.getProducts()
 
         const products = productsDB.map(productDB => {
-           return new Product(
-               productDB.id,
-               productDB.name
-           )
+            return new Product(
+                productDB.id,
+                productDB.name
+            )
         })
 
         for (let product of products) {
-            const tags:string[] = []
+            const tags: string[] = []
             const tagsDB: any = await this.productDataBase.getTags(product.getId())
 
-            /* const tags = tagsDB.map((tag:any )=> tag.tag) */
-
-            for (let tag of tagsDB){
-               tags.push(tag.tag)
+            for (let tag of tagsDB) {
+                tags.push(tag.tag)
             }
 
             product.setTags(tags)
@@ -73,7 +70,9 @@ export class ProductBusiness {
             products
         }
 
+        console.log("ta na business")
         return response
+
     }
 
 
@@ -96,39 +95,38 @@ export class ProductBusiness {
 
     public postProduct = async (input: IPostProductInputDTO) => {
         const name = input.name
+        const token = input.token
+        const payload = this.authenticator.getTokenPayload(token)
 
-        if(!name){
-            throw new RequestError("Missing param.") 
+        if (!payload) {
+            throw new UnauthorizedError("Missing or invalid token.")
         }
 
-        if(typeof name !== "string"){
+        if (!name) {
+            throw new RequestError("Missing param.")
+        }
+
+        if (typeof name !== "string") {
             throw new RequestError("Invalid name param.")
         }
 
-        if(name.length < 1){
+        if (name.length < 1) {
             throw new RequestError("Invalid name param.")
         }
 
         const id = this.idGenerator.generate()
 
-        const newProduct = new Product (
+        const newProduct = new Product(
             id,
-            name
+            name.toUpperCase()
         )
 
         await this.productDataBase.postProduct(newProduct)
 
-        const response:IPostProductOutputDTO = {
+        const response: IPostProductOutputDTO = {
             message: "Product added successfully!"
         }
 
         return response
     }
 }
-
-/* {
-    "tagId": [
-      "101"
-    ]
-  }
- */

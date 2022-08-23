@@ -28,14 +28,16 @@ GET http://localhost:3003/products?search=
 
 
 ### Endpoint search products by tag
-GET http://localhost:3003/products/tag?search=neutro
+GET http://localhost:3003/products/tag?search=balada
+
 
 ### Endpoint post product
 POST http://localhost:3003/products
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwMDNhMzIwLTI1ZmUtNDBiOS1hYmY5LTI1MTQ3MGE5ZDg5ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEyODY1NDksImV4cCI6MTY2MTM3Mjk0OX0.GFechdnaSvoTGm99mqeO4NPXJRuVBW1IbWjZzW8EWys
 
 {
-    "name": "Calça jeans"
+    "name": "Vestido camuflado"
 }
 
 

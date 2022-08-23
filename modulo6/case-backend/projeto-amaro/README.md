@@ -1,14 +1,12 @@
 # Projeto Amaro
-- 
+- Projeto da rodada de cases proposto pela Labenu, como finalização do curso Full Stack Web.
+- [Case Amaro](https://github.com/amaroteam/back-end-challenge)
 
 ## API - Postman
-- link: 
+- [postman]()
 
 ## Surge - Heroku
-- link: 
-
-## Autor
-- gitHub: https://github.com/NicolyBarros
+- [heroku]()
 
 ## Instalação das dependências
 - npm install : Instala as dependências utilizadas no desenvolvimento do projeto.
@@ -42,19 +40,24 @@ BCRYPT_SALT_ROUNDS = 12 (padrão é 10/12)
 ### Endpoint 1) Signup
 Endpoint de signup para cadastrar novos usuários. Ele deve receber o name, email e password do novo usuário. Em sucesso, retorna uma mensagem e também um token de acesso que guarda o id e a role da pessoa.
 
-Validações e Regras de Negócio do endpoint:
-
-- name, email e password devem ser fornecidos e serem do tipo string
-- name deve possuir ao menos 3 caracteres, enquanto password ao menos 6 caracteres
-- email deve ter um formato válido e único, não podendo repetir no banco de dados
-
 ### Endpoint 2) Login
 Endpoint chamado de login para logar de usuários já cadastrados. Ele deve receber o email e o password da pessoa, e em caso de sucesso retorna a mensagem e o token de acesso.
 
-Validações e Regras de Negócio do endpoint:
+### Endpoint 3) Get products
+Endpoint público que retorna todos os produtos do banco de dados, também é possível pesquisar por produto pela id ou nome.
 
-- email e password devem ser fornecidos e serem do tipo string
-- password deve possuir ao menos 6 caracteres
-- email deve ter um formato válido
-- O usuário com o e-mail fornecido deve existir no sistema
+### Endpoint 4) Get search products by tag
+Endpoint público que retorna todos os produtos de determinada tag.
 
+### Endpoint 5) Post product
+Endpoint privado para cadastrar novo produto no banco de dados. 
+
+## Autor
+- [gitHub](https://github.com/NicolyBarros)
+- [linkdin](https://www.linkedin.com/in/nicoly-barros-henrique-vitorio/)
+
+## Stack - Backend
+ - node.js
+ - express
+ - API REST
+ - SQL
