@@ -53,3 +53,11 @@ export interface IGetProductsInputDTO{
 export interface IGetProductsOutputDTO{
     products: Product[]
 }
+
+export interface IPostProductInputDTO{
+    name: string
+}
+
+export interface IPostProductOutputDTO{
+    message: string
+}

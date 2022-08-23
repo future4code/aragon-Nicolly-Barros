@@ -24,6 +24,18 @@ Content-Type: application/json
 
 
 ### Endpoint get products
-GET http://localhost:3003/products
+GET http://localhost:3003/products?search=
+
+
+### Endpoint search products by tag
+GET http://localhost:3003/products/tag?search=neutro
+
+### Endpoint post product
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Calça jeans"
+}
 
 

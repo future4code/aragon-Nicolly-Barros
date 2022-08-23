@@ -212,14 +212,189 @@ export const products: IProductDB[] = [
   ];
   export const tagsProducts: ITagsProductsDB[] = [
     {
-      id: "1",
-      product_id: "8371",
-      tag_id: "101",
+      id: '201',
+      product_id: '8371',
+      tag_id: '101',
     },
     {
-      id: "2",
-      product_id: "8371",
-      tag_id: "102",
+      id: '202',
+      product_id: '8371',
+      tag_id: '102',
+    },
+    {
+      id: '203',
+      product_id: '8371',
+      tag_id: '103',
+    },
+    {
+      id: '204',
+      product_id: '8371',
+      tag_id: '104',
+    },
+    {
+      id: '205',
+      product_id: '8367',
+      tag_id: '105',
+    },
+    {
+      id: '206',
+      product_id: '8367',
+      tag_id: '106',
+    },
+    {
+      id: '207',
+      product_id: '8363',
+      tag_id: '107',
+    },
+    {
+      id: '208',
+      product_id: '8363',
+      tag_id: '106',
+    },
+    {
+      id: '209',
+      product_id: '8363',
+      tag_id: '103',
+    },
+    {
+      id: '210',
+      product_id: '8363',
+      tag_id: '108',
+    },
+    {
+      id: '211',
+      product_id: '8363',
+      tag_id: '109',
+    },
+    {
+      id: '212',
+      product_id: '8360',
+      tag_id: '110',
+    },
+    {
+      id: '213',
+      product_id: '8360',
+      tag_id: '111',
+    },
+    {
+      id: '214',
+      product_id: '8360',
+      tag_id: '112',
+    },
+    {
+      id: '215',
+      product_id: '8358',
+      tag_id: '113',
+    },
+    {
+      id: '216',
+      product_id: '8358',
+      tag_id: '114',
+    },
+    {
+      id: '217',
+      product_id: '8358',
+      tag_id: '115',
+    },
+    {
+      id: '218',
+      product_id: '8358',
+      tag_id: '116',
+    },
+    {
+      id: '219',
+      product_id: '8314',
+      tag_id: '105',
+    },
+    {
+      id: '220',
+      product_id: '8314',
+      tag_id: '111',
+    },
+    {
+      id: '221',
+      product_id: '8314',
+      tag_id: '103',
+    },
+    {
+      id: '222',
+      product_id: '8311',
+      tag_id: '101',
+    },
+    {
+      id: '223',
+      product_id: '8311',
+      tag_id: '106',
+    },
+    {
+      id: '224',
+      product_id: '8311',
+      tag_id: '117',
+    },
+    {
+      id: '225',
+      product_id: '8311',
+      tag_id: '112',
+    },
+    {
+      id: '226',
+      product_id: '8311',
+      tag_id: '109',
+    },
+    {
+      id: '227',
+      product_id: '8310',
+      tag_id: '105',
+    },
+    {
+      id: '228',
+      product_id: '8310',
+      tag_id: '106',
+    },
+    {
+      id: '229',
+      product_id: '8310',
+      tag_id: '103',
+    },
+    {
+      id: '230',
+      product_id: '8310',
+      tag_id: '112',
+    },
+    {
+      id: '231',
+      product_id: '8310',
+      tag_id: '118',
+    },
+    {
+      id: '232',
+      product_id: '8310',
+      tag_id: '108',
+    },
+    {
+      id: '233',
+      product_id: '8309',
+      tag_id: '114',
+    },
+    {
+      id: '234',
+      product_id: '8309',
+      tag_id: '115',
+    },
+    {
+      id: '235',
+      product_id: '8309',
+      tag_id: '105',
+    },
+    {
+      id: '236',
+      product_id: '8309',
+      tag_id: '112',
+    },
+    {
+      id: '237',
+      product_id: '8301',
+      tag_id: '105',
     },
   ];
   

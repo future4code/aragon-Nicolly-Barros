@@ -1,4 +1,5 @@
-import { IProductDB } from "../models/Products";
+import { createConnection } from "net";
+import { IGetProductsInputDTO, IProductDB, ITagDB, Product } from "../models/Products";
 import { BaseDatabase } from "./BaseDatabase";
 
 export class ProductDatabase extends BaseDatabase {
@@ -14,16 +15,65 @@ export class ProductDatabase extends BaseDatabase {
         return result
     }
 
+    public getProductsBySearch = async (search: string): Promise<IProductDB[] | undefined> => {
+        const result: IProductDB[] = await BaseDatabase
+            .connection(ProductDatabase.TABLE_PRODUCTS)
+            .select()
+            .where("id", "LIKE", `%${search}%`)
+            .orWhere("name", "LIKE", `%${search}%`)
+
+        return result
+    }
+
+    public getSearchProductsByTag = async (search: string): Promise<IProductDB[] | undefined> => {
+        const result = await BaseDatabase.connection.raw(`
+        SELECT Amaro_Products.id,Amaro_Products.name
+        FROM Amaro_Tags_Products
+        JOIN Amaro_Tags
+        ON Amaro_Tags_Products.tag_id = Amaro_Tags.id
+        JOIN Amaro_Products
+        ON Amaro_Tags_Products.product_id = Amaro_Products.id
+        WHERE Amaro_Tags_Products.tag_id = ${search};`)
+
+        return result[0]
+    }
+
+    public getIdTag = async (tag: string): Promise<ITagDB[] | undefined> => {
+        const result: ITagDB[] = await BaseDatabase
+            .connection(ProductDatabase.TABLE_TAGS)
+            .select()
+            .where({ tag })
+
+        return result
+    }
+
     public getTags = async (id: string): Promise<IProductDB[] | undefined> => {
 
-        const [result] = await BaseDatabase.connection.raw(`
+        const result = await BaseDatabase.connection.raw(`
         SELECT Amaro_Tags.tag
         FROM Amaro_Tags_Products
         JOIN Amaro_Tags
         ON Amaro_Tags_Products.tag_id = Amaro_Tags.id
         WHERE Amaro_Tags_Products.product_id = ${id};`)
 
-        return result
+        return result[0]
+    }
+
+    public toProductDBModel = async (product: Product) => {
+        const productDB: IProductDB= {
+            id: product.getId(),
+            name: product.getName()
+        }
+
+        return productDB
+    }
+
+    public postProduct = async (product: Product) => {
+        const productDB = await this.toProductDBModel(product)
+        
+        await BaseDatabase
+        .connection(ProductDatabase.TABLE_PRODUCTS)
+        .insert(productDB)
     }
 
 }
