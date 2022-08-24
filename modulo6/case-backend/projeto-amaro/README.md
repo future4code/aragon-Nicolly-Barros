@@ -52,6 +52,9 @@ Endpoint público que retorna todos os produtos de determinada tag.
 ### Endpoint 5) Post product
 Endpoint privado para cadastrar novo produto no banco de dados. 
 
+### Endpoint 6) Add tag to product
+Endpoint privado que adiciona tag à determinado produto cadastrado no banco de dados.
+
 ## Autor
 - [gitHub](https://github.com/NicolyBarros)
 - [linkdin](https://www.linkedin.com/in/nicoly-barros-henrique-vitorio/)

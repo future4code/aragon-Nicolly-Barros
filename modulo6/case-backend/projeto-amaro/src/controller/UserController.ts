@@ -24,7 +24,7 @@ export class UserController {
                 return res.status(error.statusCode).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado ao cadastrar usuário." })
+            res.status(500).send({ message: "Unexpected error." })
         }
     }
 
@@ -43,7 +43,7 @@ export class UserController {
                 return res.status(error.statusCode).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado ao logar usuário." })
+            res.status(500).send({ message: "Unexpected error." })
         }
     }
 }

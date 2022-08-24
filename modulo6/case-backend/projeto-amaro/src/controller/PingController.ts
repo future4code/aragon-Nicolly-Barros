@@ -17,7 +17,7 @@ export class PingController {
                 return res.status(error.statusCode).send({ message: error.message })
             }
 
-            res.status(500).send({ message: "Erro inesperado ao cadastrar usuário" })
+            res.status(500).send({ message: "Unexpected error." })
         }
     }
 }

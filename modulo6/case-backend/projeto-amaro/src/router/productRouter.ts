@@ -20,3 +20,4 @@ const productController = new ProductController(
 productRouter.get("/", productController.getProducts)
 productRouter.get("/tag", productController.getProductsTag)
 productRouter.post("/", productController.postProduct)
+productRouter.post('/tag/:id', productController.addTag);

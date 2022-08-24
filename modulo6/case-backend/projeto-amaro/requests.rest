@@ -7,8 +7,8 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Nicoly",
-    "email": "nicoly@gmail.com",
+    "name": "Danilo",
+    "email": "danilo@gmail.com",
     "password": "abc123"
 }
 
@@ -19,12 +19,12 @@ Content-Type: application/json
 
 {
     "email": "nicoly@gmail.com",
-    "password": "abc123"
+    "password": "asdfg123"
 }
 
 
 ### Endpoint get products
-GET http://localhost:3003/products?search=
+GET http://localhost:3003/products?search=cane
 
 
 ### Endpoint search products by tag
@@ -34,10 +34,19 @@ GET http://localhost:3003/products/tag?search=balada
 ### Endpoint post product
 POST http://localhost:3003/products
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMwMDNhMzIwLTI1ZmUtNDBiOS1hYmY5LTI1MTQ3MGE5ZDg5ZSIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjEyODY1NDksImV4cCI6MTY2MTM3Mjk0OX0.GFechdnaSvoTGm99mqeO4NPXJRuVBW1IbWjZzW8EWys
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MTM3MTM2NywiZXhwIjoxNjYxNDU3NzY3fQ.meEblns3OEQCVLdMSujullweM6DpiZEc22PCY8PMN54
 
 {
-    "name": "Vestido camuflado"
+    "name": "Vestido canelado"
 }
 
+
+### Endpoint add tag
+POST http://localhost:3003/products/tag/0af4c4b7-37ed-46fa-ac01-089f30d673a1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MTM3MTM2NywiZXhwIjoxNjYxNDU3NzY3fQ.meEblns3OEQCVLdMSujullweM6DpiZEc22PCY8PMN54
+Content-Type: application/json
+
+{
+    "tagName": "Neutro"
+}
 

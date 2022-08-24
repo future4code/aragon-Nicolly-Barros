@@ -23,7 +23,7 @@ describe("Testing UserBusiness", () => {
 
         const response = await userBusiness.signup(input)
 
-        expect(response.message).toEqual("Cadastro realizado com sucesso!")
+        expect(response.message).toEqual("Successfully registered!")
         expect(response.token).toEqual("token-mock")
     })
 
@@ -32,7 +32,7 @@ describe("Testing UserBusiness", () => {
         try {
             const input: ISignupInputDTO = {
                 name: "alice",
-                email: "astrodev@gmail.com",
+                email: "nicoly@gmail.com",
                 password: "alice99"
             }
 
@@ -41,7 +41,7 @@ describe("Testing UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(409)
-                expect(error.message).toEqual("Email já cadastrado.")
+                expect(error.message).toEqual("E-mail already registered.")
             }
         }
     })
@@ -60,7 +60,7 @@ describe("Testing UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(400)
-                expect(error.message).toEqual("Parâmetro 'email' inválido.")
+                expect(error.message).toEqual("Invalid 'email' parameter.")
             }
         }
     })
@@ -79,7 +79,7 @@ describe("Testing UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(400)
-                expect(error.message).toEqual("Parâmetro 'password' inválido: mínimo de 6 caracteres.")
+                expect(error.message).toEqual("Invalid 'password' parameter: minimum 6 characters.")
             }
         }
     })

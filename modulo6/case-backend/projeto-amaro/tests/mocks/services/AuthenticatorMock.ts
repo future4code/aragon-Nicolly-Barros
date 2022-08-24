@@ -5,7 +5,7 @@ export class AuthenticatorMock {
     generateToken = (payload: ITokenPayload): string => {
         switch(payload.id) {
             case "101":
-                return "token-astrodev"
+                return "token-nicoly"
             default:
                 return "token-mock"
         }

@@ -4,9 +4,9 @@ import { IUserDB, USER_ROLES } from "../../models/User"
 export const users: IUserDB[] = [
     {
         id: "101",
-        name: "Astrodev",
-        email: "astrodev@gmail.com",
-        password: "$2a$12$RBAWOHpUvGTE.MEeIohAzec9tlVqtNA/x2PMPt/Hrt0vI437cQdJC", // bananinha
+        name: "Nicoly",
+        email: "nicoly@gmail.com",
+        password: "$2a$12$LkWMqS3oPhP2iVMcZOVvWer9ahUPulxjB0EA4TWPxWaRuEEfYGu/i", // asdfg123 
         role: USER_ROLES.ADMIN
     },
     {
@@ -20,7 +20,7 @@ export const users: IUserDB[] = [
         id: "103",
         name: "Ciclana",
         email: "ciclana@gmail.com",
-        password: "$2a$12$LkWMqS3oPhP2iVMcZOVvWer9ahUPulxjB0EA4TWPxWaRuEEfYGu/i", // asdfg123
+        password: "$2a$12$RBAWOHpUvGTE.MEeIohAzec9tlVqtNA/x2PMPt/Hrt0vI437cQdJC", // bananinha
         role: USER_ROLES.NORMAL
     }
 ]
@@ -65,67 +65,7 @@ export const products: IProductDB[] = [
     {
       id: '8301',
       name: 'VESTIDO LONGO CREPE MANGA COMPRIDA',
-    },
-    {
-      id: '8300',
-      name: 'VESTIDO MALHA COM FENDA',
-    },
-    {
-      id: '8293',
-      name: 'VESTIDO CURTO VELUDO RECORTE GOLA',
-    },
-    {
-      id: '8291',
-      name: 'VESTIDO MANGA COMPRIDA COSTAS',
-    },
-    {
-      id: '8264',
-      name: 'VESTIDO CURTO VELUDO CRISTAL',
-    },
-    {
-      id: '8119',
-      name: 'VESTIDO BABADOS KNIT',
-    },
-    {
-      id: '8110',
-      name: 'VESTIDO CUT OUT TRICOT',
-    },
-    {
-      id: '8109',
-      name: 'VESTIDO BABADOS HORIZONTAIS',
-    },
-    {
-      id: '8104',
-      name: 'VESTIDO BABADO TURTLENECK',
-    },
-    {
-      id: '8091',
-      name: 'VESTIDO MIDI VELUDO DECOTADO',
-    },
-    {
-      id: '8083',
-      name: 'VESTIDO LONGO ESTAMPADO',
-    },
-    {
-      id: '8080',
-      name: 'VESTIDO CURTO RENDA VISCOSE',
-    },
-    {
-      id: '7613',
-      name: 'VESTIDO LONGO BABADO',
-    },
-    {
-      id: '7533',
-      name: 'VESTIDO COTTON DOUBLE',
-    },
-    {
-      id: "7518",
-      name: 'VESTIDO CAMISETA FANCY',
-    },
-    {
-      id: "7516",
-      name: 'VESTIDO WRAP FLEUR',
-    },
+    }
   ];
   export const tags: ITagDB[] = [
     {

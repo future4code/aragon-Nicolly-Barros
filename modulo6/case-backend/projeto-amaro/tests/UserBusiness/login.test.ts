@@ -16,14 +16,14 @@ describe("Testing UserBusiness", () => {
     
     test("login bem sucedido", async () => {
         const input: ILoginInputDTO = {
-            email: "astrodev@gmail.com",
-            password: "bananinha"
+            email: "nicoly@gmail.com",
+            password: "asdfg123"
         }
 
         const response = await userBusiness.login(input)
 
-        expect(response.message).toEqual("Login realizado com sucesso!")
-        expect(response.token).toEqual("token-astrodev")
+        expect(response.message).toEqual("Login successfully!!")
+        expect(response.token).toEqual("token-nicoly")
     })
 
     test("retorna erro se email não for cadastrado", async () => {
@@ -39,7 +39,7 @@ describe("Testing UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(404)
-                expect(error.message).toEqual("Email não cadastrado.")
+                expect(error.message).toEqual("Email not registered.")
             }
         }
     })
@@ -48,8 +48,8 @@ describe("Testing UserBusiness", () => {
         expect.assertions(2)
         try {
             const input: ILoginInputDTO = {
-                email: "astrodevgmail.com",
-                password: "bananinha"
+                email: "nicolygmail.com",
+                password: "asdfg123"
             }
 
             await userBusiness.login(input)
@@ -57,7 +57,7 @@ describe("Testing UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(400)
-                expect(error.message).toEqual("Parâmetro 'email' inválido.")
+                expect(error.message).toEqual("Invalid 'email' parameter.")
             }
         }
     })
@@ -66,7 +66,7 @@ describe("Testing UserBusiness", () => {
         expect.assertions(2)
         try {
             const input: ILoginInputDTO = {
-                email: "astrodev@gmail.com",
+                email: "nicoly@gmail.com",
                 password: "senhaerrada"
             }
 
@@ -75,7 +75,7 @@ describe("Testing UserBusiness", () => {
         } catch (error: unknown) {
             if (error instanceof BaseError) {
                 expect(error.statusCode).toEqual(401)
-                expect(error.message).toEqual("Password incorreto.")
+                expect(error.message).toEqual("Incorrect password.")
             }
         }
     })

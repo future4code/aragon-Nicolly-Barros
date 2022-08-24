@@ -46,19 +46,31 @@ export class Product {
     }
 }
 
-export interface IGetProductsInputDTO{
+export interface IGetProductsInputDTO {
     search: string
 }
 
-export interface IGetProductsOutputDTO{
+export interface IGetProductsOutputDTO {
     products: Product[]
 }
 
-export interface IPostProductInputDTO{
+export interface IPostProductInputDTO {
     token: string,
     name: string
 }
 
-export interface IPostProductOutputDTO{
+export interface IPostProductOutputDTO {
     message: string
+}
+
+export interface IAddTagInputDTO {
+    token: string,
+    id: string,
+    tagName: string
+}
+
+export interface ITagsProductsDB {
+    id: string,
+    product_id: string,
+    tag_id: string,
 }
