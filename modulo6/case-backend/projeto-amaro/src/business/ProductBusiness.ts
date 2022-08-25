@@ -1,10 +1,9 @@
-import { tags } from "../database/migrations/data"
 import { ProductDatabase } from "../database/ProductDatabase"
 import { ConflictError } from "../errors/ConflictError"
 import { NotFoundError } from "../errors/NotFoundError"
 import { RequestError } from "../errors/RequestError"
 import { UnauthorizedError } from "../errors/UnauthorizedError"
-import { IAddTagInputDTO, IGetProductsInputDTO, IGetProductsOutputDTO, IPostProductInputDTO, IPostProductOutputDTO, IProductDB, ITagsProductsDB, Product } from "../models/Products"
+import { IAddTagInputDTO, IAddTagOutputDTO, IGetProductsByTagOutputDTO, IGetProductsInputDTO, IGetProductsOutputDTO, IPostProductInputDTO, IPostProductOutputDTO, IProductDB, ITagsProductsDB, Product } from "../models/Products"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { IdGenerator } from "../services/IdGenerator"
@@ -35,12 +34,11 @@ export class ProductBusiness {
             })
 
             for (let product of products) {
-                const tags: string[] = []
+
                 const tagsDB: any = await this.productDataBase.getTags(product.getId())
 
-                for (let tag of tagsDB) {
-                    tags.push(tag.tag)
-                }
+                const tags = tagsDB?.map((tag: any) => tag.tag)
+
 
                 product.setTags(tags)
             }
@@ -62,12 +60,10 @@ export class ProductBusiness {
         })
 
         for (let product of products) {
-            const tags: string[] = []
+
             const tagsDB: any = await this.productDataBase.getTags(product.getId())
 
-            for (let tag of tagsDB) {
-                tags.push(tag.tag)
-            }
+            const tags = tagsDB?.map((tag: any) => tag.tag)
 
             product.setTags(tags)
         }
@@ -85,16 +81,20 @@ export class ProductBusiness {
 
         const tag = await this.productDataBase.getIdTag(search)
 
-        const tagId = tag.map(item => item.id)
-
-        const products = await this.productDataBase.getSearchProductsByTag(tagId[0])
-
-        if (products.length === 0) {
+        if(!tag){
             throw new RequestError("No products found with this search.")
         }
 
-        const response = {
-            products: products
+        const tagId = tag?.map(item => item.id)
+
+        const products = await this.productDataBase.getSearchProductsByTag(tagId[0])
+
+        if (products.length === 0 || undefined) {
+            throw new RequestError("No products found with this search.")
+        }
+
+        const response: IGetProductsByTagOutputDTO = {
+            products
         }
 
         return response
@@ -118,7 +118,7 @@ export class ProductBusiness {
             throw new RequestError("Invalid name param.")
         }
 
-        if (name.length < 1) {
+        if (name.length < 4) {
             throw new RequestError("Invalid name param.")
         }
 
@@ -149,8 +149,17 @@ export class ProductBusiness {
             throw new UnauthorizedError("Missing or invalid token.")
         }
 
-        if (!productId || typeof productId !== "string") {
-            throw new RequestError('Missing params: insert a valid product id.');
+        if (!productId) {
+            throw new RequestError("Missing param.")
+        }
+
+
+        if (!tagName) {
+            throw new RequestError("Missing param.")
+        }
+
+        if (typeof tagName !== "string") {
+            throw new RequestError("Invalid tagName param.")
         }
 
         const searchProduct = await this.productDataBase.verifyProduct(productId);
@@ -161,7 +170,7 @@ export class ProductBusiness {
 
         const findTag = await this.productDataBase.getIdTag(tagName)
 
-        if(findTag.length === 0){
+        if (!findTag) {
             throw new NotFoundError('Tag not found.');
         }
 
@@ -170,8 +179,8 @@ export class ProductBusiness {
 
         const findTagProduct = await this.productDataBase.verifyProductTag(productId, tagId[0])
 
-        if(findTagProduct.length !== 0){
-            throw new ConflictError("Tag already related to product.")   
+        if (findTagProduct) {
+            throw new ConflictError("Tag already related to product.")
         }
 
         const id = this.idGenerator.generate();
@@ -184,9 +193,8 @@ export class ProductBusiness {
 
         await this.productDataBase.addTag(tag);
 
-        const response = {
-            message: 'Tag added successfully!',
-            yourTag: tag,
+        const response: IAddTagOutputDTO = {
+            message: 'Tag added successfully!'
         };
 
         return response

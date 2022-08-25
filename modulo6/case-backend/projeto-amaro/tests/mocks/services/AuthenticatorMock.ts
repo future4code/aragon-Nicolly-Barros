@@ -18,7 +18,7 @@ export class AuthenticatorMock {
                     id: "id-mock",
                     role: USER_ROLES.NORMAL
                 }
-            case "token-astrodev":
+            case "token-nicoly":
                 return {
                     id: "101",
                     role: USER_ROLES.ADMIN

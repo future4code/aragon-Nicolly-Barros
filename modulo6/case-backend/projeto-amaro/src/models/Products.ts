@@ -54,6 +54,10 @@ export interface IGetProductsOutputDTO {
     products: Product[]
 }
 
+export interface IGetProductsByTagOutputDTO{
+    products: IProductDB[]
+}
+
 export interface IPostProductInputDTO {
     token: string,
     name: string
@@ -67,6 +71,10 @@ export interface IAddTagInputDTO {
     token: string,
     id: string,
     tagName: string
+}
+
+export interface IAddTagOutputDTO {
+    message: string,
 }
 
 export interface ITagsProductsDB {

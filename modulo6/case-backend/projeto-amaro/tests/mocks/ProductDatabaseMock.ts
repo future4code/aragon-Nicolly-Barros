@@ -87,7 +87,7 @@ export class ProductDatabaseMock extends BaseDatabase {
         ]
 
         switch (search) {
-            case "balada":
+            case "101":
                 return products
             default:
                 return undefined
@@ -95,16 +95,34 @@ export class ProductDatabaseMock extends BaseDatabase {
     }
 
     public getIdTag = async (tag: string): Promise<ITagDB[] | undefined> => {
-        const tagId: ITagDB[] = [
+        const tagIdTest1: ITagDB[] = [
             {
                 id: "101",
                 tag: 'balada',
             }
         ]
+
+        const tagIdTest2: ITagDB[] = [
+            {
+                id: "113",
+                tag: 'moderno',
+            }
+        ]
+
+        const tagIdTest3: ITagDB[] = [
+            {
+                id: "111",
+                tag: 'viagem',
+            }
+        ]
         
         switch (tag) {
             case "balada":
-                return tagId
+                return tagIdTest1
+            case "moderno":
+                return tagIdTest2
+            case "viagem":
+                return tagIdTest3
             default:
                 return undefined
         }
@@ -143,10 +161,10 @@ export class ProductDatabaseMock extends BaseDatabase {
 
     public verifyProduct = async (id: string): Promise<IProductDB | undefined> => {
         switch (id) {
-            case "8301":
+            case "8360":
                 return {
-                    id: '8371',
-                    name: 'VESTIDO TRICOT CHEVRON',
+                    id: '8360',
+                    name: 'VESTIDO FEMININO CANELADO',
                   } as IProductDB
             default:
                 return undefined
@@ -154,15 +172,24 @@ export class ProductDatabaseMock extends BaseDatabase {
     };
 
     public verifyProductTag = async (id: string, tag: string): Promise<ITagsProductsDB | undefined> => {
-        switch (id + tag) {
-            case "8301" + "casual":
+        if(id === "8360" && tag === "111"){
+            return {
+                id: '213',
+                product_id: '8360',
+                tag_id: '111',
+              } as ITagsProductsDB
+        } else{
+            return undefined
+        }
+        /* switch (id + tag) {
+            case "8360" + "111":
               return {
-                id: '237',
-                product_id: '8301',
-                tag_id: '105',
+                id: '213',
+                product_id: '8360',
+                tag_id: '111',
               } as ITagsProductsDB
             default:
                 return undefined
-        }
+        } */
     }
 }

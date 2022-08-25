@@ -71,7 +71,8 @@ export class ProductController {
                 token: req.headers.authorization,
                 id: req.params.id as string,
                 tagName: req.body.tagName as string,
-            };
+            }
+
             const response = await this.productBusiness.addTag(input);
             res.status(200).send(response);
         } catch (error) {

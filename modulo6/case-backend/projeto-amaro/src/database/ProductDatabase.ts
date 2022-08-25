@@ -24,8 +24,8 @@ export class ProductDatabase extends BaseDatabase {
         return result
     }
 
-    public getSearchProductsByTag = async (search: string): Promise<IProductDB[] | undefined> => {
-        const result = await BaseDatabase.connection.raw(`
+    public getSearchProductsByTag = async (search: string): Promise<IProductDB[]| undefined> => {
+        const [result] = await BaseDatabase.connection.raw(`
         SELECT Amaro_Products.id,Amaro_Products.name
         FROM Amaro_Tags_Products
         JOIN Amaro_Tags
@@ -34,7 +34,7 @@ export class ProductDatabase extends BaseDatabase {
         ON Amaro_Tags_Products.product_id = Amaro_Products.id
         WHERE Amaro_Tags_Products.tag_id = "${search}";`)
 
-        return result[0]
+        return result
     }
 
     public getIdTag = async (tag: string): Promise<ITagDB[] | undefined> => {
@@ -90,13 +90,13 @@ export class ProductDatabase extends BaseDatabase {
         return result[0];
     };
 
-    public verifyProductTag = async (id: string, tag: string): Promise<ITagsProductsDB[]| undefined> => {
+    public verifyProductTag = async (id: string, tag: string): Promise<ITagsProductsDB| undefined> => {
         const result: ITagsProductsDB[] = await BaseDatabase
             .connection(ProductDatabase.TABLE_TAGS_PRODUCTS)
             .select()
             .where("product_id", "=", `${id}`)
             .andWhere("tag_id", "=", `${tag}`)
 
-        return result
+        return result[0]
     }
 }

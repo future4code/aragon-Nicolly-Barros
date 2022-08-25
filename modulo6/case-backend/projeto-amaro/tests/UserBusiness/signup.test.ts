@@ -14,7 +14,7 @@ describe("Testing UserBusiness", () => {
         new AuthenticatorMock()
     )
     
-    test("signup bem sucedido", async () => {
+    test("Signup successfully", async () => {
         const input: ISignupInputDTO = {
             name: "alice",
             email: "alice@gmail.com",
