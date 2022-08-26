@@ -3,10 +3,10 @@
 - [Case Amaro](https://github.com/amaroteam/back-end-challenge)
 
 ## API - Postman
-- [postman]()
+- [Postman](https://documenter.getpostman.com/view/20786077/VUr1HDH5)
 
 ## Surge - Heroku
-- [heroku]()
+- [Heroku]()
 
 ## Instalação das dependências
 - npm install : Instala as dependências utilizadas no desenvolvimento do projeto.
@@ -56,11 +56,12 @@ Endpoint privado para cadastrar novo produto no banco de dados.
 Endpoint privado que adiciona tag à determinado produto cadastrado no banco de dados.
 
 ## Autor
-- [gitHub](https://github.com/NicolyBarros)
-- [linkdin](https://www.linkedin.com/in/nicoly-barros-henrique-vitorio/)
+- [GitHub](https://github.com/NicolyBarros)
+- [Linkedin](https://www.linkedin.com/in/nicoly-barros-henrique-vitorio/)
 
 ## Stack - Backend
  - node.js
  - express
  - API REST
  - SQL
+

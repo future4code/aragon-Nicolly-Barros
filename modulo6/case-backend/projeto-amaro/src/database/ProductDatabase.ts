@@ -24,7 +24,7 @@ export class ProductDatabase extends BaseDatabase {
         return result
     }
 
-    public getSearchProductsByTag = async (search: string): Promise<IProductDB[]| undefined> => {
+    public getSearchProductsByTag = async (search: string): Promise<IProductDB[] | undefined> => {
         const [result] = await BaseDatabase.connection.raw(`
         SELECT Amaro_Products.id,Amaro_Products.name
         FROM Amaro_Tags_Products
@@ -90,7 +90,7 @@ export class ProductDatabase extends BaseDatabase {
         return result[0];
     };
 
-    public verifyProductTag = async (id: string, tag: string): Promise<ITagsProductsDB| undefined> => {
+    public verifyProductTag = async (id: string, tag: string): Promise<ITagsProductsDB | undefined> => {
         const result: ITagsProductsDB[] = await BaseDatabase
             .connection(ProductDatabase.TABLE_TAGS_PRODUCTS)
             .select()

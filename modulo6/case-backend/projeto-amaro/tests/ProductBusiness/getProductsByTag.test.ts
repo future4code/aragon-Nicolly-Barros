@@ -38,8 +38,8 @@ describe("Testing ProductsBusiness", () => {
 
         } catch (error: unknown) {
             if (error instanceof BaseError) {
-                expect(error.statusCode).toEqual(400)
-                expect(error.message).toEqual("No products found with this search.")
+                expect(error.statusCode).toEqual(404)
+                expect(error.message).toEqual("Tag not registered.")
             }
         }
     })

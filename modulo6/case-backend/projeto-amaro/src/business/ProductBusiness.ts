@@ -23,7 +23,7 @@ export class ProductBusiness {
             const productsDB = await this.productDataBase.getProductsBySearch(search)
 
             if (productsDB.length === 0) {
-                throw new RequestError("No products found with this search.")
+                throw new NotFoundError("No products found with this search.")
             }
 
             const products = productsDB.map(productDB => {
@@ -82,7 +82,7 @@ export class ProductBusiness {
         const tag = await this.productDataBase.getIdTag(search)
 
         if(!tag){
-            throw new RequestError("No products found with this search.")
+            throw new NotFoundError("Tag not registered.")
         }
 
         const tagId = tag?.map(item => item.id)
@@ -90,7 +90,7 @@ export class ProductBusiness {
         const products = await this.productDataBase.getSearchProductsByTag(tagId[0])
 
         if (products.length === 0 || undefined) {
-            throw new RequestError("No products found with this search.")
+            throw new NotFoundError("No products found with this tag.")
         }
 
         const response: IGetProductsByTagOutputDTO = {
