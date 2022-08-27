@@ -6,7 +6,7 @@
 - [Postman](https://documenter.getpostman.com/view/20786077/VUr1HDH5)
 
 ## Surge - Heroku
-- [Heroku]()
+- [Heroku](https://projeto-amaro.herokuapp.com/products)
 
 ## Instalação das dependências
 - npm install : Instala as dependências utilizadas no desenvolvimento do projeto.
