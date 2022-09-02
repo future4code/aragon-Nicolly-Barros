@@ -17,3 +17,7 @@ export const goToDiaDeSorte = (navigate) => {
 export const goToTimemania = (navigate) => {
     navigate("/timemania")
 }
+
+export const goToMegasena = (navigate) => {
+    navigate("/")
+}
