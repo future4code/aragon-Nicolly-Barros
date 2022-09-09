@@ -13,7 +13,7 @@ export default function GlobalState(props) {
 
   const getLoterias = () => {
     axios
-      .get(`http://brainn-api-loterias.herokuapp.com/api/v1/loterias`)
+      .get(`https://brainn-api-loterias.herokuapp.com/api/v1/loterias`)
       .then(res => {
         setLoterias(res.data);
       })
@@ -24,7 +24,7 @@ export default function GlobalState(props) {
 
   const getLoteriaConcurso = () => {
     axios
-      .get(`http://brainn-api-loterias.herokuapp.com/api/v1/loterias-concursos`)
+      .get(`https://brainn-api-loterias.herokuapp.com/api/v1/loterias-concursos`)
       .then(res => {
         setLoteriaConcurso(res.data);
       })
@@ -35,7 +35,7 @@ export default function GlobalState(props) {
 
   const getConcurso = id => {
     axios
-      .get(`http://brainn-api-loterias.herokuapp.com/api/v1/concursos/${id}`)
+      .get(`https://brainn-api-loterias.herokuapp.com/api/v1/concursos/${id}`)
       .then(res => {
         setConcurso(res.data);
       })
